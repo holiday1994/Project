@@ -1,5 +1,7 @@
 package poject331;
 
+import Project.Product;
+
 /*
  author: Stavros Kontzias
 date: 2/27/18
@@ -7,13 +9,10 @@ purpose: Better Buy Prototype Inventory Mangement System
  */
 //package project;
 
-public class CellPhones {
+public class CellPhones extends Product{
 	
-    private String brand;
     private String screenSize;
     private int memory;
-    private double cost;
-    private double sellPrice;
     private static int count = 0;
 
     public static int getCount() {
@@ -28,21 +27,19 @@ public class CellPhones {
      * Default constructor.
      */
     public CellPhones() {
+        super();
+        this.memory = 0;
+        this.screenSize = "";
         count++;
     }
 
     public CellPhones(String brand, String screenSize, int memory, double cost, double sellPrice) {
-        this.brand = brand;
+        super(brand, cost, sellPrice);
         this.screenSize = screenSize;
         this.memory = memory;
-        this.cost = cost;
-        this.sellPrice = sellPrice;
+
         
         count++;
-    }
-
-    public String getBrand() {
-        return brand;
     }
 
     public String getScreenSize() {
@@ -53,18 +50,6 @@ public class CellPhones {
         return memory;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
-    public double getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setBrand(String Brand) {
-        this.brand = brand;
-    }
-
     public void setScreenSize(String screenSize) {
         this.screenSize = screenSize;
     }
@@ -73,17 +58,9 @@ public class CellPhones {
         this.memory = memory;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public void setSellPrice(double sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
     @Override
     public String toString() {
-        return "CellPhones{" + "Brand=" + brand + ", screenSize=" + screenSize + ", memory=" + memory + ", cost=" + cost + ", sellPrice=" + sellPrice + '}';
+        return "CellPhones{" + "Brand=" + ", screenSize=" + screenSize + ", memory=" + memory + ", cost=" + ", sellPrice=" + '}';
     }
     
     

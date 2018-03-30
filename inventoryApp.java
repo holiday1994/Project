@@ -1,13 +1,18 @@
-package Project;
-
 /*
-author: Stavros Kontzias
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
 date: 2/27/18
-purpose: Better Buy Prototype Inventory Mangement System
+purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
-//package project;
+
+package Project;
 import java.util.Scanner;
+
 public class inventoryApp {
+    
+    /**
+     * Adds items to inventory and manages inventory.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         desktop[] desk = new desktop[1000];
@@ -29,16 +34,26 @@ public class inventoryApp {
                 {
                     System.out.println("Please enter the brand of the Desktop: ");
                     String brand = kb.next();                    
-                    System.out.println("Please enter the Processor of the Desktop: ");
-                    String proc = kb.next();                   
+                    
+                    //Data validation for processors
+                    System.out.println("Please enter the Processor of the Desktop(i3, i5, or i7): ");
+                    String proc = kb.next(); 
+                    //calls processorValidation Method
+                    proc = processorValidation(kb,proc);
+
                     System.out.println("Please enter the Hard Drive Size of the Desktop: ");
                     int hdd = kb.nextInt();
-                    System.out.println("Please enter the RAM of the Desktop: ");
+                    System.out.println("Please enter the RAM of the Desktop:(4, 6, 8 Gigabytes) ");
+                    
+                    //Data Validation for  RAM, make sure it is either 4 6 or 8 Gigabytes
                     int ram = kb.nextInt();
+                    ram = ramValidation(kb,ram);
+                     
                     System.out.println("Please enter the Cost of the Desktop: ");
                     double cost = kb.nextDouble();
                     System.out.println("Please enter the Selling price of the Desktop: ");
                     double price = kb.nextDouble();
+                    price =priceValidation(kb,cost,price);
                     desktop a = new desktop(brand, proc, hdd, ram, cost, price);
                     inv[0] = new desktop(brand, proc, hdd, ram, cost, price);
                     desk[dCounter] = new desktop(brand, proc, hdd, ram, cost, price);
@@ -47,24 +62,29 @@ public class inventoryApp {
                 }
                 case 2://write into Laptop
                 {
+     
                     System.out.println("Please enter the brand of the Laptop: ");
                     String brand = kb.next();
-                    System.out.println("Please enter the Processor of the Laptop: ");
-                    String proc = kb.next();
+                    System.out.println("Please enter the Processor of the Laptop (i3, i5, or i7): ");
+                    String proc = kb.next();                 
+                    proc = processorValidation(kb,proc);
                     System.out.println("Please enter the Hard Drive Size of the Laptop: ");
                     int hdd = kb.nextInt();
-                    System.out.println("Please enter the RAM of the Laptop: ");
+                    System.out.println("Please enter the RAM of the Laptop: (4, 6, 8 Gigabytes)");
                     int ram = kb.nextInt();
+                    //RAMValidation
+                    ramValidation(kb,ram);
                     System.out.println("Please enter the Cost of the Laptop: ");
                     double cost = kb.nextDouble();
                     System.out.println("Please enter the Selling price of the Laptop: ");
                     double price = kb.nextDouble();
+                    price =priceValidation(kb,cost,price);
                     System.out.println("Please enter the Screen Size of the Laptop: ");
                     String screen = kb.next();
-                    System.out.println("Is the keyboard backlit? (Y/N)");
-                    String backlight = kb.next();
-                    System.out.println("Is there a fingerprint reader? (Y/N) ");
-                    String fingerPrint = kb.next();
+                    System.out.println("Is the keyboard backlit? (true/false)");
+                    boolean backlight = kb.nextBoolean();
+                    System.out.println("Is there a fingerprint reader? (true/false) ");
+                    boolean fingerPrint = kb.nextBoolean();
                     laptops newPC = new laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
                     lap[lCounter] = new laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
                     lCounter++;
@@ -75,14 +95,15 @@ public class inventoryApp {
                     System.out.println("Please enter the brand of the Cell Phone: ");
                     String brand = kb.next();
                     System.out.println("Please enter the Screen Size of the Cell Phone: ");
-                    String screen = kb.next();
-                    System.out.println("Please enter the Memory of the Cell Phone: ");
+                    String screen = kb.next();                  
+                    System.out.println("Please enter the Memory of the Cell Phone, choose from 32, 64, or 256 Gigabytges: ");
                     int memory = kb.nextInt();
+                    memory = cellMemoryValidation(kb,memory);
                     System.out.println("Please enter the Cost of the Cell Phone: ");
                     double cost = kb.nextDouble();
                     System.out.println("Please enter the Selling price of the Cell Phone: ");
                     double price = kb.nextDouble();
-                   
+                    price =priceValidation(kb,cost,price);
                     CellPhones newPhone = new CellPhones(brand, screen, memory, cost, price);
                     cp[cpCounter] = new CellPhones(brand, screen, memory, cost, price);
                     cpCounter++;
@@ -116,8 +137,12 @@ public class inventoryApp {
         
         }
     }
-        
     
+/**
+ * Prints desktop price, brand, and cost
+ * @param dCounter the amount of desktops in inventory
+ * @param desk the array of desktops that hold inventory
+ */    
     public static void printDesktop(int dCounter, desktop[] desk)
     {
                     System.out.println(dCounter + " Desktop Computer(s): ");
@@ -132,6 +157,11 @@ public class inventoryApp {
                     System.out.println();
     }
     
+    /**
+     * Prints laptop price, brand, and cost.
+     * @param lCounter the amount of laptops in inventory
+     * @param lap the array of laptops that hold inventory
+     */
     public static void printLaptop(int lCounter, laptops[] lap)
     {
                     System.out.println(lCounter + " Laptop Computer(s): ");
@@ -146,6 +176,11 @@ public class inventoryApp {
                     System.out.println();
     }
     
+    /**
+     * Prints cellphone brand, cost, sale price.
+     * @param cpCounter the amount of cellphones in inventory
+     * @param cp the inventory that holds the cellphones
+     */
     public static void printCellPhone(int cpCounter, CellPhones[] cp)
     {
                     System.out.println(cpCounter + " Cell Phone(s): ");
@@ -160,5 +195,73 @@ public class inventoryApp {
                     System.out.println();
     }
     
+    /**
+     * Makes sure user inputs proper processor info.
+     * @param kb the Scanner inputs user info
+     * @param proc String processor info
+     * @return proc the processor info
+     */
+    public static String processorValidation(Scanner kb, String proc){
+             while (proc.equalsIgnoreCase("i3")==false  || proc.equalsIgnoreCase("i3")==false || proc.equalsIgnoreCase("i3")==false)
+                    if (proc.equalsIgnoreCase("i3") || proc.equalsIgnoreCase("i5") || proc.equalsIgnoreCase("i7")){
+                        break;
+                    }
+                    else{
+                        System.out.print("Please choose between a i3, i5, or i7 Processor: ");
+                        proc = kb.nextLine();
+                    }
+                    
+             return proc;
 }
+    /**
+     * 
+     * @param kb the Scanner inputs user info
+     * @param ram integer  info 
+     * @return new ram info
+     */
+    public static int ramValidation(Scanner kb, int ram){
+         while (ram != 4 || ram != 6 || ram != 8){
+                if (ram == 4 || ram == 6 || ram == 8){
+                   break;
+                }
+            else{
+            System.out.println("Please pick between 4, 6, or 8 Gigabytes: ");
+            ram = kb.nextInt();            
+            }
+        }
+         return ram;
+    }
+    //ensures memory is only between 32, 54 and 256
+    public static int cellMemoryValidation(Scanner kb, int memory){
+         
+        while (memory != 32 || memory != 64 || memory != 256){
+            if (memory == 32 || memory == 64 || memory == 256){
+             break;
+             }
+             else{
+             System.out.println("Please pick between 32, 64, or 256 Gigabytes: ");
+             memory = kb.nextInt();            
+             }
+            }
+        return memory;
+    }
+    //ensure cost is less than the selling price
+    public static double priceValidation(Scanner kb, double cost, double price){
+        while (cost > price){
+            if (price > cost)
+                break;
+            System.out.println("Enter a selling price that is greater than the cost... Enter a price greater than: $" + cost);
+            System.out.print("Enter a price: ");
+            price = kb.nextDouble();
+        }
+        
+        return price;
+    }
+    
+    
+
+}
+
+    
+
 
