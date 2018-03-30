@@ -151,8 +151,8 @@ public class inventoryApp {
                     {
      
                     System.out.print(desk[i].getBrand() + "\t\t");
-                    System.out.printf("$%.2f\t\t",desk[i].getPurchaseCost());
-                    System.out.printf("$%.2f\n",desk[i].getSalesPrice());
+                    System.out.printf("$%.2f\t\t",desk[i].getCost());
+                    System.out.printf("$%.2f\n",desk[i].getSellPrice());
                     }
                     System.out.println();
     }
@@ -170,8 +170,8 @@ public class inventoryApp {
                     {
      
                     System.out.print(lap[i].getBrand() + "\t\t");
-                    System.out.printf("$%.2f\t\t",lap[i].getPurchaseCost());
-                    System.out.printf("$%.2f\n",lap[i].getSalesPrice());
+                    System.out.printf("$%.2f\t\t",lap[i].getCost());
+                    System.out.printf("$%.2f\n",lap[i].getSellPrice());
                     }
                     System.out.println();
     }

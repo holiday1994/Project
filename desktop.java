@@ -1,6 +1,4 @@
-package poject331;
-
-import Project.Product;
+package Project;
 
 /*
 author: Stavros Kontzias

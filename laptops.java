@@ -1,4 +1,4 @@
-package poject331;
+package Project;
 
 /*
 author: Stavros Kontzias
@@ -13,20 +13,20 @@ purpose: Better Buy Prototype Inventory Mangement System
  */
 public class laptops extends desktop {
      private String screensize;
-     private String backlit;
-     private String fingerprintReader;
+     private boolean backlit;
+     private boolean fingerprintReader;
     
     private static int count =  0;
 
     public laptops() {
         super();
         this.screensize = "";
-        this.backlit = "";
-        this.fingerprintReader = "";
+        this.backlit = false;
+        this.fingerprintReader = false;
         count++;
     }
 
-    public laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, String backlit, String fingerprintReader) {
+    public laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, boolean backlit, boolean fingerprintReader) {
 
         super(brand, processor, hardDriveSize, ram, purchaseCost, salesPrice);
         this.screensize = screensize;
@@ -40,11 +40,11 @@ public class laptops extends desktop {
         return screensize;
     }
 
-    public String isBacklit() {
+    public boolean isBacklit() {
         return backlit;
     }
 
-    public String isFingerprintReader() {
+    public boolean isFingerprintReader() {
         return fingerprintReader;
     }
 
@@ -56,11 +56,11 @@ public class laptops extends desktop {
         this.screensize = screensize;
     }
 
-    public void setBacklit(String backlit) {
+    public void setBacklit(boolean backlit) {
         this.backlit = backlit;
     }
 
-    public void setFingerprintReader(String fingerprintReader) {
+    public void setFingerprintReader(boolean fingerprintReader) {
         this.fingerprintReader = fingerprintReader;
     }
 
