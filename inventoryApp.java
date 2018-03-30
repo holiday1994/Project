@@ -1,4 +1,4 @@
-package poject331;
+package Project;
 
 /*
 author: Stavros Kontzias

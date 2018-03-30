@@ -1,5 +1,7 @@
 package poject331;
 
+import Project.Product;
+
 /*
 author: Stavros Kontzias
 date: 2/27/18
@@ -7,44 +9,30 @@ purpose: Better Buy Prototype Inventory Mangement System
  */
 //package project;
 
-public class desktop {
+public class desktop extends Product {
     
-    private String brand;
     private String processor;
     private int hardDriveSize;
     private int ram;
-    private double purchaseCost;
-    private double salesPrice;
     
     private static int count =  0;
     
     public desktop(){
-        this.brand = "";
+        super();
         this.processor = "";
         this.hardDriveSize = 0;
         this.ram = 0;
-        this.purchaseCost = 0.0;
-        this.salesPrice = 0.0;
-        
         count++;
     }
 
-    public desktop(String bran, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
-        brand = bran;
+    public desktop(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
+        super(brand, purchaseCost, salesPrice);
         this.processor = processor;
         this.hardDriveSize = hardDriveSize;
-        this.ram = ram;
-        this.purchaseCost = purchaseCost;
-        this.salesPrice = salesPrice;
-        
+        this.ram = ram;     
         count++;
     }
     
-    
-
-    public String getBrand() {
-        return brand;
-    }
 
     public String getProcessor() {
         return processor;
@@ -58,20 +46,8 @@ public class desktop {
         return ram;
     }
 
-    public double getPurchaseCost() {
-        return purchaseCost;
-    }
-
-    public double getSalesPrice() {
-        return salesPrice;
-    }
-
     public static int getCount() {
         return count;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public void setProcessor(String processor) {
@@ -84,14 +60,6 @@ public class desktop {
 
     public void setRam(int ram) {
         this.ram = ram;
-    }
-
-    public void setPurchaseCost(double purchaseCost) {
-        this.purchaseCost = purchaseCost;
-    }
-
-    public void setSalesPrice(double salesPrice) {
-        this.salesPrice = salesPrice;
     }
 
     public static void setCount(int count) {

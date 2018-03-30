@@ -11,13 +11,7 @@ purpose: Better Buy Prototype Inventory Mangement System
  *
  * @author holly
  */
-public class laptops {
-     private String brand;
-     private String processor;
-     private int hardDriveSize;
-     private int ram;
-     private double purchaseCost;
-     private double salesPrice;
+public class laptops extends desktop {
      private String screensize;
      private String backlit;
      private String fingerprintReader;
@@ -25,45 +19,21 @@ public class laptops {
     private static int count =  0;
 
     public laptops() {
+        super();
+        this.screensize = "";
+        this.backlit = "";
+        this.fingerprintReader = "";
         count++;
     }
 
     public laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, String backlit, String fingerprintReader) {
-        this.brand = brand;
-        this.processor = processor;
-        this.hardDriveSize = hardDriveSize;
-        this.ram = ram;
-        this.purchaseCost = purchaseCost;
-        this.salesPrice = salesPrice;
+
+        super(brand, processor, hardDriveSize, ram, purchaseCost, salesPrice);
         this.screensize = screensize;
         this.backlit = backlit;
         this.fingerprintReader = fingerprintReader;
         
         count++;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getProcessor() {
-        return processor;
-    }
-
-    public int getHardDriveSize() {
-        return hardDriveSize;
-    }
-
-    public int getRam() {
-        return ram;
-    }
-
-    public double getPurchaseCost() {
-        return purchaseCost;
-    }
-
-    public double getSalesPrice() {
-        return salesPrice;
     }
 
     public String getScreensize() {
@@ -80,30 +50,6 @@ public class laptops {
 
     public static int getCount() {
         return count;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setProcessor(String processor) {
-        this.processor = processor;
-    }
-
-    public void setHardDriveSize(int hardDriveSize) {
-        this.hardDriveSize = hardDriveSize;
-    }
-
-    public void setRam(int ram) {
-        this.ram = ram;
-    }
-
-    public void setPurchaseCost(double purchaseCost) {
-        this.purchaseCost = purchaseCost;
-    }
-
-    public void setSalesPrice(double salesPrice) {
-        this.salesPrice = salesPrice;
     }
 
     public void setScreensize(String screensize) {
