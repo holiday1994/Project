@@ -1,4 +1,4 @@
-package poject331;
+package Project;
 
 import Project.Product;
 
