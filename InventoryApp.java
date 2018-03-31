@@ -162,8 +162,10 @@ public class InventoryApp {
 //                    System.out.printf("$%.2f\t\t",desk[i].getCost());
 //                    System.out.printf("$%.2f\n",desk[i].getSellPrice());
 //                    }
-                       
-                    System.out.println(desk);
+                    for(Product p: desk){
+                        if(p instanceof Desktop && !(p instanceof Laptops))
+                            System.out.println(((Desktop) p).toString());
+                    }
     }
     
     /**
