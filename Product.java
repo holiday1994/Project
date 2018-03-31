@@ -5,21 +5,27 @@
  */
 package Project;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author holly
  */
 public class Product {
+
     private String brand;
     private double cost;
     private double sellPrice;
-    
-    public Product(){
-    this.brand = "";
-    this.cost = 0.0;
-    this.sellPrice = 0.0;
+    Scanner kb = new Scanner(System.in);
+    ArrayList<Product> inventoryList;
+
+    public Product() {
+        this.brand = "";
+        this.cost = 0.0;
+        this.sellPrice = 0.0;
     }
-    
+
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
@@ -49,6 +55,18 @@ public class Product {
     public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
-    
+
+    public static double priceValidation(Scanner kb, double cost, double price) {
+        while (cost > price) {
+            if (price > cost) {
+                break;
+            }
+            System.out.println("Enter a selling price that is greater than the cost... Enter a price greater than: $" + cost);
+            System.out.print("Enter a price: ");
+            price = kb.nextDouble();
+        }
+
+        return price;
+    }
 
 }
