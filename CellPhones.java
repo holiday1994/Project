@@ -1,7 +1,5 @@
 package Project;
 
-import Project.Product;
-
 /*
  author: Stavros Kontzias
 date: 2/27/18

@@ -13,7 +13,13 @@ public class Product {
     private String brand;
     private double cost;
     private double sellPrice;
-
+    
+    public Product(){
+    this.brand = "";
+    this.cost = 0.0;
+    this.sellPrice = 0.0;
+    }
+    
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
