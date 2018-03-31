@@ -11,14 +11,14 @@ purpose: Better Buy Prototype Inventory Mangement System
  *
  * @author holly
  */
-public class laptops extends desktop {
+public class Laptops extends Desktop {
      private String screensize;
      private boolean backlit;
      private boolean fingerprintReader;
     
     private static int count =  0;
 
-    public laptops() {
+    public Laptops() {
         super();
         this.screensize = "";
         this.backlit = false;
@@ -26,7 +26,7 @@ public class laptops extends desktop {
         count++;
     }
 
-    public laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, boolean backlit, boolean fingerprintReader) {
+    public Laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, boolean backlit, boolean fingerprintReader) {
 
         super(brand, processor, hardDriveSize, ram, purchaseCost, salesPrice);
         this.screensize = screensize;
@@ -65,7 +65,7 @@ public class laptops extends desktop {
     }
 
     public static void setCount(int count) {
-        laptops.count = count;
+        Laptops.count = count;
     }
     
     

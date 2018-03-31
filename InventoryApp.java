@@ -5,9 +5,10 @@ purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 
 package Project;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class inventoryApp {
+public class InventoryApp {
     
     /**
      * Adds items to inventory and manages inventory.
@@ -15,10 +16,12 @@ public class inventoryApp {
      */
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-        desktop[] desk = new desktop[1000];
-        CellPhones[] cp = new CellPhones[1000];
-        laptops[] lap = new laptops[1000];
-        Object[] inv = new Object[1000];
+//        Desktop[] desk = new Desktop[1000];
+//        CellPhones[] cp = new CellPhones[1000];
+//        Laptops[] lap = new Laptops[1000];
+//        Object[] inv = new Object[1000];
+        
+        ArrayList<Product> inventoryList = new ArrayList<Product>();
 
         int input = 0;
         int cpCounter = 0;//Keep tally of how many in stock
@@ -54,9 +57,10 @@ public class inventoryApp {
                     System.out.println("Please enter the Selling price of the Desktop: ");
                     double price = kb.nextDouble();
                     price =priceValidation(kb,cost,price);
-                    desktop a = new desktop(brand, proc, hdd, ram, cost, price);
-                    inv[0] = new desktop(brand, proc, hdd, ram, cost, price);
-                    desk[dCounter] = new desktop(brand, proc, hdd, ram, cost, price);
+                    Desktop a = new Desktop(brand, proc, hdd, ram, cost, price);
+//                    inv[0] = new Desktop(brand, proc, hdd, ram, cost, price);
+//                    desk[dCounter] = new Desktop(brand, proc, hdd, ram, cost, price);
+                    inventoryList.add(a);
                     dCounter++;  
                     break;
                 }
@@ -85,8 +89,9 @@ public class inventoryApp {
                     boolean backlight = kb.nextBoolean();
                     System.out.println("Is there a fingerprint reader? (true/false) ");
                     boolean fingerPrint = kb.nextBoolean();
-                    laptops newPC = new laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
-                    lap[lCounter] = new laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
+                    Laptops newPC = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
+//                    lap[lCounter] = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
+                    inventoryList.add(newPC);
                     lCounter++;
                     break;
                 }
@@ -105,30 +110,32 @@ public class inventoryApp {
                     double price = kb.nextDouble();
                     price =priceValidation(kb,cost,price);
                     CellPhones newPhone = new CellPhones(brand, screen, memory, cost, price);
-                    cp[cpCounter] = new CellPhones(brand, screen, memory, cost, price);
+//                    cp[cpCounter] = new CellPhones(brand, screen, memory, cost, price);
+                    inventoryList.add(newPhone);
                     cpCounter++;
                     break;
                 }
                 case 4:
                 {
-                    printDesktop(dCounter, desk);
+//                    printDesktop(dCounter, desk);
+                    printDesktop(dCounter, inventoryList);
                     break;
                 }
                 case 5:
                 {
-                    printLaptop(lCounter, lap);
+//                    printLaptop(lCounter, lap);
                     break;
                 }
                 case 6:
                 {
-                    printCellPhone(cpCounter, cp);
+//                    printCellPhone(cpCounter, cp);
                     break;
                 }
                 case 7://Print all
                 {
-                    printDesktop(dCounter, desk);
-                    printLaptop(lCounter, lap);
-                    printCellPhone(cpCounter, cp);
+//                    printDesktop(dCounter, desk);
+//                    printLaptop(lCounter, lap);
+//                    printCellPhone(cpCounter, cp);
                     break;
                     
                 }
@@ -143,18 +150,20 @@ public class inventoryApp {
  * @param dCounter the amount of desktops in inventory
  * @param desk the array of desktops that hold inventory
  */    
-    public static void printDesktop(int dCounter, desktop[] desk)
+    public static void printDesktop(int dCounter, ArrayList<Product> desk)
     {
+                      
                     System.out.println(dCounter + " Desktop Computer(s): ");
                     System.out.println("Brand:\t\tCost:\t\tSale Price:");
-                    for (int i = 0; i < dCounter ; i++)
-                    {
-     
-                    System.out.print(desk[i].getBrand() + "\t\t");
-                    System.out.printf("$%.2f\t\t",desk[i].getCost());
-                    System.out.printf("$%.2f\n",desk[i].getSellPrice());
-                    }
-                    System.out.println();
+//                    for (int i = 0; i < dCounter ; i++)
+//                    {
+//     
+//                    System.out.print(desk[i].getBrand() + "\t\t");
+//                    System.out.printf("$%.2f\t\t",desk[i].getCost());
+//                    System.out.printf("$%.2f\n",desk[i].getSellPrice());
+//                    }
+                       
+                    System.out.println(desk);
     }
     
     /**
@@ -162,7 +171,7 @@ public class inventoryApp {
      * @param lCounter the amount of laptops in inventory
      * @param lap the array of laptops that hold inventory
      */
-    public static void printLaptop(int lCounter, laptops[] lap)
+    public static void printLaptop(int lCounter, Laptops[] lap)
     {
                     System.out.println(lCounter + " Laptop Computer(s): ");
                     System.out.println("Brand:\t\tCost:\t\tSale Price:");

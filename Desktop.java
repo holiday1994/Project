@@ -7,7 +7,7 @@ purpose: Better Buy Prototype Inventory Mangement System
  */
 //package project;
 
-public class desktop extends Product {
+public class Desktop extends Product {
     
     private String processor;
     private int hardDriveSize;
@@ -15,7 +15,7 @@ public class desktop extends Product {
     
     private static int count =  0;
     
-    public desktop(){
+    public Desktop(){
         super();
         this.processor = "";
         this.hardDriveSize = 0;
@@ -23,7 +23,7 @@ public class desktop extends Product {
         count++;
     }
 
-    public desktop(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
+    public Desktop(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
         super(brand, purchaseCost, salesPrice);
         this.processor = processor;
         this.hardDriveSize = hardDriveSize;
@@ -61,8 +61,17 @@ public class desktop extends Product {
     }
 
     public static void setCount(int count) {
-        desktop.count = count;
+        Desktop.count = count;
     }
     
+    public String toString(){
+        String master = "";
+                    master = String.format("" + this.getBrand() + "\t\t"
+                  + "$%.2f\t\t" 
+                 + "$%.2f\n", this.getCost(), this.getSellPrice());
+                    
+                    return master;
+
+    }  
     
 }
