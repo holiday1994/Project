@@ -110,7 +110,7 @@ public class InventoryApp {
                             "Processor","Ram","Drive Size","Screen Size","Backlit","Finger Printer");
                     for (Product p: lap){
                         if (p instanceof Laptops){
-                            System.out.println(((Laptops) p).toString()); 
+                            System.out.println(lap.indexOf(p) + "\t\t" + ((Laptops) p).toString()); 
                         }
                     }
     }
@@ -128,7 +128,7 @@ public class InventoryApp {
                     for (Product p: cp){
                         if (p instanceof CellPhones){
                             
-                        System.out.println(p.toString());
+                        System.out.println(cp.indexOf(p) + "\t\t" + p.toString());
                         
                     }
                     }
