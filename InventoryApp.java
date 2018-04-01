@@ -94,7 +94,7 @@ public class InventoryApp {
                             "Processor","Ram","Drive Size");
                     for(Product p: desk){
                         if(p instanceof Desktop && !(p instanceof Laptops))
-                            System.out.println(((Desktop) p).toString());
+                            System.out.println(desk.indexOf(p) + "\t\t" + ((Desktop) p).toString());
                     }
     }
     

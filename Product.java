@@ -6,29 +6,36 @@ purpose: Better Buy Prototype Inventory Mangement System Prototype.
 package Project;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Product {
-
+    Random rand = new Random();
+    Scanner kb = new Scanner(System.in);
+   
     private String brand;
     private double cost;
     private double sellPrice;
-    private int uniqueId = 0;
+    private int uniqueId; 
+    static int count = 0;
     
-    Scanner kb = new Scanner(System.in);
+  
     ArrayList<Product> inventoryList;
 
     public Product() {
         this.brand = "";
         this.cost = 0.0;
         this.sellPrice = 0.0;
+        uniqueId++;
     }
 
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
         this.sellPrice = sellPrice;
-        this.uniqueId++;
+        uniqueId++;
+        
     }
 
     public String getBrand() {
@@ -56,7 +63,7 @@ public class Product {
     }
     
     public int getUniqueID(){
-        return this.uniqueId;
+        return this.uniqueId++;
     }
 
     public static double priceValidation(Scanner kb, double cost, double price) {
