@@ -1,22 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+date: 2/27/18
+purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author holly
- */
 public class Product {
 
     private String brand;
     private double cost;
     private double sellPrice;
+    private int uniqueId = 0;
+    
     Scanner kb = new Scanner(System.in);
     ArrayList<Product> inventoryList;
 
@@ -30,6 +28,7 @@ public class Product {
         this.brand = brand;
         this.cost = cost;
         this.sellPrice = sellPrice;
+        this.uniqueId++;
     }
 
     public String getBrand() {
@@ -54,6 +53,10 @@ public class Product {
 
     public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
+    }
+    
+    public int getUniqueID(){
+        return this.uniqueId;
     }
 
     public static double priceValidation(Scanner kb, double cost, double price) {

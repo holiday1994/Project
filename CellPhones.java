@@ -1,14 +1,12 @@
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+date: 2/27/18
+purpose: Better Buy Prototype Inventory Mangement System Prototype.
+ */
 package Project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-/*
- author: Stavros Kontzias
-date: 2/27/18
-purpose: Better Buy Prototype Inventory Mangement System
- */
-//package project;
 public class CellPhones extends Product {
 
     private String screenSize;
@@ -59,7 +57,9 @@ public class CellPhones extends Product {
 
     @Override
     public String toString() {
-        return "CellPhones{" + "Brand=" + ", screenSize=" + screenSize + ", memory=" + memory + ", cost=" + ", sellPrice=" + '}';
+        String master = "";
+        master = String.format("%-15s%-15.2f%-15.2f" ,this.getBrand(), this.getCost(),this.getSellPrice());        
+        return master;
     }
 
     public int cellMemoryValidation(Scanner kb, int memory) {
@@ -89,7 +89,6 @@ public class CellPhones extends Product {
                     double price = kb.nextDouble();
                     price = priceValidation(kb,cost,price);
                     CellPhones newPhone = new CellPhones(brand, screen, memory, cost, price);
-//                    cp[cpCounter] = new CellPhones(brand, screen, memory, cost, price);
                     inventoryList.add(newPhone);
                     cpCounter++;
     }

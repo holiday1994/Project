@@ -1,14 +1,13 @@
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+date: 2/27/18
+purpose: Better Buy Prototype Inventory Mangement System Prototype. 
+ */
 package Project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
-author: Stavros Kontzias
-date: 2/27/18
-purpose: Better Buy Prototype Inventory Mangement System
- */
-//package project;
 public class Desktop extends Product {
 
     private String processor;
@@ -22,6 +21,7 @@ public class Desktop extends Product {
         this.processor = "";
         this.hardDriveSize = 0;
         this.ram = 0;
+        
         count++;
     }
 
@@ -65,22 +65,22 @@ public class Desktop extends Product {
         Desktop.count = count;
     }
 
+    @Override
     public String toString() {
-        String master = "";
-        master = String.format("" + this.getBrand() + "\t\t"
-                + "$%.2f\t\t"
-                + "$%.2f\n", this.getCost(), this.getSellPrice());
+        String master = ""; 
+        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d" ,this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
+                this.getProcessor(), this.getRam(), this.getHardDriveSize());
 
         return master;
 
     }
 
     public int ramValidation(Scanner kb, int ram) {
-        while (ram != 4 || ram != 6 || ram != 8) {
-            if (ram == 4 || ram == 6 || ram == 8) {
+        while (ram != 4 || ram != 6 || ram != 8 || ram!=16) {
+            if (ram == 4 || ram == 6 || ram == 8 || ram == 16) {
                 break;
             } else {
-                System.out.println("Please pick between 4, 6, or 8 Gigabytes: ");
+                System.out.println("Please pick between 4, 6, 8, or 16 Gigabytes: ");
                 ram = kb.nextInt();
             }
         }
@@ -88,7 +88,7 @@ public class Desktop extends Product {
     }
     
         public String processorValidation(Scanner kb, String proc){
-             while (proc.equalsIgnoreCase("i3")==false  || proc.equalsIgnoreCase("i3")==false || proc.equalsIgnoreCase("i3")==false)
+             while (proc.equalsIgnoreCase("i3")==false  || proc.equalsIgnoreCase("i5")==false || proc.equalsIgnoreCase("i7")==false)
                     if (proc.equalsIgnoreCase("i3") || proc.equalsIgnoreCase("i5") || proc.equalsIgnoreCase("i7")){
                         break;
                     }
@@ -101,6 +101,7 @@ public class Desktop extends Product {
 }
         
         public void createDesktop(int dCounter, ArrayList<Product> inventoryList){
+                    ++dCounter;  
                     System.out.println("Please enter the brand of the Desktop: ");
                     String brand = kb.next();                    
                     
@@ -112,9 +113,9 @@ public class Desktop extends Product {
 
                     System.out.println("Please enter the Hard Drive Size of the Desktop: ");
                     int hdd = kb.nextInt();
-                    System.out.println("Please enter the RAM of the Desktop:(4, 6, 8 Gigabytes) ");
+                    System.out.println("Please enter the RAM of the Desktop:(4, 6, 8, 16 Gigabytes) ");
                     
-                    //Data Validation for  RAM, make sure it is either 4 6 or 8 Gigabytes
+                    //Data Validation for  RAM, make sure it is either 4, 6, 8, 16 orGigabytes
                     int ram = kb.nextInt();
                     ram = ramValidation(kb,ram);
                      
@@ -124,10 +125,8 @@ public class Desktop extends Product {
                     double price = kb.nextDouble();
                     price = priceValidation(kb,cost,price);
                     Desktop a = new Desktop(brand, proc, hdd, ram, cost, price);
-//                    inv[0] = new Desktop(brand, proc, hdd, ram, cost, price);
-//                    desk[dCounter] = new Desktop(brand, proc, hdd, ram, cost, price);
                     inventoryList.add(a);
-                    dCounter++;  
+                  
         }
 
 }

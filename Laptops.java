@@ -1,17 +1,11 @@
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+date: 2/27/18
+purpose: Better Buy Prototype Inventory Mangement System Prototype.
+ */
 package Project;
 
 import java.util.ArrayList;
-
-/*
-author: Stavros Kontzias
-date: 2/27/18
-purpose: Better Buy Prototype Inventory Mangement System
- */
-//package project;
-/**
- *
- * @author holly
- */
 public class Laptops extends Desktop {
 
     private String screensize;
@@ -42,12 +36,20 @@ public class Laptops extends Desktop {
         return screensize;
     }
 
-    public boolean isBacklit() {
-        return backlit;
+    public String isBacklit() {
+        if (this.backlit == true){
+            return "Yes";
+        }
+        else 
+            return "No";
     }
 
-    public boolean isFingerprintReader() {
-        return fingerprintReader;
+    public String isFingerprintReader() {
+        if (this.fingerprintReader== true){
+            return "Yes";
+        }
+        else
+            return "No";
     }
 
     public static int getCount() {
@@ -70,7 +72,19 @@ public class Laptops extends Desktop {
         Laptops.count = count;
     }
     
+    @Override
+    public String toString(){
+        
+        String master = "";
+        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d%-15s%-15s%-15s" ,this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
+                this.getProcessor(), this.getRam(), this.getHardDriveSize(),this.getScreensize(),this.isBacklit()
+                ,this.isFingerprintReader());
+        return master;
+    }
+    
+    
     public void createLaptop(int lCounter, ArrayList<Product> inventoryList){
+                       
                     System.out.println("Please enter the brand of the Laptop: ");
                     String brand = kb.next();
                     System.out.println("Please enter the Processor of the Laptop (i3, i5, or i7): ");
@@ -78,7 +92,7 @@ public class Laptops extends Desktop {
                     proc = processorValidation(kb,proc);
                     System.out.println("Please enter the Hard Drive Size of the Laptop: ");
                     int hdd = kb.nextInt();
-                    System.out.println("Please enter the RAM of the Laptop: (4, 6, 8 Gigabytes)");
+                    System.out.println("Please enter the RAM of the Laptop: (4, 6, 8, or 16 Gigabytes)");
                     int ram = kb.nextInt();
                     //RAMValidation
                     ramValidation(kb,ram);
@@ -94,7 +108,6 @@ public class Laptops extends Desktop {
                     System.out.println("Is there a fingerprint reader? (true/false) ");
                     boolean fingerPrint = kb.nextBoolean();
                     Laptops newPC = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
-//                    lap[lCounter] = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
                     inventoryList.add(newPC);
                     lCounter++;
 
