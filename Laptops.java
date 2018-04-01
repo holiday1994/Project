@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18
+date: 2/27/18 testing
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
