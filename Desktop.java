@@ -93,15 +93,26 @@ public class Desktop extends Product {
              while (proc.equalsIgnoreCase("i3")==false)
              {
                  if (proc.equalsIgnoreCase("i5")==true || proc.equalsIgnoreCase("i7")==true)
-                     break;                                
-                                              
+                     break;                                                                              
                  else
                  {
                         System.out.println("Please choose between a i3, i5, or i7 Processor: ");
-                        proc = kb.next();}  
-                  
+                        proc = kb.next();}                   
              }
              return proc;
+        }
+        
+        public int hardDriveValidation(Scanner kb, int hdd){
+             while (hdd != 128)
+             {
+                 if (hdd == 256 || hdd == 500 || hdd == 1000)
+                     break;                                                                              
+                 else
+                 {
+                        System.out.println("Please choose between a 128, 256, 500, or 1000 Hard-Drive Size: ");
+                        hdd = kb.nextInt();}                   
+             }
+             return hdd;
         }
 
         
@@ -116,8 +127,10 @@ public class Desktop extends Product {
                     //calls processorValidation Method
                     proc = processorValidation(kb,proc);
 
-                    System.out.println("Please enter the Hard Drive Size of the Desktop: ");
+                    System.out.println("Please enter the Hard Drive Size of the Desktop(128, 256, 500, 1000): ");
                     int hdd = kb.nextInt();
+                    //calls hardDriveValidation Method
+                    hdd = hardDriveValidation(kb, hdd);
                     System.out.println("Please enter the RAM of the Desktop:(4, 6, 8, 16 Gigabytes) ");
                     
                     //Data Validation for  RAM, make sure it is either 4, 6, 8, 16 orGigabytes

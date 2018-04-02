@@ -8,7 +8,7 @@ package Project;
 import java.util.ArrayList;
 public class Laptops extends Desktop {
 
-    private String screensize;
+    private int screensize;
     private boolean backlit;
     private boolean fingerprintReader;
 
@@ -16,13 +16,13 @@ public class Laptops extends Desktop {
 
     public Laptops() {
         super();
-        this.screensize = "";
+        this.screensize = 0;
         this.backlit = false;
         this.fingerprintReader = false;
         
     }
 
-    public Laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, boolean backlit, boolean fingerprintReader) {
+    public Laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, int screensize, boolean backlit, boolean fingerprintReader) {
 
         super(brand, processor, hardDriveSize, ram, purchaseCost, salesPrice);
         this.screensize = screensize;
@@ -32,7 +32,7 @@ public class Laptops extends Desktop {
         count++;
     }
 
-    public String getScreensize() {
+    public int getScreensize() {
         return screensize;
     }
 
@@ -56,7 +56,7 @@ public class Laptops extends Desktop {
         return count;
     }
 
-    public void setScreensize(String screensize) {
+    public void setScreensize(int screensize) {
         this.screensize = screensize;
     }
 
@@ -81,6 +81,18 @@ public class Laptops extends Desktop {
                 ,this.isFingerprintReader());
         return master;
     }
+    public int screenSizeValidation(int screen)
+    {
+        while (screen != 11 && screen != 12 && screen != 13 && screen != 15 && screen !=17)
+             {
+                 if (screen == 11 || screen == 12 || screen == 13 || screen == 15 || screen ==17)
+                     break;
+                 else{
+                        System.out.println("Please choose between 11, 12, 13, 15, or 17 for Screen Size: ");
+                        screen = kb.nextInt();}                   
+             }
+             return screen;
+    }
    
     public void createLaptop(ArrayList<Product> inventoryList){
                        
@@ -89,8 +101,9 @@ public class Laptops extends Desktop {
                     System.out.println("Please enter the Processor of the Laptop (i3, i5, or i7): ");
                     String proc = kb.next();                 
                     proc = processorValidation(kb,proc);
-                    System.out.println("Please enter the Hard Drive Size of the Laptop: ");
+                    System.out.println("Please enter the Hard Drive Size(128, 256, 500, 1000): ");
                     int hdd = kb.nextInt();
+                    hdd = hardDriveValidation(kb, hdd);
                     System.out.println("Please enter the RAM of the Laptop: (4, 6, 8, or 16 Gigabytes)");
                     int ram = kb.nextInt();
                     //RAMValidation
@@ -100,8 +113,10 @@ public class Laptops extends Desktop {
                     System.out.println("Please enter the Selling price of the Laptop: ");
                     double price = kb.nextDouble();
                     price = priceValidation(kb,cost,price);
-                    System.out.println("Please enter the Screen Size of the Laptop: ");
-                    String screen = kb.next();
+                    System.out.println("Please enter the Screen Size in inches of the Laptop(11, 12, 13, 15, 17): ");
+                    int screen = kb.nextInt();
+                    //screen size validation
+                    screen = screenSizeValidation(screen);
                     System.out.println("Is the keyboard backlit? (true/false)");
                     boolean backlight = kb.nextBoolean();
                     System.out.println("Is there a fingerprint reader? (true/false) ");
