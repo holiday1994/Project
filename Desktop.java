@@ -90,17 +90,20 @@ public class Desktop extends Product {
     }
     
         public String processorValidation(Scanner kb, String proc){
-             while (proc.equalsIgnoreCase("i3")==false  || proc.equalsIgnoreCase("i5")==false || proc.equalsIgnoreCase("i7")==false)
-                    if (proc.equalsIgnoreCase("i3") || proc.equalsIgnoreCase("i5") || proc.equalsIgnoreCase("i7")){
-                        break;
-                    }
-                    else{
-                        System.out.print("Please choose between a i3, i5, or i7 Processor: ");
-                        proc = kb.nextLine();
-                    }
-                    
+             while (proc.equalsIgnoreCase("i3")==false)
+             {
+                 if (proc.equalsIgnoreCase("i5")==true || proc.equalsIgnoreCase("i7")==true)
+                     break;                                
+                                              
+                 else
+                 {
+                        System.out.println("Please choose between a i3, i5, or i7 Processor: ");
+                        proc = kb.next();}  
+                  
+             }
              return proc;
-}
+        }
+
         
         public void createDesktop(ArrayList<Product> inventoryList){
                     
