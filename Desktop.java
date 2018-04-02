@@ -13,15 +13,16 @@ public class Desktop extends Product {
     private String processor;
     private int hardDriveSize;
     private int ram;
+    private static int count = 0;
 
-//    private static int count = 0;
 
     public Desktop() {
         super();
         this.processor = "";
         this.hardDriveSize = 0;
         this.ram = 0;
-        count++;
+        
+        
         
     }
 
@@ -45,7 +46,7 @@ public class Desktop extends Product {
         return ram;
     }
 
-    public static int getCount() {
+    public int getCount() {
         return count;
     }
 
@@ -61,19 +62,20 @@ public class Desktop extends Product {
         this.ram = ram;
     }
 
-    public static void setCount(int count) {
+    public void setCount(int count) {
         Desktop.count = count;
     }
 
     @Override
     public String toString() {
         String master = ""; 
-        master = String.format("%-15s%-15.2f%-20.2f%-15s%-15d%-15d",this.getBrand(), this.getCost(),this.getSellPrice(),
+        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d",this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
                 this.getProcessor(), this.getRam(), this.getHardDriveSize());
 
         return master;
 
     }
+    
 
     public int ramValidation(Scanner kb, int ram) {
         while (ram != 4 || ram != 6 || ram != 8 || ram!=16) {
@@ -100,8 +102,8 @@ public class Desktop extends Product {
              return proc;
 }
         
-        public void createDesktop(int dCounter, ArrayList<Product> inventoryList){
-                    ++dCounter;  
+        public void createDesktop(ArrayList<Product> inventoryList){
+                    
                     System.out.println("Please enter the brand of the Desktop: ");
                     String brand = kb.next();                    
                     
@@ -126,6 +128,8 @@ public class Desktop extends Product {
                     price = priceValidation(kb,cost,price);
                     Desktop a = new Desktop(brand, proc, hdd, ram, cost, price);
                     inventoryList.add(a);
+                    a.setUniqueID(inventoryList.indexOf(a));
+                    
                   
         }
 

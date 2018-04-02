@@ -19,7 +19,7 @@ public class Laptops extends Desktop {
         this.screensize = "";
         this.backlit = false;
         this.fingerprintReader = false;
-        count++;
+        
     }
 
     public Laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, String screensize, boolean backlit, boolean fingerprintReader) {
@@ -52,7 +52,7 @@ public class Laptops extends Desktop {
             return "No";
     }
 
-    public static int getCount() {
+    public  int getCount() {
         return count;
     }
 
@@ -68,7 +68,7 @@ public class Laptops extends Desktop {
         this.fingerprintReader = fingerprintReader;
     }
 
-    public static void setCount(int count) {
+    public void setCount(int count) {
         Laptops.count = count;
     }
     
@@ -76,14 +76,13 @@ public class Laptops extends Desktop {
     public String toString(){
         
         String master = "";
-        master = String.format("%-15s%-15.2f%-20.2f%-15s%-15d%-15d%-15s%-15s%-15s" ,this.getBrand(), this.getCost(),this.getSellPrice(),
+        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d%-15s%-15s%-15s" ,this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
                 this.getProcessor(), this.getRam(), this.getHardDriveSize(),this.getScreensize(),this.isBacklit()
                 ,this.isFingerprintReader());
         return master;
     }
-    
-    
-    public void createLaptop(int lCounter, ArrayList<Product> inventoryList){
+   
+    public void createLaptop(ArrayList<Product> inventoryList){
                        
                     System.out.println("Please enter the brand of the Laptop: ");
                     String brand = kb.next();
@@ -109,7 +108,8 @@ public class Laptops extends Desktop {
                     boolean fingerPrint = kb.nextBoolean();
                     Laptops newPC = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
                     inventoryList.add(newPC);
-                    lCounter++;
+                    newPC.setUniqueID(inventoryList.indexOf(newPC));
+                    
 
     }
 

@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18
+date: 4/3
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
@@ -27,14 +27,13 @@ public class Product {
         this.brand = "";
         this.cost = 0.0;
         this.sellPrice = 0.0;
-        uniqueId++;
+        
     }
 
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
         this.sellPrice = sellPrice;
-        uniqueId++;
         
     }
 
@@ -63,7 +62,12 @@ public class Product {
     }
     
     public int getUniqueID(){
-        return this.uniqueId++;
+        return this.uniqueId;
+    }
+    
+    public void setUniqueID(int index){
+        this.uniqueId = index;
+        
     }
 
     public static double priceValidation(Scanner kb, double cost, double price) {
@@ -78,5 +82,22 @@ public class Product {
 
         return price;
     }
+    
+    public String profitReport (ArrayList <Product> inventoryList){
+        double revenue = 0;
+        double cost = 0;
+        double profit;
+        for (Product p: inventoryList){
+            revenue += p.getSellPrice();
+            cost += p.getCost();
+        }
+        profit = revenue - cost;
+        String result = String.format ("Total Revenue: %-15.2fTotal Cost: $%-15.2f\nTotal Profit: $%-15.2f",
+                revenue, cost, profit);
+                
+        return result;   
+    }
+    
+    
 
 }

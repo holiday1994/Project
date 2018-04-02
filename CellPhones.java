@@ -13,11 +13,11 @@ public class CellPhones extends Product {
     private int memory;
     private static int count = 0;
 
-    public static int getCount() {
+    public int getCount() {
         return count;
     }
 
-    public static void setCount(int aCount) {
+    public void setCount(int aCount) {
         count = aCount;
     }
 
@@ -28,7 +28,7 @@ public class CellPhones extends Product {
         super();
         this.memory = 0;
         this.screenSize = "";
-        count++;
+      
     }
 
     public CellPhones(String brand, String screenSize, int memory, double cost, double sellPrice) {
@@ -58,10 +58,11 @@ public class CellPhones extends Product {
     @Override
     public String toString() {
         String master = "";
-        master = String.format("%-15s%-15.2f%-15.2f" ,this.getBrand(), this.getCost(),this.getSellPrice());        
+        master = String.format("%-15d%-15s%-15.2f%-15.2f%-15s%-15d" ,this.getUniqueID(), this.getBrand(), this.getCost(),this.getSellPrice(),this.getScreenSize(),this.getMemory());        
         return master;
     }
-
+    
+    
     public int cellMemoryValidation(Scanner kb, int memory) {
 
         while (memory != 32 || memory != 64 || memory != 256) {
@@ -75,7 +76,7 @@ public class CellPhones extends Product {
         return memory;
     }
     
-    public void createCellPhone(int cpCounter, ArrayList<Product> inventoryList){
+    public void createCellPhone(ArrayList<Product> inventoryList){
                     System.out.println("Please enter the brand of the Cell Phone: ");
                     String brand = kb.next();
                     System.out.println("Please enter the Screen Size of the Cell Phone: ");
@@ -90,6 +91,7 @@ public class CellPhones extends Product {
                     price = priceValidation(kb,cost,price);
                     CellPhones newPhone = new CellPhones(brand, screen, memory, cost, price);
                     inventoryList.add(newPhone);
-                    cpCounter++;
+                    newPhone.setUniqueID(inventoryList.indexOf(newPhone));
+                    
     }
 }
