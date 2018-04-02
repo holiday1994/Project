@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18 Testing
+date: 2/27/18 Test take 2
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 
