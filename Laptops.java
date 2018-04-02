@@ -76,7 +76,7 @@ public class Laptops extends Desktop {
     public String toString(){
         
         String master = "";
-        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d%-15s%-15s%-15s" ,this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
+        master = String.format("%-15d%-15s$%-14.2f$%-19.2f%-15s%-15d%-15d%-15s%-15s%-15s" ,this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
                 this.getProcessor(), this.getRam(), this.getHardDriveSize(),this.getScreensize(),this.isBacklit()
                 ,this.isFingerprintReader());
         return master;

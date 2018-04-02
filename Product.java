@@ -83,11 +83,22 @@ public class Product {
         return price;
     }
     
+    public void printCompleteReport(ArrayList <Product> inventoryList){
+        System.out.println("Complete Report: ");
+        System.out.printf("%-20s%-20s%-20s%-20s\n" ,"Unique ID","Selling Price","Cost","Gains");
+        for (Product p: inventoryList){
+            System.out.printf("%-20d$%-19.2f$%-19.2f$%-20.2f\n", p.getUniqueID(),p.getSellPrice(), 
+                    p.getCost(), p.getSellPrice() - p.getCost());
+        }
+        System.out.println(profitReport(inventoryList));
+    }
+    
     public String profitReport (ArrayList <Product> inventoryList){
         double revenue = 0;
         double cost = 0;
         double profit;
         for (Product p: inventoryList){
+            
             revenue += p.getSellPrice();
             cost += p.getCost();
         }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class CellPhones extends Product {
 
-    private String screenSize;
+    private int screenSize;
     private int memory;
     private static int count = 0;
 
@@ -27,11 +27,11 @@ public class CellPhones extends Product {
     public CellPhones() {
         super();
         this.memory = 0;
-        this.screenSize = "";
+        this.screenSize = 0;
       
     }
 
-    public CellPhones(String brand, String screenSize, int memory, double cost, double sellPrice) {
+    public CellPhones(String brand, int screenSize, int memory, double cost, double sellPrice) {
         super(brand, cost, sellPrice);
         this.screenSize = screenSize;
         this.memory = memory;
@@ -39,7 +39,7 @@ public class CellPhones extends Product {
         count++;
     }
 
-    public String getScreenSize() {
+    public int getScreenSize() {
         return screenSize;
     }
 
@@ -47,7 +47,7 @@ public class CellPhones extends Product {
         return memory;
     }
 
-    public void setScreenSize(String screenSize) {
+    public void setScreenSize(int screenSize) {
         this.screenSize = screenSize;
     }
 
@@ -58,7 +58,7 @@ public class CellPhones extends Product {
     @Override
     public String toString() {
         String master = "";
-        master = String.format("%-15d%-15s%-15.2f%-15.2f%-15s%-15d" ,this.getUniqueID(), this.getBrand(), this.getCost(),this.getSellPrice(),this.getScreenSize(),this.getMemory());        
+        master = String.format("%-15d%-15s$%-14.2f$%-19.2f%-15s%-15d" ,this.getUniqueID(), this.getBrand(), this.getCost(),this.getSellPrice(),this.getScreenSize(),this.getMemory());        
         return master;
     }
     
@@ -76,12 +76,28 @@ public class CellPhones extends Product {
         return memory;
     }
     
+    public int screenSizeValidation(Scanner kb, int screen){
+    {
+        while (screen != 11 && screen != 12 && screen != 13 && screen != 15 && screen !=17)
+             {
+                 if (screen == 4 || screen == 5 || screen == 6 || screen == 7 || screen ==8)
+                     break;
+                 else{
+                        System.out.println("Please choose between 4, 5, 6, 7, or 8 for Screen Size: ");
+                        screen = kb.nextInt();
+                 }
+             }
+        return screen;
+         }
+    }
+    
     public void createCellPhone(ArrayList<Product> inventoryList){
                     System.out.println("Please enter the brand of the Cell Phone: ");
                     String brand = kb.next();
-                    System.out.println("Please enter the Screen Size of the Cell Phone: ");
-                    String screen = kb.next();                  
-                    System.out.println("Please enter the Memory of the Cell Phone, choose from 32, 64, or 256 Gigabytges: ");
+                    System.out.println("Please enter the Screen Size of the Cell Phone, choose from 4, 5, 6, 7, 8, (inches):");
+                    int screen = kb.nextInt();  
+                    screenSizeValidation(kb,screen);
+                    System.out.println("Please enter the Memory of the Cell Phone, choose from 32, 64, or 256 (Gigabytges): ");
                     int memory = kb.nextInt();
                     memory = cellMemoryValidation(kb,memory);
                     System.out.println("Please enter the Cost of the Cell Phone: ");
