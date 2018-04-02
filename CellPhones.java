@@ -16,14 +16,8 @@ public class CellPhones extends Product {
     public int getCount() {
         return count;
     }
-
-<<<<<<< HEAD
+   
     public void setCount(int aCount) {
-=======
-    
-    
-    public static void setCount(int aCount) {
->>>>>>> ef3ad18cb53faa3647e9f7df67bcfb8f1eb437b9
         count = aCount;
     }
 
