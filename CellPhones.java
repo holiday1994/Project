@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18
+date: 2/27/18 testing
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
@@ -17,7 +17,13 @@ public class CellPhones extends Product {
         return count;
     }
 
+<<<<<<< HEAD
     public void setCount(int aCount) {
+=======
+    
+    
+    public static void setCount(int aCount) {
+>>>>>>> ef3ad18cb53faa3647e9f7df67bcfb8f1eb437b9
         count = aCount;
     }
 
