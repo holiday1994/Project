@@ -29,7 +29,7 @@ public class Laptops extends Desktop {
         this.backlit = backlit;
         this.fingerprintReader = fingerprintReader;
 
-        count++;
+//        count++;
     }
 
     public int getScreensize() {
@@ -124,7 +124,7 @@ public class Laptops extends Desktop {
                     Laptops newPC = new Laptops(brand, proc, hdd, ram, cost, price, screen, backlight, fingerPrint);
                     inventoryList.add(newPC);
                     newPC.setUniqueID(inventoryList.indexOf(newPC));
-                    
+                    count++;
 
     }
 

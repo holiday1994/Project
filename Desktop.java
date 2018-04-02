@@ -15,7 +15,6 @@ public class Desktop extends Product {
     private int ram;
     private static int count = 0;
 
-
     public Desktop() {
         super();
         this.processor = "";
@@ -31,7 +30,7 @@ public class Desktop extends Product {
         this.processor = processor;
         this.hardDriveSize = hardDriveSize;
         this.ram = ram;
-        count++;
+//        count++;
     }
 
     public String getProcessor() {
@@ -145,6 +144,7 @@ public class Desktop extends Product {
                     Desktop a = new Desktop(brand, proc, hdd, ram, cost, price);
                     inventoryList.add(a);
                     a.setUniqueID(inventoryList.indexOf(a));
+                    count++;
                     
                   
         }

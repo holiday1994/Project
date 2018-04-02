@@ -92,7 +92,7 @@ public class InventoryApp {
     public static void printDesktop(Desktop d, ArrayList<Product> desk)
     {
                       
-                    System.out.print( d.getCount() + " Desktop Computer(s): \n");
+                    System.out.print("\n" + d.getCount() + " Desktop Computer(s): \n");
                     System.out.printf("%-15s%-15s%-15s%-20s%-15s%-15s%-15s\n" ,"IDNum","Brand","Cost","Selling Price",
                             "Processor","Ram","Drive Size");
                     for(Product p: desk){
@@ -107,7 +107,7 @@ public class InventoryApp {
      */
     public static void printLaptop(Laptops lp, ArrayList<Product> lap)
     {
-                    System.out.print(lp.getCount() + " Laptop Computer(s): \n");
+                    System.out.print("\n" + lp.getCount() + " Laptop Computer(s): \n");
                      System.out.printf("%-15s%-15s%-15s%-20s%-15s%-15s%-15s%-15s%-15s%-15s\n" ,"IDNum","Brand","Cost","Selling Price",
                             "Processor","Ram","Drive Size","Screen Size","Backlit","Finger Print Reader");
                     for (Product p: lap){
@@ -124,7 +124,7 @@ public class InventoryApp {
      */
     public static void printCellPhone(CellPhones cell, ArrayList<Product> cp)
     {
-                    System.out.println(cell.getCount() + " Cell Phone(s): ");
+                    System.out.println("\n" + cell.getCount() + " Cell Phone(s): ");
                     System.out.printf("%-15s%-15s%-15s%-20s%-15s%-15s\n","IDNUM","Brand","Cost","Selling Price","Screen Size"
                             ,"Memory");
                     

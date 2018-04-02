@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Product {
     Random rand = new Random();
     Scanner kb = new Scanner(System.in);
+    
    
     private String brand;
     private double cost;
@@ -25,15 +26,13 @@ public class Product {
     public Product() {
         this.brand = "";
         this.cost = 0.0;
-        this.sellPrice = 0.0;
-        
+        this.sellPrice = 0.0;    
     }
 
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
-        this.sellPrice = sellPrice;
-        
+        this.sellPrice = sellPrice;       
     }
 
     public String getBrand() {

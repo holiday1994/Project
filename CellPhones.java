@@ -36,7 +36,7 @@ public class CellPhones extends Product {
         this.screenSize = screenSize;
         this.memory = memory;
 
-        count++;
+//        count++;
     }
 
     public int getScreenSize() {
@@ -108,6 +108,7 @@ public class CellPhones extends Product {
                     CellPhones newPhone = new CellPhones(brand, screen, memory, cost, price);
                     inventoryList.add(newPhone);
                     newPhone.setUniqueID(inventoryList.indexOf(newPhone));
+                    count++;
                     
     }
 }
