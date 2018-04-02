@@ -8,7 +8,6 @@ package Project;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Product {
     Random rand = new Random();
