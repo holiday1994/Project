@@ -90,9 +90,9 @@ public class Desktop extends Product {
     }
     
         public String processorValidation(Scanner kb, String proc){
-             while (proc.equalsIgnoreCase("i3")==false)
+             while (proc.equalsIgnoreCase("i3")==false || proc.equalsIgnoreCase("i5") == false || proc.equalsIgnoreCase("i7") == false)
              {
-                 if (proc.equalsIgnoreCase("i5")==true || proc.equalsIgnoreCase("i7")==true)
+                 if (proc.equalsIgnoreCase("i3")==true || proc.equalsIgnoreCase("i5")==true || proc.equalsIgnoreCase("i7")==true)
                      break;                                                                              
                  else
                  {
