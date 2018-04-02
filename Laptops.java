@@ -52,7 +52,7 @@ public class Laptops extends Desktop {
             return "No";
     }
 
-    public  int getCount() {
+    public static int getCount() {
         return count;
     }
 

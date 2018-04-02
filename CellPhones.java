@@ -13,7 +13,7 @@ public class CellPhones extends Product {
     private int memory;
     private static int count = 0;
 
-    public int getCount() {
+    public static int getCount() {
         return count;
     }
    

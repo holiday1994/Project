@@ -46,7 +46,7 @@ public class Desktop extends Product {
         return ram;
     }
 
-    public int getCount() {
+    public static int getCount() {
         return count;
     }
 

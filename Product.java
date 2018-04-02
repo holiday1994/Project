@@ -102,9 +102,9 @@ public class Product {
             cost += p.getCost();
         }
         profit = revenue - cost;
-        String result = String.format ("Total Revenue: %-15.2fTotal Cost: $%-15.2f\nTotal Profit: $%-15.2f",
+        String result = String.format ("Total Revenue: %-15.2fTotal Cost: $%-15.2f\nTotal Profit: $%-15.2f\n",
                 revenue, cost, profit);
-                
+                result += ("Desktops: " + Desktop.getCount() + "   Laptops: " + Laptops.getCount() + "   Cell Phones: " + CellPhones.getCount());
         return result;   
     }
    
