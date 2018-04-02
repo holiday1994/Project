@@ -69,7 +69,7 @@ public class Desktop extends Product {
     @Override
     public String toString() {
         String master = ""; 
-        master = String.format("%-15d%-15s%-15.2f%-20.2f%-15s%-15d%-15d",this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
+        master = String.format("%-15d%-15s$%-14.2f$%-19.2f%-15s%-15d%-15d",this.getUniqueID(),this.getBrand(), this.getCost(),this.getSellPrice(),
                 this.getProcessor(), this.getRam(), this.getHardDriveSize());
 
         return master;

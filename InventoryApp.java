@@ -77,7 +77,7 @@ public class InventoryApp {
                     
                 }
                 case 8:
-                    System.out.println(p.profitReport(inventoryList));
+                    p.printCompleteReport(inventoryList);
                             
             }
         
@@ -107,9 +107,9 @@ public class InventoryApp {
      */
     public static void printLaptop(Laptops lp, ArrayList<Product> lap)
     {
-                    System.out.println(lp.getCount() + " Laptop Computer(s): \n");
+                    System.out.print(lp.getCount() + " Laptop Computer(s): \n");
                      System.out.printf("%-15s%-15s%-15s%-20s%-15s%-15s%-15s%-15s%-15s%-15s\n" ,"IDNum","Brand","Cost","Selling Price",
-                            "Processor","Ram","Drive Size","Screen Size","Backlit","Finger Printer");
+                            "Processor","Ram","Drive Size","Screen Size","Backlit","Finger Print Reader");
                     for (Product p: lap){
                         if (p instanceof Laptops){
                             System.out.println(p.toString()); 
