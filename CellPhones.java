@@ -89,7 +89,7 @@ public class CellPhones extends Product {
     
     public int screenSizeValidation(Scanner kb, int screen){
     {
-        while (screen != 11 && screen != 12 && screen != 13 && screen != 15 && screen !=17)
+        while (screen != 4 && screen != 5 && screen != 6 && screen != 7 && screen !=8)
              {
                  if (screen == 4 || screen == 5 || screen == 6 || screen == 7 || screen ==8)
                      break;
