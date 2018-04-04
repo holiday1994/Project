@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18 testing
+date: 4/3/2018
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
@@ -11,8 +11,8 @@ public class Laptops extends Desktop {
     private int screensize;
     private boolean backlit;
     private boolean fingerprintReader;
-
     private static int count = 0;
+    private static String typeL = "Laptop";
 
     public Laptops() {
         super();
@@ -51,9 +51,13 @@ public class Laptops extends Desktop {
         else
             return "No";
     }
-
-    public static int getCount() {
+    @Override
+    public int getCount() {
         return count;
+    }
+    
+    public String getType(){
+        return this.typeL;
     }
 
     public void setScreensize(int screensize) {

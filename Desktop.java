@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18 
+date: 4/3/2018
 purpose: Better Buy Prototype Inventory Mangement System Prototype. 
  */
 package Project;
@@ -14,15 +14,14 @@ public class Desktop extends Product {
     private int hardDriveSize;
     private int ram;
     private static int count = 0;
+    private static String typeD = "Desktop"; 
 
     public Desktop() {
         super();
         this.processor = "";
         this.hardDriveSize = 0;
         this.ram = 0;
-        
-        
-        
+         
     }
 
     public Desktop(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
@@ -45,8 +44,12 @@ public class Desktop extends Product {
         return ram;
     }
 
-    public static int getCount() {
+    public int getCount() {
         return count;
+    }
+    
+    public String getType(){
+        return this.typeD;
     }
 
     public void setProcessor(String processor) {
@@ -64,6 +67,7 @@ public class Desktop extends Product {
     public void setCount(int count) {
         Desktop.count = count;
     }
+    
 
     @Override
     public String toString() {
@@ -146,7 +150,6 @@ public class Desktop extends Product {
                     a.setUniqueID(inventoryList.indexOf(a));
                     count++;
                     
-                  
         }
 
 }
