@@ -17,7 +17,8 @@ public class Laptops extends Desktop {
     private boolean fingerprintReader;
     private static int count = 0;
     private static String typeL = "Laptop";
-
+    
+    //0 args constructor
     public Laptops() {
         super();
         this.screensize = 0;
@@ -25,7 +26,8 @@ public class Laptops extends Desktop {
         this.fingerprintReader = false;
         
     }
-
+    
+    //constructor
     public Laptops(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice, int screensize, boolean backlit, boolean fingerprintReader) {
 
         super(brand, processor, hardDriveSize, ram, purchaseCost, salesPrice);
@@ -80,6 +82,7 @@ public class Laptops extends Desktop {
         Laptops.count = count;
     }
     
+    //A String description of a laptop object
     @Override
     public String toString(){
         
@@ -89,6 +92,8 @@ public class Laptops extends Desktop {
                 ,this.isFingerprintReader());
         return master;
     }
+    
+    //user picks laptop screen size
     public int screenSizeValidation(int screen)
     {
         while (screen != 11 && screen != 12 && screen != 13 && screen != 15 && screen !=17)
@@ -101,7 +106,9 @@ public class Laptops extends Desktop {
              }
              return screen;
     }
-   
+    
+    //Holds the output requesting user input and creates laptop objects based
+    //user input
     public void createLaptop(ArrayList<Product> inventoryList){
                        
                     System.out.println("Please enter the brand of the Laptop: ");
