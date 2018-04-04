@@ -1,12 +1,7 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-<<<<<<< HEAD
 date: 4/3/2018
-=======
-date: 2/27/18 
->>>>>>> 828c2c616820788e8b924a5ec8469514857741af
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
-
 //Disclaimer: Everyone in this group has distributed work evenly throught the Programming assignment
 
  */
@@ -38,7 +33,7 @@ public class InventoryApp {
           System.out.printf("%-25s%-25s\n","1.Add Desktop","5.Print Laptop(s)");
           System.out.printf("%-25s%-25s\n","2.Add Laptop", "6 Print Cellphone(s)");
           System.out.printf("%-25s%-25s\n", "3 Add Cellphone","7.Print All Items");
-          System.out.printf("%-25s%-25s\n", "4 Print Desktop(s)","8.Expense Report");
+          System.out.printf("%-25s%-25s\n", "4 Print Desktop(s)","8.Profitability Report");
           System.out.println("9.Exit System");
             input = kb.nextInt(); 
             switch(input){
