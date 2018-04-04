@@ -1,6 +1,10 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+<<<<<<< HEAD
 date: 4/3/2018
+=======
+date: 2/27/18 
+>>>>>>> 828c2c616820788e8b924a5ec8469514857741af
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
 
 //Disclaimer: Everyone in this group has distributed work evenly throught the Programming assignment
