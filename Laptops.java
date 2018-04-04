@@ -34,8 +34,6 @@ public class Laptops extends Desktop {
         this.screensize = screensize;
         this.backlit = backlit;
         this.fingerprintReader = fingerprintReader;
-
-//        count++;
     }
 
     public int getScreensize() {
