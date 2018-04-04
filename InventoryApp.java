@@ -167,6 +167,15 @@ public class InventoryApp {
         System.out.println(profitReport(d,l,cp,inventoryList));
     }
     
+    /**
+     * Prints the profit report of the store.
+     * 
+     * @param d desktop used to get the amount of desktops
+     * @param l laptops used to get the amount of laptops
+     * @param cp cellphones used to geth the amount of cellphones
+     * @param inventoryList the store's current inventory
+     * @return result
+     */
     public static String profitReport (Desktop d, Laptops l, CellPhones cp, ArrayList <Product> inventoryList){
         double revenue = 0;
         double cost = 0;
