@@ -1,7 +1,14 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+<<<<<<< HEAD
+date: 4/3/2018
+=======
 date: 2/27/18 
+>>>>>>> 828c2c616820788e8b924a5ec8469514857741af
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
+
+//Disclaimer: Everyone in this group has distributed work evenly throught the Programming assignment
+
  */
 
 package Project;
@@ -77,7 +84,7 @@ public class InventoryApp {
                     
                 }
                 case 8:
-                    p.printCompleteReport(inventoryList);
+                    printCompleteReport(d,l,c,inventoryList);
                             
             }
         
@@ -138,9 +145,48 @@ public class InventoryApp {
                     
     }
     
-
+    
+        public static void printCompleteReport(Desktop d, Laptops l, CellPhones cp ,ArrayList <Product> inventoryList){
+        System.out.println("=====================================");
+        System.out.println("Complete Report: ");
+        System.out.printf("%-20s%-20s%-20s%-21s%-20s\n" ,"Unique ID","Selling Price","Cost","Capital Gains","Product Type");
+        
+        for (Product p: inventoryList){
+            System.out.printf("%-20d$%-19.2f$%-19.2f$%-20.2f", p.getUniqueID(), p.getSellPrice(), 
+                    p.getCost(), p.getSellPrice() - p.getCost());
+            if (p instanceof Desktop){
+                System.out.printf("%-20s\n",((Desktop) p).getType());
+                }
+            else if (p instanceof Laptops){
+                System.out.printf("%-20s\n",((Laptops) p).getType());
+            }
+            else if (p instanceof CellPhones){
+                System.out.printf("%-20s\n",((CellPhones) p).getType());
+            }
+        }
+        System.out.println(profitReport(d,l,cp,inventoryList));
+    }
+    
+    public static String profitReport (Desktop d, Laptops l, CellPhones cp, ArrayList <Product> inventoryList){
+        double revenue = 0;
+        double cost = 0;
+        double profit;
+        for (Product p: inventoryList){
+            
+            revenue += p.getSellPrice();
+            cost += p.getCost();
+        }
+        profit = revenue - cost;
+        String result = String.format ("\nTotal Revenue: $%-14.2f\nTotal Cost: $%-15.2f\nTotal Profit: $%-15.2f\n",
+                revenue, cost, profit);
+                result += ("Desktops: " + d.getCount() + "   Laptops: " + l.getCount() + "   Cell Phones: " + cp.getCount());
+        return result;   
+    }
+    
+    
+    
+    
 }
-
     
 
 

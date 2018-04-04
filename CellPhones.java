@@ -1,6 +1,10 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+<<<<<<< HEAD
+date: 4/3/2018
+=======
 date: 2/27/18
+>>>>>>> 828c2c616820788e8b924a5ec8469514857741af
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
  */
 package Project;
@@ -12,14 +16,9 @@ public class CellPhones extends Product {
     private int screenSize;
     private int memory;
     private static int count = 0;
+    private static String typeCP = "Cell Phone";
+    
 
-    public static int getCount() {
-        return count;
-    }
-   
-    public void setCount(int aCount) {
-        count = aCount;
-    }
 
     /**
      * Default constructor.
@@ -46,6 +45,9 @@ public class CellPhones extends Product {
     public int getMemory() {
         return memory;
     }
+    public String getType(){
+        return this.typeCP;
+    }
 
     public void setScreenSize(int screenSize) {
         this.screenSize = screenSize;
@@ -54,7 +56,16 @@ public class CellPhones extends Product {
     public void setMemory(int memory) {
         this.memory = memory;
     }
+    
+    public int getCount() {
+        return count;
+    }
+   
+    public void setCount(int aCount) {
+        count = aCount;
+    }
 
+    
     @Override
     public String toString() {
         String master = "";

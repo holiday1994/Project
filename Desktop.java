@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-date: 2/27/18 
+date: 4/3/2018
 purpose: Better Buy Prototype Inventory Mangement System Prototype. 
 This class handles all desktop objects and is a child of the product class.
  */
@@ -15,6 +15,7 @@ public class Desktop extends Product {
     private int hardDriveSize;
     private int ram;
     private static int count = 0;
+    private static String typeD = "Desktop"; 
 
     //0 arg constructor
     public Desktop() {
@@ -22,9 +23,7 @@ public class Desktop extends Product {
         this.processor = "";
         this.hardDriveSize = 0;
         this.ram = 0;
-        
-        
-        
+         
     }
     
     //Constructor
@@ -48,8 +47,12 @@ public class Desktop extends Product {
         return ram;
     }
 
-    public static int getCount() {
+    public int getCount() {
         return count;
+    }
+    
+    public String getType(){
+        return this.typeD;
     }
 
     public void setProcessor(String processor) {
@@ -68,6 +71,7 @@ public class Desktop extends Product {
         Desktop.count = count;
     }
     
+
     //Holds the display message for desktop objects
     @Override
     public String toString() {
@@ -152,7 +156,6 @@ public class Desktop extends Product {
                     a.setUniqueID(inventoryList.indexOf(a));
                     count++;
                     
-                  
         }
 
 }
