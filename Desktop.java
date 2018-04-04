@@ -2,6 +2,7 @@
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
 date: 2/27/18 
 purpose: Better Buy Prototype Inventory Mangement System Prototype. 
+This class handles all desktop objects and is a child of the product class.
  */
 package Project;
 
@@ -15,6 +16,7 @@ public class Desktop extends Product {
     private int ram;
     private static int count = 0;
 
+    //0 arg constructor
     public Desktop() {
         super();
         this.processor = "";
@@ -24,9 +26,10 @@ public class Desktop extends Product {
         
         
     }
-
+    
+    //Constructor
     public Desktop(String brand, String processor, int hardDriveSize, int ram, double purchaseCost, double salesPrice) {
-        super(brand, purchaseCost, salesPrice);
+        super(brand, purchaseCost, salesPrice); //Calls the super classes constructor
         this.processor = processor;
         this.hardDriveSize = hardDriveSize;
         this.ram = ram;
@@ -64,7 +67,8 @@ public class Desktop extends Product {
     public void setCount(int count) {
         Desktop.count = count;
     }
-
+    
+    //Holds the display message for desktop objects
     @Override
     public String toString() {
         String master = ""; 
@@ -75,7 +79,7 @@ public class Desktop extends Product {
 
     }
     
-
+    //Validates Ram
     public int ramValidation(Scanner kb, int ram) {
         while (ram != 4 || ram != 6 || ram != 8 || ram!=16) {
             if (ram == 4 || ram == 6 || ram == 8 || ram == 16) {
@@ -87,7 +91,7 @@ public class Desktop extends Product {
         }
         return ram;
     }
-    
+        //Validates Processors
         public String processorValidation(Scanner kb, String proc){
              while (proc.equalsIgnoreCase("i3")==false || proc.equalsIgnoreCase("i5") == false || proc.equalsIgnoreCase("i7") == false)
              {
@@ -101,6 +105,7 @@ public class Desktop extends Product {
              return proc;
         }
         
+        //Validates harddrives
         public int hardDriveValidation(Scanner kb, int hdd){
              while (hdd != 128)
              {
@@ -114,7 +119,8 @@ public class Desktop extends Product {
              return hdd;
         }
 
-        
+        //Holds the output requesting userinput and creates desktop objects based
+        //user input
         public void createDesktop(ArrayList<Product> inventoryList){
                     
                     System.out.println("Please enter the brand of the Desktop: ");
