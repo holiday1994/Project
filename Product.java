@@ -21,13 +21,15 @@ public class Product {
     static int count = 0;
     
     ArrayList<Product> inventoryList;
-
+    
+    //0 arg constructor
     public Product() {
         this.brand = "";
         this.cost = 0.0;
         this.sellPrice = 0.0;    
     }
-
+    
+    //constructor
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
@@ -68,7 +70,7 @@ public class Product {
     }
     
 
-
+    //ensures that selling price is larger than the cost
     public static double priceValidation(Scanner kb, double cost, double price) {
         while (cost > price) {
             if (price > cost) {
