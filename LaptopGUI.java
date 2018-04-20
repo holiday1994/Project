@@ -50,7 +50,7 @@ public class LaptopGUI {
     
     ComboBox screenCombo;
     
-    TextArea txtADesk;
+    TextArea txtALap;
     
     Button btnCreateDesktop;
     
@@ -107,7 +107,7 @@ public class LaptopGUI {
      
      //Ram Combo Box
      lblRam = new Label("Please Select Ram Type");
-     ObservableList olRam =  FXCollections.observableArrayList(4,6,8,16);
+     ObservableList olRam =  FXCollections.observableArrayList("4 GB","6 GB","8 GB","16 GB");
      ramCombo = new ComboBox(olRam);
      
      //BackLit
@@ -130,7 +130,8 @@ public class LaptopGUI {
      
      
      lblScreenSize = new Label("Please Select a Screen Size");
-     ObservableList olScreenSize = FXCollections.observableArrayList(11,12,13,15,17);
+     ObservableList olScreenSize = FXCollections.observableArrayList("11 Inches","12 Inches",
+             "13 Inches","15 Inches","17 Inches");
      screenCombo = new ComboBox(olScreenSize);
      
      
@@ -144,7 +145,7 @@ public class LaptopGUI {
      btnCreateDesktop = new Button("Create");
      btnClear = new Button("Clear");
      
-     txtADesk = new TextArea();
+     txtALap = new TextArea();
      
      this.sourceScreen = sourceScreen;
      //Adding Widgets to pane
@@ -186,7 +187,9 @@ public class LaptopGUI {
      
      pane.add(btnCreateDesktop,0,19);
      
-    primaryScene = new Scene (pane,500,500);
+     pane.add(txtALap,0,20,3,1);
+     
+    primaryScene = new Scene (pane,600,600);
     stage = new Stage();
     stage.setTitle("Better Buy Laptop Creation");
     stage.setScene(primaryScene);

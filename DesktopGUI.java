@@ -62,11 +62,14 @@ public class DesktopGUI {
      pane.setHgap(5);
      pane.setAlignment(Pos.CENTER);
      
+     //welcome
      deskWelcome = new Label("Desktop Creation");
      
+     //Brand
      lblBrand = new Label ("Please Enter the Brand");
      txtBrand = new TextField();
    
+     //Processor
      lblProcessor = new Label("Choose the Processor");
      
      //RDO for Processors 
@@ -74,6 +77,7 @@ public class DesktopGUI {
      rdoi5 = new RadioButton("i5");
      rdoi7 = new RadioButton("i7");
      
+     //RDO toggle group
      ToggleGroup procToggle = new ToggleGroup();
      
      rdoi3.setToggleGroup(procToggle);
@@ -96,7 +100,7 @@ public class DesktopGUI {
      
      //Ram Combo Box
      lblRam = new Label("Please Select Ram Type");
-     ObservableList olRam =  FXCollections.observableArrayList(4,6,8,16);
+     ObservableList olRam =  FXCollections.observableArrayList("4 GB","6 GB","8 GB","16 GB");
      ramCombo = new ComboBox(olRam);
      
      
@@ -143,8 +147,10 @@ public class DesktopGUI {
      
      pane.add(btnCreateDesktop,0,15);
      
+     pane.add(txtADesk,0,16,3,1);
      
-    primaryScene = new Scene (pane,500,500);
+     
+    primaryScene = new Scene (pane,600,600);
     stage = new Stage();
     stage.setTitle("Better Buy Desktop Creation");
     stage.setScene(primaryScene);

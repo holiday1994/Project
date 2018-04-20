@@ -74,6 +74,10 @@ public class InventoryUI {
         if (comboType.getSelectionModel().getSelectedIndex() == 1){
         new LaptopGUI(this);
         }
+        if(comboType.getSelectionModel().getSelectedIndex() == 2){
+            new CellPhoneGUI(this);
+        }
+        
     });
     
     
