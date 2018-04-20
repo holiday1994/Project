@@ -147,7 +147,7 @@ public class InventoryApp {
         System.out.printf("%-20s%-20s%-20s%-21s%-20s\n" ,"Unique ID","Selling Price","Cost","Capital Gains","Product Type");
         
         for (Product p: inventoryList){
-            System.out.printf("%-20d$%-19.2f$%-19.2f$%-20.2f", p.getUniqueID(), p.getSellPrice(), 
+            System.out.printf("%-%-20d$%-19.2f$%-19.2f$%-20.2f", p.getUniqueID(), p.getSellPrice(), 
                     p.getCost(), p.getSellPrice() - p.getCost());
             if (p instanceof Desktop){
                 System.out.printf("%-20s\n",((Desktop) p).getType());
