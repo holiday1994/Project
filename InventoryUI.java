@@ -36,6 +36,7 @@ public class InventoryUI {
     Image imageURL;
 
     public InventoryUI(BetterBuyUI sourceScreen) {
+
         //Adding Gridpane
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);

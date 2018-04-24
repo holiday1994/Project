@@ -37,16 +37,13 @@ public class BetterBuyUI extends Application {
         lblEmployee = new Label("Click to Manage to Employees");
         lblProduct = new Label("Click to Manage Products");
         
-        
-        
-        
+       
         pane.add(lblWelcome, 0,0,1,1);
         
         pane.add(lblProduct,0,1);
         pane.add(btnProduct,1,1);
         pane.add(lblEmployee,0,2);
         pane.add(btnEmployee,1,2);
-        
         
         Scene scene = new Scene(pane,300,200);
         primaryStage.setScene(scene);
@@ -57,6 +54,7 @@ public class BetterBuyUI extends Application {
         btnProduct.setOnAction ( e -> {
            
             new InventoryUI(this);
+            
         });
                 
     }
