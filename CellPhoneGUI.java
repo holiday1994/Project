@@ -30,7 +30,7 @@ public class CellPhoneGUI {
     RadioButton rdo36;
     RadioButton rdo64;
     RadioButton rdo256;
-    
+        
     ComboBox screenCombo;
     Button createButton;
     TextArea txtACell;
@@ -113,6 +113,7 @@ public class CellPhoneGUI {
         //create button & textfield
         pane.add(createButton,0,9);
         pane.add(txtACell,0,10,3,1);
+        
         
         this.sourceScreen = sourceScreen;
         

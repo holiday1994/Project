@@ -23,6 +23,7 @@ public class BetterBuyUI extends Application {
     Label lblProduct;
     
     
+    
     @Override
     public void start(Stage primaryStage) {
         pane = new GridPane();
