@@ -136,6 +136,8 @@ public class CellPhoneGUI {
         primaryStage.setScene(primaryScene);
         primaryStage.setTitle("CellPhone Creation");
         primaryStage.show();
+        createButton.setOnAction(e -> {
+            
         
         //get screen size from combo box
         if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
@@ -159,8 +161,7 @@ public class CellPhoneGUI {
         	memStorage = 256;
         }
         
-        createButton.setOnAction(e -> {
-        	insertItem();
+        insertItem();
         });
     }
     
@@ -171,9 +172,9 @@ public class CellPhoneGUI {
     	sqlQuery += "\'" + txtBrand.getText() + "\',";
     	sqlQuery += "\'" + txtCost.getText() + "\',";
     	sqlQuery += "\'" + txtSellPrice.getText() + "\',";
-    	sqlQuery += "" + screenSize + "\',";
+    	sqlQuery += "" + screenSize + ",";
     	sqlQuery += "" + memStorage + ",";
-    	sqlQuery += "\'" + type + "\',";
+    	sqlQuery += "\'" + type + "\'";
     	sqlQuery += ")";
     	DatabaseStuff db = new DatabaseStuff();
     	
