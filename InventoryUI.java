@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will be the 2nd screen shown to users
+*/
 package Project;
 
 import java.util.ArrayList;

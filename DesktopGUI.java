@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will be the UI for Desktops in which users will insert, edit, and delete inventory
+*/
 package Project;
 
 import java.util.ArrayList;
