@@ -46,7 +46,7 @@ public class InventoryUI {
         objType = new Label("Select Product Type ");
         btnCreate = new Button("Create Product");
         btnDisplay = new Button("Display Products");
-        btnExpense = new Button("Show Expense Report");
+
 
         ObservableList listType = FXCollections.observableArrayList("Desktop", "Laptop", "Cellphone");
 
@@ -60,11 +60,10 @@ public class InventoryUI {
         pane.add(comboType, 1, 0, 1, 1);
         pane.add(btnCreate, 0, 1, 1, 1);
         pane.add(btnDisplay, 0, 2, 1, 1);
-        pane.add(btnExpense, 1, 2);
         pane.add(image, 0, 3, 2, 1);
 
         //Display pane on scene, and scene onto the stage
-        Scene scene = new Scene(pane, 400, 400);
+        Scene scene = new Scene(pane, 300, 300);
         primaryStage = new Stage();
         primaryStage.setTitle("Better Buy Inventory Application");
         primaryStage.setScene(scene);

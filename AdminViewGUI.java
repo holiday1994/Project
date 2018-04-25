@@ -23,11 +23,11 @@ public class AdminViewGUI {
     
     Stage primaryStage;
     
-    BetterBuyLogin sourceScreen;
+    Object sourceScreen;
     
     
     
-   public AdminViewGUI(BetterBuyLogin sourceScreen){
+   public AdminViewGUI(Object sourceScreen){
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
         pane.setVgap(5);
@@ -50,7 +50,7 @@ public class AdminViewGUI {
         
         this.sourceScreen = sourceScreen;
         
-        Scene scene = new Scene(pane,500,500);
+        Scene scene = new Scene(pane,300,300);
         primaryStage = new Stage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Admin View");

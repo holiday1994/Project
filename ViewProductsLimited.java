@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Project;
 
 import javafx.application.Application;
@@ -12,7 +16,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-public class ViewProductsGUI {
+
+
+public class ViewProductsLimited {
+    
     Label lblViewReports;
     
     
@@ -24,24 +31,14 @@ public class ViewProductsGUI {
     
     TextArea textADis;
     
-    Label lblViewProfits;
-    
-    CheckBox chkProfDesk;
-    CheckBox chkProfLap;
-    CheckBox chkProfCell;
-    
-    Button btnProfits;
-    
-    TextArea textAProf;
-    
     GridPane pane;
     Scene primaryScene;
-    
     Stage stage;
-    
     Object sourceScreen;
     
-public ViewProductsGUI(Object sourceScreen){
+    
+public ViewProductsLimited(Object sourceScreen){
+
     pane = new GridPane();
     pane.setAlignment(Pos.CENTER);
     pane.setHgap(5);
@@ -55,19 +52,6 @@ public ViewProductsGUI(Object sourceScreen){
     btnDisplay = new Button("Display Products");
     textADis = new TextArea();
     
-    //Profit Report Section
-    lblViewProfits = new Label("View Profitability Report");
-    
-    chkProfDesk = new CheckBox("Desktop Profits");
-    chkProfLap = new CheckBox("Laptop Profits");
-    chkProfCell = new CheckBox("Cellphone Profits");
-    
-    
-    btnProfits = new Button("View Capital Gains");
-    textAProf = new TextArea();
-    
-    //add to pane
-    
     pane.add(lblViewReports,0,1);
     pane.add(chkDisDesk,0,2);
     pane.add(chkDisLap,0,3);
@@ -76,17 +60,9 @@ public ViewProductsGUI(Object sourceScreen){
     
     pane.add(textADis,1,1,3,1);
     
-    pane.add(lblViewProfits,0,6);
-    pane.add(chkProfDesk,0,7);
-    pane.add(chkProfLap,0,8);
-    pane.add(chkProfCell,0,9);
-    pane.add(btnProfits,0,10);
-    
-    pane.add(textAProf,1,6,3,1);
-    
     this.sourceScreen = sourceScreen;
     
-    primaryScene = new Scene (pane,700,600);
+    primaryScene = new Scene (pane,700,400);
     stage = new Stage();
     stage.setTitle("Product View");
     stage.setScene(primaryScene);
@@ -95,14 +71,6 @@ public ViewProductsGUI(Object sourceScreen){
     
     
     
-    
-    
-    
-    
-    
 }
-    
-    
-    
     
 }
