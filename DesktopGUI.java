@@ -161,9 +161,15 @@ public class DesktopGUI {
     stage.setScene(primaryScene);
     stage.show();
     
-    //get ram from combo box
+
+    
+    
+   
+ 
+    btnCreateDesktop.setOnAction(e -> {
+          //get ram from combo box
      if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
-                ram = 4;
+                this.ram = 4;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
                 ram = 6;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
@@ -191,12 +197,8 @@ public class DesktopGUI {
     else if (rdoi7.isSelected())
         proc = "i7";
     else {
-        proc = "idk";}
-    
-    
-   
- 
-    btnCreateDesktop.setOnAction(e -> {
+        proc = "idk";}  
+        
      insertItem();
  });
     
