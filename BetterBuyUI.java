@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will display the 1st screen shown to users
+*/
 package Project;
 
 import javafx.application.Application;
