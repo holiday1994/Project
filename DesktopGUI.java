@@ -168,6 +168,7 @@ public class DesktopGUI {
  
     btnCreateDesktop.setOnAction(e -> {
           //get ram from combo box
+
      if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
                 this.ram = 4;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
@@ -198,8 +199,17 @@ public class DesktopGUI {
         proc = "i7";
     else {
         proc = "idk";}  
-        
+if (rdoCreate.isSelected())
+{
      insertItem();
+}
+if (rdoUpdate.isSelected())
+{
+    updateItem();
+    
+    
+    
+}
  });
     
   }
@@ -223,6 +233,10 @@ public class DesktopGUI {
                db.sendDBCommand(sqlQuery);
                
     }
+     public void updateItem()
+     {
+         String sqlQuery = 'update javauser.Desktop (
+     }
 }
  
 
