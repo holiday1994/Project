@@ -30,12 +30,12 @@ public class InventoryUI {
 
     Stage primaryStage;
 
-    BetterBuyUI sourceScreen;
+    AdminViewGUI sourceScreen;
 
     File file;
     Image imageURL;
 
-    public InventoryUI(BetterBuyUI sourceScreen) {
+    public InventoryUI(AdminViewGUI sourceScreen) {
 
         //Adding Gridpane
         pane = new GridPane();
@@ -84,8 +84,13 @@ public class InventoryUI {
             if (comboType.getSelectionModel().getSelectedIndex() == 2) {
                 new CellPhoneGUI(this);
             }
+         
 
         });
+        
+        btnDisplay.setOnAction(e -> {
+            new ViewProductsGUI(this);
+        }); 
 
         comboType.setOnAction(e -> {
             Object item = comboType.getValue();

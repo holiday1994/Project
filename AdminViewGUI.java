@@ -1,4 +1,3 @@
-
 package Project;
 
 import javafx.application.Application;
@@ -12,7 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-public class BetterBuyUI extends Application {
+public class AdminViewGUI {
     
     GridPane pane;
     Button btnProduct;
@@ -22,10 +21,13 @@ public class BetterBuyUI extends Application {
     Label lblEmployee;
     Label lblProduct;
     
+    Stage primaryStage;
+    
+    BetterBuyLogin sourceScreen;
     
     
-    @Override
-    public void start(Stage primaryStage) {
+    
+   public AdminViewGUI(BetterBuyLogin sourceScreen){
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
         pane.setVgap(5);
@@ -33,7 +35,7 @@ public class BetterBuyUI extends Application {
         
         btnProduct = new Button("Prodcuts");
         btnEmployee = new Button("Employees");
-        lblWelcome = new Label("Welcome to Better Buy");
+        lblWelcome = new Label("Welcome to Admin View");
         lblEmployee = new Label("Click to Manage to Employees");
         lblProduct = new Label("Click to Manage Products");
         
@@ -45,25 +47,21 @@ public class BetterBuyUI extends Application {
         pane.add(lblEmployee,0,2);
         pane.add(btnEmployee,1,2);
         
-        Scene scene = new Scene(pane,300,200);
+        
+        this.sourceScreen = sourceScreen;
+        
+        Scene scene = new Scene(pane,500,500);
+        primaryStage = new Stage();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Better Buy System");
+        primaryStage.setTitle("Admin View");
         primaryStage.show();
         
         //Open the Inventory
         btnProduct.setOnAction ( e -> {
-           
-            new InventoryUI(this);
+         new InventoryUI(this);
             
         });
                 
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
 }
+

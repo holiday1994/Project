@@ -58,8 +58,11 @@ public class BetterBuyLogin extends Application {
         pane.add(btnContinue,0,3);
         
         
-        
-        
+       btnContinue.setOnAction (e -> {
+        if(userCombo.getSelectionModel().getSelectedIndex() == 0){
+              new AdminViewGUI(this);
+        }
+       });
         
         Scene scene = new Scene(pane,300,200);
         primaryStage.setScene(scene);
