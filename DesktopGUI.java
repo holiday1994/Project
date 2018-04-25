@@ -42,6 +42,12 @@ public class DesktopGUI {
     
     TextArea txtADesk;
     
+    
+    RadioButton rdoCreate;
+    RadioButton rdoUpdate;
+    RadioButton rdoDelete;
+    
+    
     Button btnCreateDesktop;
     
     Button btnClear;
@@ -116,6 +122,20 @@ public class DesktopGUI {
      lblSellPrice = new Label("Enter Price");
      txtSellPrice = new TextField();
      
+     
+     
+     rdoCreate = new RadioButton("Create");
+     rdoUpdate = new RadioButton("Update");
+     rdoDelete = new RadioButton("Delete");
+     
+     ToggleGroup sqlToggle = new ToggleGroup();
+     
+     rdoCreate.setToggleGroup(sqlToggle);
+     rdoUpdate.setToggleGroup(sqlToggle);
+     rdoDelete.setToggleGroup(sqlToggle);
+     
+     
+     
      btnCreateDesktop = new Button("Create");
      btnClear = new Button("Clear");
      
@@ -150,7 +170,11 @@ public class DesktopGUI {
      pane.add(lblSellPrice,0,14);
      pane.add(txtSellPrice,1,14);
      
-     pane.add(btnCreateDesktop,0,15);
+     
+     pane.add(rdoCreate,0,15);
+     pane.add(rdoUpdate,1,15);
+     pane.add(rdoDelete,2,15);
+     pane.add(btnCreateDesktop,3,15);
      
      pane.add(txtADesk,0,16,3,1);
      
@@ -161,9 +185,15 @@ public class DesktopGUI {
     stage.setScene(primaryScene);
     stage.show();
     
-    //get ram from combo box
+
+    
+    
+   
+ 
+    btnCreateDesktop.setOnAction(e -> {
+          //get ram from combo box
      if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
-                ram = 4;
+                this.ram = 4;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
                 ram = 6;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
@@ -191,12 +221,8 @@ public class DesktopGUI {
     else if (rdoi7.isSelected())
         proc = "i7";
     else {
-        proc = "idk";}
-    
-    
-   
- 
-    btnCreateDesktop.setOnAction(e -> {
+        proc = "idk";}  
+        
      insertItem();
  });
     

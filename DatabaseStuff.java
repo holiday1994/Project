@@ -45,7 +45,7 @@ public class DatabaseStuff {
                 + "cost varchar(100),"
                 + "sellPrice varchar(100),"
                 + "processor varchar(100),"
-                + "hadDriveSize varchar(100),"
+                + "hardDriveSize integer,"
                 + "ram integer,"
                 + "screensize integer,"
                 + "backlit varchar(100),"

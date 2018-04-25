@@ -52,7 +52,7 @@ public class LaptopGUI {
     
     TextArea txtALap;
     
-    Button btnCreateDesktop;
+    Button btnCreateLaptop;
     
     Button btnClear;
     
@@ -63,7 +63,14 @@ public class LaptopGUI {
     
     Scene primaryScene;
     Stage stage;
-    
+    int ram;
+    String proc;
+    int hardDriveSize;
+    int counter =1;
+    String type = "Laptop";
+    int screenSize;
+    String backLit;
+    String fingerprintReader;
     
     public LaptopGUI(InventoryUI sourceScreen){
         
@@ -142,7 +149,7 @@ public class LaptopGUI {
      lblSellPrice = new Label("Enter Price");
      txtSellPrice = new TextField();
      
-     btnCreateDesktop = new Button("Create");
+     btnCreateLaptop = new Button("Create");
      btnClear = new Button("Clear");
      
      txtALap = new TextArea();
@@ -185,7 +192,7 @@ public class LaptopGUI {
      pane.add(lblSellPrice,0,18);
      pane.add(txtSellPrice,1,18);
      
-     pane.add(btnCreateDesktop,0,19);
+     pane.add(btnCreateLaptop,0,19);
      
      pane.add(txtALap,0,20,3,1);
      
@@ -195,7 +202,106 @@ public class LaptopGUI {
     stage.setScene(primaryScene);
     stage.show();
     
-        
+    
+    
+    
+    btnCreateLaptop.setOnAction(e -> {
+          //get ram from combo box
+     if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
+                this.ram = 4;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
+                ram = 6;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
+                ram = 8;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 3) {
+                ram = 16;
+            }
+     //get screenSize from user
+          if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
+                screenSize = 11;
+            } else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
+                screenSize = 12;
+            } else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
+                screenSize = 13;
+            } else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
+                screenSize = 15;
+            }
+               else if (screenCombo.getSelectionModel().getSelectedIndex() == 5) {
+                screenSize = 17;}
+          
+  
+    //get info from 
+    if (rdo128.isSelected())
+        hardDriveSize = 128;
+    else if (rdo256.isSelected())
+        hardDriveSize = 256;
+    else if (rdo500.isSelected())
+        hardDriveSize = 500;
+    else if (rdo1000.isSelected())
+        hardDriveSize = 1000;
+    else {
+        hardDriveSize = 1;}
+     //get info from processor toggle radio buttons
+    if (rdoi3.isSelected())
+        proc = "i3";
+    else if (rdoi5.isSelected())
+        proc = "i5";
+    else if (rdoi7.isSelected())
+        proc = "i7";
+    else {
+        proc = "idk";}  
+    
+    if (rdoBackLitY.isSelected())
+    {
+        backLit = "yes";
+    }
+    else if (rdoBackLitN.isSelected())
+    {
+        backLit = "no";
     }
     
+       if (rdoFingerY.isSelected())
+    {
+        fingerprintReader = "yes";
+    }
+    else if (rdoFingerN.isSelected())
+    {
+        fingerprintReader = "no";
+    }
+        
+     insertItem();
+     
+ });
+    
+    }
+            
+     public void insertItem()
+    {
+        
+        
+        String sqlQuery = "insert into javauser.Laptop (laptopId, brand, cost, sellPrice, processor, hardDriveSize, ram, screenSize, backlit, fingerprintReader, type) Values (";
+        sqlQuery += counter++ + ",";
+        sqlQuery += "\'" + txtBrand.getText() + "\',";
+        sqlQuery += "\'" + txtCost.getText() + "\',";
+        sqlQuery += "\'" + txtSellPrice.getText() + "\',";
+        sqlQuery += "\'" + proc + "\',";
+        sqlQuery += "" + hardDriveSize + ",";
+        sqlQuery += "" + ram + ",";
+        sqlQuery += "" + screenSize + ",";
+        sqlQuery += "\'" + backLit + "\',";
+        sqlQuery += "\'" + fingerprintReader + "\',";
+        sqlQuery += "\'" + type + "\'";              
+        sqlQuery += ")";
+        DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
+    }
 }
+ 
+        
+    
+
+    
+
