@@ -42,6 +42,12 @@ public class DesktopGUI {
     
     TextArea txtADesk;
     
+    
+    RadioButton rdoCreate;
+    RadioButton rdoUpdate;
+    RadioButton rdoDelete;
+    
+    
     Button btnCreateDesktop;
     
     Button btnClear;
@@ -116,6 +122,20 @@ public class DesktopGUI {
      lblSellPrice = new Label("Enter Price");
      txtSellPrice = new TextField();
      
+     
+     
+     rdoCreate = new RadioButton("Create");
+     rdoUpdate = new RadioButton("Update");
+     rdoDelete = new RadioButton("Delete");
+     
+     ToggleGroup sqlToggle = new ToggleGroup();
+     
+     rdoCreate.setToggleGroup(sqlToggle);
+     rdoUpdate.setToggleGroup(sqlToggle);
+     rdoDelete.setToggleGroup(sqlToggle);
+     
+     
+     
      btnCreateDesktop = new Button("Create");
      btnClear = new Button("Clear");
      
@@ -150,7 +170,11 @@ public class DesktopGUI {
      pane.add(lblSellPrice,0,14);
      pane.add(txtSellPrice,1,14);
      
-     pane.add(btnCreateDesktop,0,15);
+     
+     pane.add(rdoCreate,0,15);
+     pane.add(rdoUpdate,1,15);
+     pane.add(rdoDelete,2,15);
+     pane.add(btnCreateDesktop,3,15);
      
      pane.add(txtADesk,0,16,3,1);
      

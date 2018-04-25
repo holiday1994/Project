@@ -33,6 +33,7 @@ public class CellPhoneGUI {
         
     ComboBox screenCombo;
     Button createButton;
+    Button btnClear;
     TextArea txtACell;
     
     
@@ -42,6 +43,12 @@ public class CellPhoneGUI {
     
     Scene primaryScene;
     Stage primaryStage;
+    
+    int memStorage;
+    int screenSize;
+    
+    int counter = 1;
+    String type = "Cell Phone";
     
     
     public CellPhoneGUI(InventoryUI sourceScreen){
@@ -71,6 +78,13 @@ public class CellPhoneGUI {
         rdo36 = new RadioButton("36");
         rdo64 = new RadioButton("64");
         rdo256 = new RadioButton("256");
+        
+        //toggle memory radio button
+        ToggleGroup rdoMemory = new ToggleGroup();
+        
+        rdo36.setToggleGroup(rdoMemory);
+        rdo64.setToggleGroup(rdoMemory);
+        rdo256.setToggleGroup(rdoMemory);
         
         //cost
         lblCost = new Label("Enter Cost");
@@ -123,11 +137,47 @@ public class CellPhoneGUI {
         primaryStage.setTitle("CellPhone Creation");
         primaryStage.show();
         
+        //get screen size from combo box
+        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
+        	screenSize = 4;
+        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
+        	screenSize = 5;
+        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
+        	screenSize = 6;
+        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
+        	screenSize = 7;
+        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 4) {
+        	screenSize = 8;
+        }
         
+        //get memory from radio buttons
+        if (rdo36.isSelected()) {
+        	memStorage = 36;
+        } else if (rdo64.isSelected()) {
+        	memStorage = 64;
+        } else if (rdo256.isSelected()) {
+        	memStorage = 256;
+        }
         
-        
-        
-        
+        createButton.setOnAction(e -> {
+        	insertItem();
+        });
+    }
+    
+    public void insertItem()
+    {
+    	String sqlQuery = "insert into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (";
+    	sqlQuery += counter++ + ",";
+    	sqlQuery += "\'" + txtBrand.getText() + "\',";
+    	sqlQuery += "\'" + txtCost.getText() + "\',";
+    	sqlQuery += "\'" + txtSellPrice.getText() + "\',";
+    	sqlQuery += "" + screenSize + "\',";
+    	sqlQuery += "" + memStorage + ",";
+    	sqlQuery += "\'" + type + "\',";
+    	sqlQuery += ")";
+    	DatabaseStuff db = new DatabaseStuff();
+    	
+    	db.sendDBCommand(sqlQuery);
     }
     
     
