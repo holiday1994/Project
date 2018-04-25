@@ -54,10 +54,10 @@ public class DesktopGUI {
     Scene primaryScene;
     Stage stage;
     String proc;
-    String hardDriveSize;
-    String ram;
+    int hardDriveSize;
+    int ram;
     String type = "Desktop";
-    int counter = 0;
+    int counter = 1;
     
  public DesktopGUI(InventoryUI sourceScreen){
      
@@ -160,9 +160,41 @@ public class DesktopGUI {
     stage.setTitle("Better Buy Desktop Creation");
     stage.setScene(primaryScene);
     stage.show();
-    proc = "fdfdf";//procToggle.getSelectedToggle().getUserData().toString();
-    hardDriveSize = "sdsds";// hardToggle.getSelectedToggle().getUserData().toString();
-    ram = "sdsds"; // ramCombo.getSelectionModel().toString();
+    
+    //get ram from combo box
+     if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
+                ram = 4;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
+                ram = 6;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
+                ram = 8;
+            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 3) {
+                ram = 16;
+            }
+  
+    //get info from 
+    if (rdo128.isSelected())
+        hardDriveSize = 128;
+    else if (rdo256.isSelected())
+        hardDriveSize = 256;
+    else if (rdo500.isSelected())
+        hardDriveSize = 500;
+    else if (rdo1000.isSelected())
+        hardDriveSize = 1000;
+    else {
+        hardDriveSize = 1;}
+     //get info from processor toggle radio buttons
+    if (rdoi3.isSelected())
+        proc = "i3";
+    else if (rdoi5.isSelected())
+        proc = "i5";
+    else if (rdoi7.isSelected())
+        proc = "i7";
+    else {
+        proc = "idk";}
+    
+    
+   
  
     btnCreateDesktop.setOnAction(e -> {
      insertItem();
@@ -176,15 +208,14 @@ public class DesktopGUI {
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
-         sqlQuery += "\'" + txtCost.getText() + "\',";
-          sqlQuery += "\'" + txtSellPrice.getText() + "\',";
-           sqlQuery += "\'" + proc + "\',";
-           sqlQuery += "\'" + hardDriveSize + "\',";
-           sqlQuery += "\'" + ram + "\',";
-           sqlQuery += "\'" + type + "\'";
-                
-                sqlQuery += ")";
-                DatabaseStuff db = new DatabaseStuff();
+        sqlQuery += "\'" + txtCost.getText() + "\',";
+        sqlQuery += "\'" + txtSellPrice.getText() + "\',";
+        sqlQuery += "\'" + proc + "\',";
+        sqlQuery += "" + hardDriveSize + ",";
+        sqlQuery += "" + ram + ",";
+        sqlQuery += "\'" + type + "\'";              
+        sqlQuery += ")";
+        DatabaseStuff db = new DatabaseStuff();
                 
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);

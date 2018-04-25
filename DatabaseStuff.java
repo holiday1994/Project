@@ -36,8 +36,8 @@ public class DatabaseStuff {
                 + "cost varchar(100),"
                 + "sellPrice varchar(100),"
                 + "processor varchar(100),"
-                + "hardDriveSize varchar(100),"
-                + "ram varchar(100),"
+                + "hardDriveSize integer,"
+                + "ram integer,"
                 + "type varchar(100))";
 
         String sqlLaptop = "Create Table Laptop(laptopId integer primary key, "
