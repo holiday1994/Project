@@ -53,6 +53,11 @@ public class DesktopGUI {
     
     Scene primaryScene;
     Stage stage;
+    String proc;
+    String hardDriveSize;
+    String ram;
+    String type = "Desktop";
+    int counter = 0;
     
  public DesktopGUI(InventoryUI sourceScreen){
      
@@ -155,9 +160,41 @@ public class DesktopGUI {
     stage.setTitle("Better Buy Desktop Creation");
     stage.setScene(primaryScene);
     stage.show();
+    proc = "fdfdf";//procToggle.getSelectedToggle().getUserData().toString();
+    hardDriveSize = "sdsds";// hardToggle.getSelectedToggle().getUserData().toString();
+    ram = "sdsds"; // ramCombo.getSelectionModel().toString();
+ 
+    btnCreateDesktop.setOnAction(e -> {
+     insertItem();
+ });
+    
+  }
+     public void insertItem()
+    {
+        
+        
+        String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
+        sqlQuery += counter++ + ",";
+        sqlQuery += "\'" + txtBrand.getText() + "\',";
+         sqlQuery += "\'" + txtCost.getText() + "\',";
+          sqlQuery += "\'" + txtSellPrice.getText() + "\',";
+           sqlQuery += "\'" + proc + "\',";
+           sqlQuery += "\'" + hardDriveSize + "\',";
+           sqlQuery += "\'" + ram + "\',";
+           sqlQuery += "\'" + type + "\'";
+                
+                sqlQuery += ")";
+                DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
+    }
+}
+ 
+
     
 
- }   
+
     
-    
-}
+

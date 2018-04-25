@@ -36,8 +36,8 @@ public class DatabaseStuff {
                 + "cost varchar(100),"
                 + "sellPrice varchar(100),"
                 + "processor varchar(100),"
-                + "hadDriveSize integer,"
-                + "ram integer,"
+                + "hardDriveSize varchar(100),"
+                + "ram varchar(100),"
                 + "type varchar(100))";
 
         String sqlLaptop = "Create Table Laptop(laptopId integer primary key, "
@@ -45,7 +45,7 @@ public class DatabaseStuff {
                 + "cost varchar(100),"
                 + "sellPrice varchar(100),"
                 + "processor varchar(100),"
-                + "hadDriveSize integer,"
+                + "hadDriveSize varchar(100),"
                 + "ram integer,"
                 + "screensize integer,"
                 + "backlit varchar(100),"
@@ -70,6 +70,8 @@ public class DatabaseStuff {
                 
 
     }
+    
+    
 
     public void sendDBCommand(String sqlQuery) {
 
