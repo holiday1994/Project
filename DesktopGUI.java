@@ -28,6 +28,7 @@ public class DesktopGUI {
     TextField txtBrand;
     TextField txtSellPrice;
     TextField txtCost;
+    TextField txtUpdate;
    
     RadioButton rdoi3;
     RadioButton rdoi5;
@@ -175,9 +176,9 @@ public class DesktopGUI {
      pane.add(rdoUpdate,1,15);
      pane.add(rdoDelete,2,15);
      pane.add(btnCreateDesktop,3,15);
-     
+     txtUpdate = new TextField();
      pane.add(txtADesk,0,16,3,1);
-     
+     pane.add(txtUpdate, 2,1);
      
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
@@ -186,7 +187,6 @@ public class DesktopGUI {
     stage.show();
     
 
-    
     
    
  
@@ -231,8 +231,6 @@ if (rdoUpdate.isSelected())
 {
     updateItem();
     
-    
-    
 }
  });
     
@@ -259,7 +257,22 @@ if (rdoUpdate.isSelected())
     }
      public void updateItem()
      {
-         String sqlQuery = 'update javauser.Desktop (
+         //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
+         String sqlQuery = "update javauser.Desktop set brand = ";
+               
+        sqlQuery += "\'" + txtBrand.getText() + "\'," + " cost = ";
+        sqlQuery += "\'" + txtCost.getText() + "\'," + " sellprice = ";
+        sqlQuery += "\'" + txtSellPrice.getText() + "\'," + " processor = ";
+        sqlQuery += "\'" + proc + "\'," + " hardDriveSize = ";
+        sqlQuery += "" + hardDriveSize + "," + " ram = ";
+        sqlQuery += "" + ram + "," + " type = ";
+        sqlQuery += "\'" + type + "\'" + " where desktopId = " + txtUpdate.getText() + "";         
+        sqlQuery += "";
+        DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
      }
 }
  
