@@ -136,33 +136,38 @@ public class CellPhoneGUI {
         primaryStage.setScene(primaryScene);
         primaryStage.setTitle("CellPhone Creation");
         primaryStage.show();
-        createButton.setOnAction(e -> {
-            
         
-        //get screen size from combo box
-        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
-        	screenSize = 4;
-        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
-        	screenSize = 5;
-        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
-        	screenSize = 6;
-        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
-        	screenSize = 7;
-        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 4) {
-        	screenSize = 8;
+        try {
+	        createButton.setOnAction(e -> {
+	            
+	        
+	        //get screen size from combo box
+	        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
+	        	screenSize = 4;
+	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
+	        	screenSize = 5;
+	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
+	        	screenSize = 6;
+	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
+	        	screenSize = 7;
+	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 4) {
+	        	screenSize = 8;
+	        }
+	        
+	        //get memory from radio buttons
+	        if (rdo36.isSelected()) {
+	        	memStorage = 36;
+	        } else if (rdo64.isSelected()) {
+	        	memStorage = 64;
+	        } else if (rdo256.isSelected()) {
+	        	memStorage = 256;
+	        }
+	        
+	        insertItem();
+	        });
+        } catch (Exception ex){
+        	///
         }
-        
-        //get memory from radio buttons
-        if (rdo36.isSelected()) {
-        	memStorage = 36;
-        } else if (rdo64.isSelected()) {
-        	memStorage = 64;
-        } else if (rdo256.isSelected()) {
-        	memStorage = 256;
-        }
-        
-        insertItem();
-        });
     }
     
     public void insertItem()
