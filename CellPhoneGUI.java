@@ -36,6 +36,10 @@ public class CellPhoneGUI {
     Button btnClear;
     TextArea txtACell;
     
+    RadioButton rdoCreate;
+    RadioButton rdoUpdate;
+    RadioButton rdoDelete;
+    
     
     InventoryUI sourceScreen;
     
@@ -86,6 +90,16 @@ public class CellPhoneGUI {
         rdo64.setToggleGroup(rdoMemory);
         rdo256.setToggleGroup(rdoMemory);
         
+        rdoCreate = new RadioButton("Create");
+        rdoUpdate = new RadioButton("Update");
+        rdoDelete = new RadioButton("Delete");
+     
+        ToggleGroup sqlToggle = new ToggleGroup();
+     
+        rdoCreate.setToggleGroup(sqlToggle);
+        rdoUpdate.setToggleGroup(sqlToggle);
+        rdoDelete.setToggleGroup(sqlToggle);
+        
         //cost
         lblCost = new Label("Enter Cost");
         txtCost = new TextField();
@@ -125,7 +139,10 @@ public class CellPhoneGUI {
         pane.add(txtSellPrice,1,8);
         
         //create button & textfield
-        pane.add(createButton,0,9);
+        pane.add(rdoCreate,0,9);
+        pane.add(rdoUpdate,1,9);
+        pane.add(rdoDelete,2,9);
+        pane.add(createButton,3,9);
         pane.add(txtACell,0,10,3,1);
         
         

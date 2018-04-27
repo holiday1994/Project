@@ -46,6 +46,12 @@ public class LaptopGUI {
     RadioButton rdoFingerY;
     RadioButton rdoFingerN;
     
+    RadioButton rdoCreate;
+    RadioButton rdoUpdate;
+    RadioButton rdoDelete;
+    
+    
+    
     ComboBox ramCombo;
     
     ComboBox screenCombo;
@@ -141,6 +147,17 @@ public class LaptopGUI {
              "13 Inches","15 Inches","17 Inches");
      screenCombo = new ComboBox(olScreenSize);
      
+     rdoCreate = new RadioButton("Create");
+     rdoUpdate = new RadioButton("Update");
+     rdoDelete = new RadioButton("Delete");
+     
+     ToggleGroup sqlToggle = new ToggleGroup();
+     
+     rdoCreate.setToggleGroup(sqlToggle);
+     rdoUpdate.setToggleGroup(sqlToggle);
+     rdoDelete.setToggleGroup(sqlToggle);
+     
+     
      
      //Cost + Price Widgets
      lblCost = new Label("Enter Cost");
@@ -192,7 +209,11 @@ public class LaptopGUI {
      pane.add(lblSellPrice,0,18);
      pane.add(txtSellPrice,1,18);
      
-     pane.add(btnCreateLaptop,0,19);
+     pane.add(rdoCreate,0,19);
+     pane.add(rdoUpdate,1,19);
+     pane.add(rdoDelete,2,19);
+     
+     pane.add(btnCreateLaptop,3,19);
      
      pane.add(txtALap,0,20,3,1);
      
