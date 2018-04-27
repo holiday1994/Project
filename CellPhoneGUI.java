@@ -188,6 +188,10 @@ public class CellPhoneGUI {
                 {
                     updateItem();
                 }
+                if (rdoDelete.isSelected())
+                {
+                    deleteItem();
+                }
 	        });
         } catch (Exception ex){
         	///
@@ -227,6 +231,11 @@ public class CellPhoneGUI {
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
+     }
+         public void deleteItem()
+     {
+         String sqlQuery = "delete from javauser.cellphone where cellphoneid = ";
+         sqlQuery += "" + txtUpdate.getText() + "" ;
      }
     
 }

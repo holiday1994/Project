@@ -299,6 +299,10 @@ public class LaptopGUI {
      {
          updateItem();
      }
+     if (rdoDelete.isSelected())
+     {
+         deleteItem();
+     }
  });
     
     }
@@ -347,6 +351,11 @@ public class LaptopGUI {
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
+     }
+          public void deleteItem()
+     {
+         String sqlQuery = "delete from javauser.laptop where laptopid = ";
+         sqlQuery += "" + txtUpdate.getText() + "" ;
      }
 }
  
