@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will serve at the UI for Laptops in which users can insert, edit, and delete
+*/
 package Project;
 
 import java.util.ArrayList;

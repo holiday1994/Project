@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF displays the GUI for cell-phones in which users will interact with
+*/
 package Project;
 
 import java.util.ArrayList;
