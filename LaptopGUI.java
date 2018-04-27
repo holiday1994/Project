@@ -343,11 +343,11 @@ public class LaptopGUI {
         sqlQuery += "\'" + txtSellPrice.getText() + "\'," + " processor = ";
         sqlQuery += "\'" + proc + "\'," + " hardDriveSize = ";
         sqlQuery += "" + hardDriveSize + "," + " ram = ";
-        sqlQuery += "" + ram + "," + " screemSize = ";
+        sqlQuery += "" + ram + "," + " screenSize = ";
         sqlQuery += "" + screenSize + "," + " backlit = ";
         sqlQuery += "\'" + backLit + "\'," + " fingerprintReader = ";
         sqlQuery += "\'" + fingerprintReader + "\'," + " type = ";
-        sqlQuery += "\'" + type + "\'" + " where laptopdId = " + txtUpdate.getText() + "";         
+        sqlQuery += "\'" + type + "\'" + " where laptopId = " + txtUpdate.getText() + "";         
         sqlQuery += "";
         DatabaseStuff db = new DatabaseStuff();
                 
@@ -359,6 +359,10 @@ public class LaptopGUI {
      {
          String sqlQuery = "delete from javauser.laptop where laptopid = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
+                 DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
      }
 }
  

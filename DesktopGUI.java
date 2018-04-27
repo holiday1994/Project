@@ -285,6 +285,10 @@ if (rdoDelete.isSelected())
      {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
+                 DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
      }
 }
  

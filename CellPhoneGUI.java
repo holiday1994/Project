@@ -239,6 +239,10 @@ public class CellPhoneGUI {
      {
          String sqlQuery = "delete from javauser.cellphone where cellphoneid = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
+                 DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
      }
     
     
