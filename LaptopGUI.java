@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will serve at the UI for Laptops in which users can insert, edit, and delete
+*/
 package Project;
 
 import java.util.ArrayList;
@@ -30,7 +33,8 @@ public class LaptopGUI {
     TextField txtBrand;
     TextField txtSellPrice;
     TextField txtCost;
-   
+    TextField txtUpdate;
+    
     RadioButton rdoi3;
     RadioButton rdoi5;
     RadioButton rdoi7;
@@ -57,7 +61,7 @@ public class LaptopGUI {
     ComboBox screenCombo;
     
     TextArea txtALap;
-    
+   
     Button btnCreateLaptop;
     
     Button btnClear;
@@ -87,6 +91,7 @@ public class LaptopGUI {
      pane.setAlignment(Pos.CENTER);
      
      lblLapWelcome = new Label("Laptop Creation");
+     txtUpdate = new TextField();
      
      lblBrand = new Label ("Please Enter the Brand");
      txtBrand = new TextField();
@@ -174,7 +179,7 @@ public class LaptopGUI {
      this.sourceScreen = sourceScreen;
      //Adding Widgets to pane
      pane.add(lblLapWelcome,0,0);
-     
+     pane.add(txtUpdate, 2,0);
      pane.add(lblBrand,0,1);
      pane.add(txtBrand,1,1);
      
@@ -289,9 +294,18 @@ public class LaptopGUI {
     {
         fingerprintReader = "no";
     }
-        
+     if (rdoCreate.isSelected()) 
+     {
      insertItem();
-     
+     }
+     if (rdoUpdate.isSelected())
+     {
+         updateItem();
+     }
+     if (rdoDelete.isSelected())
+     {
+         deleteItem();
+     }
  });
     
     }
@@ -319,6 +333,33 @@ public class LaptopGUI {
                db.sendDBCommand(sqlQuery);
                
     }
+     public void updateItem()
+     {
+         //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
+         String sqlQuery = "update javauser.Laptop set brand = ";
+               
+        sqlQuery += "\'" + txtBrand.getText() + "\'," + " cost = ";
+        sqlQuery += "\'" + txtCost.getText() + "\'," + " sellprice = ";
+        sqlQuery += "\'" + txtSellPrice.getText() + "\'," + " processor = ";
+        sqlQuery += "\'" + proc + "\'," + " hardDriveSize = ";
+        sqlQuery += "" + hardDriveSize + "," + " ram = ";
+        sqlQuery += "" + ram + "," + " screemSize = ";
+        sqlQuery += "" + screenSize + "," + " backlit = ";
+        sqlQuery += "\'" + backLit + "\'," + " fingerprintReader = ";
+        sqlQuery += "\'" + fingerprintReader + "\'," + " type = ";
+        sqlQuery += "\'" + type + "\'" + " where laptopdId = " + txtUpdate.getText() + "";         
+        sqlQuery += "";
+        DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
+     }
+          public void deleteItem()
+     {
+         String sqlQuery = "delete from javauser.laptop where laptopid = ";
+         sqlQuery += "" + txtUpdate.getText() + "" ;
+     }
 }
  
         

@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF displays the GUI for cell-phones in which users will interact with
+*/
 package Project;
 
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class CellPhoneGUI {
     TextField txtBrand;
     TextField txtSellPrice;
     TextField txtCost;
-    
+    TextField txtUpdate;
     RadioButton rdo36;
     RadioButton rdo64;
     RadioButton rdo256;
@@ -103,6 +106,7 @@ public class CellPhoneGUI {
         //cost
         lblCost = new Label("Enter Cost");
         txtCost = new TextField();
+        txtUpdate = new TextField();
         
         //Sell Price
         lblSellPrice = new Label("Enter Price");
@@ -115,7 +119,7 @@ public class CellPhoneGUI {
         // Adding all Widets to the pane
         
         pane.add(cellWelcome,0,0);
-        
+        pane.add(txtUpdate,2,0);
         //Brand
         pane.add(lblBrand, 0,1);
         pane.add(txtBrand,1,1);
@@ -179,14 +183,24 @@ public class CellPhoneGUI {
 	        } else if (rdo256.isSelected()) {
 	        	memStorage = 256;
 	        }
-	        
+	        if (rdoCreate.isSelected())
+                {
 	        insertItem();
+                }
+                if (rdoUpdate.isSelected())
+                {
+                    updateItem();
+                }
+                if (rdoDelete.isSelected())
+                {
+                    deleteItem();
+                }
 	        });
         } catch (Exception ex){
         	///
         }
     }
-    
+    //create item and read into database
     public void insertItem()
     {
     	String sqlQuery = "insert into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (";
@@ -202,8 +216,30 @@ public class CellPhoneGUI {
     	
     	db.sendDBCommand(sqlQuery);
     }
-    
-    
+    //update item in database based on its PK
+    public void updateItem()
+     {
+         //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
+         String sqlQuery = "update javauser.CellPhone set brand = ";
+               
+        sqlQuery += "\'" + txtBrand.getText() + "\'," + " cost = ";
+        sqlQuery += "\'" + txtCost.getText() + "\'," + " sellprice = ";
+        sqlQuery += "\'" + txtSellPrice.getText() + "\'," + " screensize = ";
+        sqlQuery += "" + screenSize + "," + " memory = ";
+        sqlQuery += "" + memStorage + "," + " type = ";
+        sqlQuery += "\'" + type + "\'" + " where cellPhoneId = " + txtUpdate.getText() + "";         
+        sqlQuery += "";
+        DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
+     }
+         public void deleteItem()
+     {
+         String sqlQuery = "delete from javauser.cellphone where cellphoneid = ";
+         sqlQuery += "" + txtUpdate.getText() + "" ;
+     }
     
     
     

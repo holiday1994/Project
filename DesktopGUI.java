@@ -1,4 +1,7 @@
-
+/*
+author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This CDF will be the UI for Desktops in which users will insert, edit, and delete inventory
+*/
 package Project;
 
 import java.util.ArrayList;
@@ -232,6 +235,10 @@ if (rdoUpdate.isSelected())
     updateItem();
     
 }
+if (rdoDelete.isSelected())
+{
+    deleteItem();
+}
  });
     
   }
@@ -273,6 +280,11 @@ if (rdoUpdate.isSelected())
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
+     }
+     public void deleteItem()
+     {
+         String sqlQuery = "delete from javauser.Desktop where desktopId = ";
+         sqlQuery += "" + txtUpdate.getText() + "" ;
      }
 }
  
