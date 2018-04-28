@@ -68,7 +68,7 @@ public class BetterBuyLogin extends Application {
         
         pane.add(lblWelcome,0,1);
         pane.add(usaImage,1,0,1,1);
-        pane.add(betterImage,0,0,1,1);
+        pane.add(betterImage,0,0,2,1);
         pane.add(lblSelectUser,0,2);
         pane.add(userCombo,1,2);
         
@@ -91,7 +91,7 @@ public class BetterBuyLogin extends Application {
        }
        
        if(userCombo.getSelectionModel().getSelectedIndex() == 3){
-           
+           new SalesGUI(this);
        }
        
        });
@@ -102,6 +102,8 @@ public class BetterBuyLogin extends Application {
         primaryStage.setTitle("Better Buy Login Page");
         primaryStage.show();
     }
+    
+    
 
     /**
      * @param args the command line arguments
