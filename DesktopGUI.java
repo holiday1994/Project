@@ -71,8 +71,8 @@ public class DesktopGUI {
     int hardDriveSize;
     int ram;
     String type = "Desktop";
-    int counter = 1;
-    
+    static int counter = 1;
+    static int deleteTimes = 0;
  public DesktopGUI(Object sourceScreen){
      
      //Set Up pane 
@@ -198,13 +198,15 @@ public class DesktopGUI {
    
  
     btnCreateDesktop.setOnAction(e -> {
+        /*
     	if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
         		txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
         				&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
-        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty()) {
+        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty() && !txtUpdate.getText().isEmpty()) {
         	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
         	alert.showAndWait();
-        } else {
+                */
+
         	
         	//get ram from combo box
         	if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
@@ -263,14 +265,16 @@ public class DesktopGUI {
 					rdoAlert.showAndWait();
 			}
 		
-        }
+        
 	 });
-    
-  }
+    }
+  
      public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();
-        counter = db.getRows("Desktop") + 1;
+        //counter = db.getRows("Desktop") + 1 + deleteTimes
+        counter = PK() +1;
+        
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -312,13 +316,23 @@ public class DesktopGUI {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
                  DatabaseStuff db = new DatabaseStuff();
-                
+               deleteTimes++;
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
     public void setID(int anInt)
     {
         this.counter = anInt;
+    }
+    public int PK()
+    {
+        DatabaseStuff db = new DatabaseStuff();
+       String PK = "select max(desktopid) from javauser.desktop";
+       db.sendDBCommand(PK);
+       PK = db.toString();
+       System.out.println(PK);
+       counter = Integer.parseInt(PK);
+       return counter;
     }
 }
  

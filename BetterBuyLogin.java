@@ -42,7 +42,7 @@ public class BetterBuyLogin extends Application {
     public void start(Stage primaryStage) throws SQLException {
         
         
-        System.out.println(db.getRows("Desktop"));
+        
         
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
