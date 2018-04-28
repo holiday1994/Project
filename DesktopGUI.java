@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -194,9 +195,16 @@ public class DesktopGUI {
    
  
     btnCreateDesktop.setOnAction(e -> {
-          //get ram from combo box
-
-     if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
+    	if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
+        		txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
+        				&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
+        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty()) {
+        	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
+        	alert.showAndWait();
+        } else {
+        	
+        	//get ram from combo box
+        	if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
                 this.ram = 4;
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
                 ram = 6;
@@ -205,41 +213,49 @@ public class DesktopGUI {
             } else if (ramCombo.getSelectionModel().getSelectedIndex() == 3) {
                 ram = 16;
             }
-  
-    //get info from 
-    if (rdo128.isSelected())
-        hardDriveSize = 128;
-    else if (rdo256.isSelected())
-        hardDriveSize = 256;
-    else if (rdo500.isSelected())
-        hardDriveSize = 500;
-    else if (rdo1000.isSelected())
-        hardDriveSize = 1000;
-    else {
-        hardDriveSize = 1;}
-     //get info from processor toggle radio buttons
-    if (rdoi3.isSelected())
-        proc = "i3";
-    else if (rdoi5.isSelected())
-        proc = "i5";
-    else if (rdoi7.isSelected())
-        proc = "i7";
-    else {
-        proc = "idk";}  
-if (rdoCreate.isSelected())
-{
-     insertItem();
-}
-if (rdoUpdate.isSelected())
-{
-    updateItem();
-    
-}
-if (rdoDelete.isSelected())
-{
-    deleteItem();
-}
- });
+	  
+		    //get info from 
+		    if (rdo128.isSelected())
+		        hardDriveSize = 128;
+		    else if (rdo256.isSelected())
+		        hardDriveSize = 256;
+		    else if (rdo500.isSelected())
+		        hardDriveSize = 500;
+		    else if (rdo1000.isSelected())
+		        hardDriveSize = 1000;
+		    else {
+		        hardDriveSize = 1;}
+		     //get info from processor toggle radio buttons
+		    if (rdoi3.isSelected())
+		        proc = "i3";
+		    else if (rdoi5.isSelected())
+		        proc = "i5";
+		    else if (rdoi7.isSelected())
+		        proc = "i7";
+		    else {
+		        proc = "idk";}  
+		    
+			if (rdoCreate.isSelected())
+			{
+			     insertItem();
+			}
+			else if (rdoUpdate.isSelected())
+			{
+			    updateItem();
+			    
+			}
+			else if (rdoDelete.isSelected())
+			{
+			    deleteItem();
+			} 
+		    else {
+					//Makes user select database action (create, update, delete)
+					Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
+					rdoAlert.showAndWait();
+			}
+		
+        }
+	 });
     
   }
      public void insertItem()
