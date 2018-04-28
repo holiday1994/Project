@@ -163,14 +163,14 @@ public class CellPhoneGUI {
         //https://stackoverflow.com/questions/32866937/how-to-check-if-textfield-is-empty
         
 	        createButton.setOnAction(e -> {
-	        	if(txtBrand.getText().trim().isEmpty() || sqlToggle.getSelectedToggle().equals(null)
+	        	if(txtBrand.getText().trim().isEmpty() || (!rdo36.isSelected() && !rdo64.isSelected() && !rdo256.isSelected())
 	            		|| screenCombo.getSelectionModel().isEmpty() || txtCost.getText().trim().isEmpty() || 
 	            		txtSellPrice.getText().trim().isEmpty()) {
 	            	//alert
 	            	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
 	            	alert.showAndWait();
 	            } else {
-	        
+
 	        //get screen size from combo box
 	        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
 	        	screenSize = 4;
@@ -184,26 +184,29 @@ public class CellPhoneGUI {
 	        	screenSize = 8;
 	        }
 	        
-	        //get memory from radio buttons
-	        if (rdo36.isSelected()) {
-	        	memStorage = 36;
-	        } else if (rdo64.isSelected()) {
-	        	memStorage = 64;
-	        } else if (rdo256.isSelected()) {
-	        	memStorage = 256;
-	        }
-	        if (rdoCreate.isSelected())
-                {
-	        insertItem();
-                }
-                if (rdoUpdate.isSelected())
-                {
-                    updateItem();
-                }
-                if (rdoDelete.isSelected())
-                {
-                    deleteItem();
-                }
+		        //get memory from radio buttons
+		        if (rdo36.isSelected()) {
+		        	memStorage = 36;
+		        } else if (rdo64.isSelected()) {
+		        	memStorage = 64;
+		        } else if (rdo256.isSelected()) {
+		        	memStorage = 256;
+		        }
+		        if (rdoCreate.isSelected())
+	                {
+		        insertItem();
+	                }
+		        else if (rdoUpdate.isSelected())
+	                {
+	                    updateItem();
+	                }
+		        else if (rdoDelete.isSelected())
+	                {
+	                    deleteItem();
+	                } else {
+	                	Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
+		            	rdoAlert.showAndWait();
+	                }
 	            }
 	        });
         
