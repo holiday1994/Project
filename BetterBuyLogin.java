@@ -14,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -29,6 +30,11 @@ public class BetterBuyLogin extends Application {
     ImageView betterPic;
     GridPane pane;
     
+    ImageView betterImage;
+    ImageView usaImage;
+    
+    
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -39,9 +45,21 @@ public class BetterBuyLogin extends Application {
         pane.setVgap(5);
         pane.setHgap(5);
         
-        lblWelcome = new Label("Welcome to Better Login");
+        betterImage = new ImageView(new Image("file:src/Project/images/BetterBuy.png"));
+        betterImage.setFitWidth(150);
+        betterImage.setFitHeight(150);
+        
+        usaImage = new ImageView(new Image("file:src/Project/images/USA.png"));
+        usaImage.setFitWidth(200);
+        usaImage.setFitHeight(100);
+        
+       
+        
+        
+        lblWelcome = new Label("Welcome to Better Buy Login");
         
         lblSelectUser = new Label("Please Select User Type:");
+      
         
         
         ObservableList olUserList =  FXCollections.observableArrayList("Admin","Sales Floor","Warehouse","Sales");
@@ -49,6 +67,8 @@ public class BetterBuyLogin extends Application {
         btnContinue = new Button("Continue -->");
         
         pane.add(lblWelcome,0,1);
+        pane.add(usaImage,1,0,1,1);
+        pane.add(betterImage,0,0,1,1);
         pane.add(lblSelectUser,0,2);
         pane.add(userCombo,1,2);
         
@@ -77,7 +97,7 @@ public class BetterBuyLogin extends Application {
        });
        
        
-        Scene scene = new Scene(pane,300,200);
+        Scene scene = new Scene(pane,450,300);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Better Buy Login Page");
         primaryStage.show();
