@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -158,9 +159,17 @@ public class CellPhoneGUI {
         primaryStage.setTitle("CellPhone Creation");
         primaryStage.show();
         
-        try {
+        //the "textfield".getText().trim().isEmpty() comes from StackOverflow:
+        //https://stackoverflow.com/questions/32866937/how-to-check-if-textfield-is-empty
+        
 	        createButton.setOnAction(e -> {
-	            
+	        	if(txtBrand.getText().trim().isEmpty() || sqlToggle.getSelectedToggle().equals(null)
+	            		|| screenCombo.getSelectionModel().isEmpty() || txtCost.getText().trim().isEmpty() || 
+	            		txtSellPrice.getText().trim().isEmpty()) {
+	            	//alert
+	            	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
+	            	alert.showAndWait();
+	            } else {
 	        
 	        //get screen size from combo box
 	        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
@@ -195,10 +204,10 @@ public class CellPhoneGUI {
                 {
                     deleteItem();
                 }
+	            }
 	        });
-        } catch (Exception ex){
-        	///
-        }
+        
+
     }
     //create item and read into database
     public void insertItem()
