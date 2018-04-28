@@ -69,7 +69,7 @@ public class LaptopGUI {
     GridPane pane;
     Stage primaryStage;
     
-    InventoryUI sourceScreen;
+    Object sourceScreen;
     
     Scene primaryScene;
     Stage stage;
@@ -82,7 +82,7 @@ public class LaptopGUI {
     String backLit;
     String fingerprintReader;
     
-    public LaptopGUI(InventoryUI sourceScreen){
+    public LaptopGUI(Object sourceScreen){
         
           //Set Up pane 
      pane = new GridPane();

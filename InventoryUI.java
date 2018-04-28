@@ -34,12 +34,12 @@ public class InventoryUI {
 
     Stage primaryStage;
 
-    AdminViewGUI sourceScreen;
+    Object sourceScreen;
 
     File file;
     Image imageURL;
 
-    public InventoryUI(AdminViewGUI sourceScreen) {
+    public InventoryUI(Object sourceScreen) {
 
         //Adding Gridpane
         pane = new GridPane();

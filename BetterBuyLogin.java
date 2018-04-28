@@ -67,7 +67,7 @@ public class BetterBuyLogin extends Application {
         
        if(userCombo.getSelectionModel().getSelectedIndex() == 2){
            //WareHouseViewGUI needs implementing   
-    	   //new WareHouseViewUI(this);
+    	    new WareHouseViewUI(this);
        }
        
        if(userCombo.getSelectionModel().getSelectedIndex() == 3){

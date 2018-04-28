@@ -59,7 +59,7 @@ public class DesktopGUI {
     GridPane pane;
     Stage primaryStage;
     
-    InventoryUI sourceScreen;
+    Object sourceScreen;
     
     Scene primaryScene;
     Stage stage;
@@ -69,7 +69,7 @@ public class DesktopGUI {
     String type = "Desktop";
     int counter = 1;
     
- public DesktopGUI(InventoryUI sourceScreen){
+ public DesktopGUI(Object sourceScreen){
      
      //Set Up pane 
      pane = new GridPane();

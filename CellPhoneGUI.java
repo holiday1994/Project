@@ -45,7 +45,7 @@ public class CellPhoneGUI {
     RadioButton rdoDelete;
     
     
-    InventoryUI sourceScreen;
+    Object sourceScreen;
     
     GridPane pane;
     
@@ -59,7 +59,7 @@ public class CellPhoneGUI {
     String type = "Cell Phone";
     
     
-    public CellPhoneGUI(InventoryUI sourceScreen){
+    public CellPhoneGUI(Object sourceScreen){
         
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
@@ -120,7 +120,7 @@ public class CellPhoneGUI {
         // Adding all Widets to the pane
         
         pane.add(cellWelcome,0,0);
-        pane.add(txtUpdate,2,0);
+        pane.add(txtUpdate,1,0);
         //Brand
         pane.add(lblBrand, 0,1);
         pane.add(txtBrand,1,1);

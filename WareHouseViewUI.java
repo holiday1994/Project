@@ -23,6 +23,8 @@ public class WareHouseViewUI {
     
     Button btnCreate;
     Button btnViewLimited;
+    
+    ComboBox productCombo;
    
     
     Stage primaryStage;
@@ -40,17 +42,24 @@ public WareHouseViewUI(Object sourceScreen){
         btnCreate = new Button("Create Product");
         btnViewLimited = new Button("View Products");
         
+        ObservableList olProducts = FXCollections.observableArrayList("Desktop","Laptop","Cellphone");
+        productCombo = new ComboBox(olProducts);
+        
+        
+        
+        
         pane.add(lblWarehouse,0,0);
         pane.add(lblWelcome,0,1);
-        pane.add(btnCreate,0,2);
-        pane.add(btnViewLimited,1,2);
+        pane.add(productCombo,0,2);
+        pane.add(btnCreate,1,2);
+        pane.add(btnViewLimited,0,3);
         
         this.sourceScreen = sourceScreen;
         
-        Scene scene = new Scene(pane,300,200);
+        Scene scene = new Scene(pane,400,400);
         primaryStage = new Stage();
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Admin View");
+        primaryStage.setTitle("Warehouse View");
         primaryStage.show();
               
         
@@ -58,6 +67,18 @@ public WareHouseViewUI(Object sourceScreen){
             new ViewProductsLimited(this);
         });
         
+        btnCreate.setOnAction( e -> {
+            if (productCombo.getSelectionModel().getSelectedIndex() == 0) {
+                new DesktopGUI(this);
+            }
+            if (productCombo.getSelectionModel().getSelectedIndex() == 1) {
+                new LaptopGUI(this);
+            }
+            if (productCombo.getSelectionModel().getSelectedIndex() == 2) {
+                new CellPhoneGUI(this);
+            }
+          
+        });
         
         
     }
