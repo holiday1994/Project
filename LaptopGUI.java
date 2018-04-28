@@ -4,7 +4,10 @@ This CDF will serve at the UI for Laptops in which users can insert, edit, and d
 */
 package Project;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -296,7 +299,11 @@ public class LaptopGUI {
     }
      if (rdoCreate.isSelected()) 
      {
-     insertItem();
+         try {
+             insertItem();
+         } catch (SQLException ex) {
+             Logger.getLogger(LaptopGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
      }
      if (rdoUpdate.isSelected())
      {
@@ -310,10 +317,11 @@ public class LaptopGUI {
     
     }
             
-     public void insertItem()
+     public void insertItem() throws SQLException
     {
         
-        
+        DatabaseStuff db = new DatabaseStuff();
+        counter = db.getRows("Desktop") + 1;
         String sqlQuery = "insert into javauser.Laptop (laptopId, brand, cost, sellPrice, processor, hardDriveSize, ram, screenSize, backlit, fingerprintReader, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -327,7 +335,7 @@ public class LaptopGUI {
         sqlQuery += "\'" + fingerprintReader + "\',";
         sqlQuery += "\'" + type + "\'";              
         sqlQuery += ")";
-        DatabaseStuff db = new DatabaseStuff();
+        
                 
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);

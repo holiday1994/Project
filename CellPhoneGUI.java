@@ -4,7 +4,10 @@ This CDF displays the GUI for cell-phones in which users will interact with
 */
 package Project;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -194,7 +197,11 @@ public class CellPhoneGUI {
 		        }
 		        if (rdoCreate.isSelected())
 	                {
-		        insertItem();
+                    try {
+                        insertItem();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 	                }
 		        else if (rdoUpdate.isSelected())
 	                {
@@ -213,8 +220,10 @@ public class CellPhoneGUI {
 
     }
     //create item and read into database
-    public void insertItem()
+    public void insertItem() throws SQLException
     {
+        DatabaseStuff db = new DatabaseStuff();
+        counter = db.getRows("Desktop") + 1;
     	String sqlQuery = "insert into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (";
     	sqlQuery += counter++ + ",";
     	sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -224,7 +233,7 @@ public class CellPhoneGUI {
     	sqlQuery += "" + memStorage + ",";
     	sqlQuery += "\'" + type + "\'";
     	sqlQuery += ")";
-    	DatabaseStuff db = new DatabaseStuff();
+    	
     	
     	db.sendDBCommand(sqlQuery);
     }
