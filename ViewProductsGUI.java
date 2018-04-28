@@ -91,18 +91,9 @@ public ViewProductsGUI(Object sourceScreen){
     stage.setTitle("Product View");
     stage.setScene(primaryScene);
     stage.show();
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+
 }
-    
-    
-    
+       
     
 }

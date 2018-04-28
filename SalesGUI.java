@@ -20,14 +20,10 @@ public class SalesGUI {
     
     GridPane pane;
     ImageView salesImage;
-    
     Button btnShopping;
     Button btnView;
-    
     Label lblWelcomeSales;
-    
-    Object sourceScreen;
-    
+    Object sourceScreen;    
     Stage primaryStage;
     
     
@@ -60,19 +56,13 @@ public SalesGUI(Object sourceScreen){
 
     });
     
-    
-    
-    
         Scene scene = new Scene(pane,300,350);
         primaryStage = new Stage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sales View");
         primaryStage.show();
               
-    
-    
-    
-    
+
 }
             
     

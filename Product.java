@@ -20,22 +20,32 @@ public class Product {
     private int uniqueId; 
     static int count = 0;
     
-    ArrayList<Product> inventoryList;
+    static ArrayList<Integer> unique;
+    
+    
+    ArrayList<Integer> id;
     
     //0 arg constructor
     public Product() {
         this.brand = "";
         this.cost = 0.0;
         this.sellPrice = 0.0;    
+        
+        
     }
     
     //constructor
     public Product(String brand, double cost, double sellPrice) {
         this.brand = brand;
         this.cost = cost;
-        this.sellPrice = sellPrice;       
+        this.sellPrice = sellPrice;     
+        
+        unique.add(unique.size()+1);
+        uniqueId = unique.size()-1;
+        
     }
 
+    
     public String getBrand() {
         return brand;
     }

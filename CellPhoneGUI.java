@@ -186,7 +186,7 @@ public class CellPhoneGUI {
 	        
 		        //get memory from radio buttons
 		        if (rdo36.isSelected()) {
-		        	memStorage = 36;
+                                memStorage = 36;
 		        } else if (rdo64.isSelected()) {
 		        	memStorage = 64;
 		        } else if (rdo256.isSelected()) {

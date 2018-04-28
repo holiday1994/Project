@@ -33,11 +33,16 @@ public class BetterBuyLogin extends Application {
     ImageView betterImage;
     ImageView usaImage;
     
+    //DatabaseStuff db = new DatabaseStuff();
+    Desktop desktop = new Desktop();
     
     
     
     @Override
     public void start(Stage primaryStage) {
+        
+       //desktop.setCount(db.getRows("Desktop"));
+        
         
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
@@ -47,15 +52,13 @@ public class BetterBuyLogin extends Application {
         
         betterImage = new ImageView(new Image("file:src/Project/images/BetterBuy.png"));
         betterImage.setFitWidth(150);
-        betterImage.setFitHeight(150);
+        betterImage.setFitHeight(100);
         
         usaImage = new ImageView(new Image("file:src/Project/images/USA.png"));
         usaImage.setFitWidth(200);
         usaImage.setFitHeight(100);
         
-       
-        
-        
+
         lblWelcome = new Label("Welcome to Better Buy Login");
         
         lblSelectUser = new Label("Please Select User Type:");
@@ -66,13 +69,13 @@ public class BetterBuyLogin extends Application {
         userCombo = new ComboBox(olUserList);
         btnContinue = new Button("Continue -->");
         
-        pane.add(lblWelcome,0,1);
-        pane.add(usaImage,1,0,1,1);
+        pane.add(lblWelcome,0,2);
+        pane.add(usaImage,1,0,1,2);
         pane.add(betterImage,0,0,2,1);
-        pane.add(lblSelectUser,0,2);
-        pane.add(userCombo,1,2);
+        pane.add(lblSelectUser,0,3);
+        pane.add(userCombo,1,3);
         
-        pane.add(btnContinue,0,3);
+        pane.add(btnContinue,0,4);
         
         
        btnContinue.setOnAction (e -> {
@@ -82,28 +85,25 @@ public class BetterBuyLogin extends Application {
        
        
        if(userCombo.getSelectionModel().getSelectedIndex() == 1 ){
-              new ViewProductsGUI(this);
+          new ViewProductsLimited(this);
        }
         
        if(userCombo.getSelectionModel().getSelectedIndex() == 2){
            //WareHouseViewGUI needs implementing   
-    	    new WareHouseViewUI(this);
+    	  new WareHouseViewUI(this);
        }
        
        if(userCombo.getSelectionModel().getSelectedIndex() == 3){
-           new SalesGUI(this);
+          new SalesGUI(this);
        }
        
        });
        
-       
-        Scene scene = new Scene(pane,450,300);
+        Scene scene = new Scene(pane,450,250);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Better Buy Login Page");
         primaryStage.show();
     }
-    
-    
 
     /**
      * @param args the command line arguments

@@ -28,6 +28,8 @@ public class DesktopGUI {
     Label lblProcessor;
     Label lblHardDrive;
     Label lblRam;
+    Label lblPK;
+    
     
     TextField txtBrand;
     TextField txtSellPrice;
@@ -80,6 +82,7 @@ public class DesktopGUI {
      
      //welcome
      deskWelcome = new Label("Desktop Creation");
+     lblPK = new Label ("Desktop Primary Key");
      
      //Brand
      lblBrand = new Label ("Please Enter the Brand");
@@ -183,6 +186,7 @@ public class DesktopGUI {
      txtUpdate = new TextField();
      pane.add(txtADesk,0,16,3,1);
      pane.add(txtUpdate, 2,1);
+     pane.add(lblPK,2,0);
      
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
