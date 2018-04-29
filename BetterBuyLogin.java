@@ -47,7 +47,7 @@ public class BetterBuyLogin extends Application {
     public void start(Stage primaryStage) throws SQLException {
         
         
-        System.out.println(db.getRows("Desktop"));
+        
         
        //desktop.setCount(db.getRows("Desktop"));
         

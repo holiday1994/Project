@@ -7,6 +7,7 @@ package Project;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import oracle.jdbc.pool.OracleDataSource;
@@ -16,6 +17,7 @@ public class DatabaseStuff {
     Connection dbConn;
     Statement commStmt;
     ResultSet dbResults;
+    ResultSetMetaData rsmd;
 
     public static void main(String[] args) {
         DatabaseStuff stuff = new DatabaseStuff();
@@ -70,13 +72,11 @@ public class DatabaseStuff {
                 
 
     }
-    
+    int count = 0;
     public int getRows(String table) throws SQLException
     {
         String sql = "Select * from " + table;
-        sendDBCommand(sql);
-        
-        int count = 0;
+        sendDBCommand(sql);     
         
         while(dbResults.next()){
             count++;
@@ -85,6 +85,11 @@ public class DatabaseStuff {
               return count;
         
     }
+    public void incrimentCount()
+    {
+        count += 2;
+    }
+    
 
     public void sendDBCommand(String sqlQuery) {
 

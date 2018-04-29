@@ -4,6 +4,8 @@ This CDF will be the UI for Desktops in which users will insert, edit, and delet
 */
 package Project;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -13,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -73,9 +76,9 @@ public class DesktopGUI {
     int hardDriveSize;
     int ram;
     String type = "Desktop";
-    int counter = 1;
-    
- public DesktopGUI(Object sourceScreen){
+    static int counter = 1;
+    static int deleteTimes = 0;
+ public DesktopGUI(Object sourceScreen) throws SQLException{
      
      //Set Up pane 
      pane = new GridPane();
@@ -191,6 +194,8 @@ public class DesktopGUI {
      pane.add(txtUpdate, 2,1);
      pane.add(lblPK,2,0);
      
+     txtADesk.setText(printDesktops());
+     
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
     stage.setTitle("Better Buy Desktop Creation");
@@ -202,13 +207,15 @@ public class DesktopGUI {
    
  
     btnCreateDesktop.setOnAction(e -> {
+        /*
     	if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
         		txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
         				&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
-        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty()) {
+        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty() && !txtUpdate.getText().isEmpty()) {
         	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
         	alert.showAndWait();
-        } else {
+                */
+
         	
         	//get ram from combo box
         	if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
@@ -267,14 +274,16 @@ public class DesktopGUI {
 					rdoAlert.showAndWait();
 			}
 		
-        }
+        
 	 });
-    
-  }
+    }
+  
      public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();
-        counter = db.getRows("Desktop") + 1;
+        //counter = db.getRows("Desktop") + 1 + deleteTimes
+        counter = PK() +1;
+        
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -316,13 +325,39 @@ public class DesktopGUI {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
                  DatabaseStuff db = new DatabaseStuff();
-                
+               deleteTimes++;
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
     public void setID(int anInt)
     {
         this.counter = anInt;
+    }
+    public int PK()
+    {
+        DatabaseStuff db = new DatabaseStuff();
+       String PK = "select max(desktopid) from javauser.desktop";
+       db.sendDBCommand(PK);
+       PK = db.toString();
+       System.out.println(PK);
+       counter = Integer.parseInt(PK);
+       return counter;
+    }
+    
+    public String printDesktops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Desktop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE BITCH");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            for(int i = 1; i <= db.rsmd.getColumnCount(); i++)
+            command += (db.dbResults.getString(i) + "\t");
+            
+        }
+        
+        return command;
     }
 }
  
