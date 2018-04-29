@@ -70,6 +70,10 @@ public class AdminViewGUI {
          new InventoryUI(this);
             
         });
+        
+        btnEmployee.setOnAction(e -> {
+            new CreateEmployeeGUI(this);
+        });
                 
     }
 }

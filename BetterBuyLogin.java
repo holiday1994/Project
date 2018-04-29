@@ -37,9 +37,9 @@ public class BetterBuyLogin extends Application {
     
     //DatabaseStuff db = new DatabaseStuff();
 
-    DatabaseStuff db = new DatabaseStuff();
+    
 
-    Desktop desktop = new Desktop();
+   // Desktop desktop = new Desktop();
     
     
     
@@ -47,9 +47,9 @@ public class BetterBuyLogin extends Application {
     public void start(Stage primaryStage) throws SQLException {
         
         
+     //   System.out.println(db.getRows("Desktop"));
         
-        
-       //desktop.setCount(db.getRows("Desktop"));
+     //  desktop.setCount(db.getRows("Desktop"));
         
         
         pane = new GridPane();
@@ -77,6 +77,7 @@ public class BetterBuyLogin extends Application {
         userCombo = new ComboBox(olUserList);
         btnContinue = new Button("Continue -->");
         
+        
         pane.add(lblWelcome,0,2);
         pane.add(usaImage,1,0,1,2);
         pane.add(betterImage,0,0,2,1);
@@ -84,6 +85,8 @@ public class BetterBuyLogin extends Application {
         pane.add(userCombo,1,3);
         
         pane.add(btnContinue,0,4);
+        
+        
         
         
        btnContinue.setOnAction (e -> {
