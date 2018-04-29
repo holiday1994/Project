@@ -194,7 +194,7 @@ public class DesktopGUI {
      pane.add(txtUpdate, 2,1);
      pane.add(lblPK,2,0);
      
-     txtADesk.setText(printDesktops());
+    // txtADesk.setText(printDesktops());
      
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
@@ -281,9 +281,7 @@ public class DesktopGUI {
      public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();
-        //counter = db.getRows("Desktop") + 1 + deleteTimes
-        counter = PK() +1;
-        
+        counter = Integer.valueOf(db.getMaxPK("desktopid", "desktop")) + 1;
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -325,23 +323,24 @@ public class DesktopGUI {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
                  DatabaseStuff db = new DatabaseStuff();
-               deleteTimes++;
+              
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
-    public void setID(int anInt)
+
+    
+    /*
+        public int PK() throws SQLException
     {
-        this.counter = anInt;
-    }
-    public int PK()
-    {
-        DatabaseStuff db = new DatabaseStuff();
+       //ResultSet rs = null;
+       DatabaseStuff db = new DatabaseStuff();
+        
        String PK = "select max(desktopid) from javauser.desktop";
        db.sendDBCommand(PK);
-       PK = db.toString();
-       System.out.println(PK);
-       counter = Integer.parseInt(PK);
-       return counter;
+       int pk;
+        pk = dbResults.getInt("desktopid");
+        System.out.println(pk);
+        return pk;
     }
     
     public String printDesktops() throws SQLException{
@@ -359,7 +358,15 @@ public class DesktopGUI {
         
         return command;
     }
+ */
+     
 }
+
+    
+
+
+    
+
  
 
     

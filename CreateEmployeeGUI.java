@@ -33,9 +33,18 @@ public class CreateEmployeeGUI {
     
     Button btnCreateEmp;
     
+    RadioButton rdoCreate;
+    RadioButton rdoEdit;
+    RadioButton rdoDelete;
+    
+    
     ComboBox employeeCombo;
     
     ImageView employeeImage;
+    
+    TextArea txtAemp;
+    
+    
     
     
     
@@ -58,7 +67,20 @@ public class CreateEmployeeGUI {
         txtFirstName = new TextField();
         txtLastName = new TextField();
         
-        btnCreateEmp = new Button("Create ->");
+        btnCreateEmp = new Button("Execute ->");
+        
+        ToggleGroup controlToggle = new ToggleGroup();
+        
+        rdoCreate = new RadioButton("Create");
+        rdoEdit = new RadioButton("Edit");
+        rdoDelete = new RadioButton("Delete");
+        
+        rdoCreate.setToggleGroup(controlToggle);
+        rdoEdit.setToggleGroup(controlToggle);
+        rdoDelete.setToggleGroup(controlToggle);
+        
+        txtAemp = new TextArea();
+        
         
         employeeImage = new ImageView(new Image("file:src/Project/images/employees.png"));
         employeeImage.setFitHeight(150);
@@ -71,7 +93,7 @@ public class CreateEmployeeGUI {
         
         employeeCombo = new ComboBox(olEmployeeType);
         
-        pane.add(employeeImage,1,0);
+        pane.add(employeeImage,1,0,3,1);
         pane.add(lblWelEmployee,0,0);
         pane.add(lblFirstName,0,1);
         pane.add(txtFirstName,1,1);
@@ -81,13 +103,20 @@ public class CreateEmployeeGUI {
         pane.add(employeeCombo,1,3);
         pane.add(lblEmployeeSelect,0,3);
         
-        pane.add(btnCreateEmp,0,4);
+        pane.add(btnCreateEmp,0,6);
+        
+        pane.add(rdoCreate,0,4);
+        pane.add(rdoEdit,1,4);
+        pane.add(rdoDelete,2,4);
+        
+        pane.add(txtAemp,0,5,4,1);
+                
         
         
         this.sourceScreen = sourceScreen;
         
         
-        Scene scene = new Scene(pane,550,380);
+        Scene scene = new Scene(pane,550,600);
         primaryStage = new Stage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("Employee Creation");

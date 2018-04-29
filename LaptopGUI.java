@@ -4,6 +4,7 @@ This CDF will serve at the UI for Laptops in which users can insert, edit, and d
 */
 package Project;
 
+import static java.awt.SystemColor.text;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -58,7 +60,7 @@ public class LaptopGUI {
     RadioButton rdoUpdate;
     RadioButton rdoDelete;
     
-    
+    ScrollBar sbLap;
     
     ComboBox ramCombo;
     
@@ -89,10 +91,20 @@ public class LaptopGUI {
     public LaptopGUI(Object sourceScreen){
         
           //Set Up pane 
+          
      pane = new GridPane();
      pane.setVgap(5);
      pane.setHgap(5);
      pane.setAlignment(Pos.CENTER);
+          
+    ScrollBar sbLap = new ScrollBar();
+    sbLap.setLayoutY(pane.getWidth()-sbLap.getWidth());
+    sbLap.setMin(0);
+    sbLap.setOrientation(Orientation.VERTICAL);
+    sbLap.setPrefHeight(600);
+    sbLap.setMax(600);
+              
+
      
      lblLapWelcome = new Label("Laptop Creation");
      txtUpdate = new TextField();
@@ -226,6 +238,8 @@ public class LaptopGUI {
      
      pane.add(txtALap,0,20,3,1);
      
+     
+     
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
     stage.setTitle("Better Buy Laptop Creation");
@@ -329,7 +343,7 @@ public class LaptopGUI {
     {
         
         DatabaseStuff db = new DatabaseStuff();
-        counter = db.getRows("Desktop") + 1;
+        counter = Integer.valueOf(db.getMaxPK("laptopid", "laptop")) + 1;
         String sqlQuery = "insert into javauser.Laptop (laptopId, brand, cost, sellPrice, processor, hardDriveSize, ram, screenSize, backlit, fingerprintReader, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -382,6 +396,12 @@ public class LaptopGUI {
      }
 }
  
+        
+    
+
+    
+
+
         
     
 
