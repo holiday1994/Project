@@ -72,24 +72,34 @@ public class DatabaseStuff {
                 
 
     }
-    int count = 0;
-    public int getRows(String table) throws SQLException
-    {
-        String sql = "Select * from " + table;
-        sendDBCommand(sql);     
-        
-        while(dbResults.next()){
-            count++;
-        }
-        
-              return count;
-        
-    }
-    public void incrimentCount()
-    {
-        count += 2;
-    }
     
+   
+    public String getMaxPK(String pkColumn, String tableName) throws SQLException
+    {
+       //ResultSet rs = null;
+       //DatabaseStuff db = new DatabaseStuff();
+        
+       String PK = "select max(";
+      PK += "" + pkColumn + ") from javauser." + tableName
+              + "";
+       sendDBCommand(PK);
+       String pk = "";
+       while (dbResults.next())
+       {
+
+        pk = dbResults.getString("Max(" + pkColumn
+                + ")");
+        System.out.println(pk);
+       }
+       
+       if (pk == null)
+           pk = "0";
+            
+       
+       return pk;
+    }
+    int count = 0;
+
 
     public void sendDBCommand(String sqlQuery) {
 
