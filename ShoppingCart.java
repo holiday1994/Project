@@ -13,7 +13,7 @@ public class ShoppingCart {
     
     String phoneNumber;
     
-    static double tax;
+    static double tax = .0975
 
     double total;
     
@@ -26,7 +26,12 @@ public class ShoppingCart {
         
         
         
+        
+        
     }
+    
+    
+    public ShoppingCart()
     
     
     
