@@ -4,7 +4,10 @@ This CDF will serve at the UI for Laptops in which users can insert, edit, and d
 */
 package Project;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -294,26 +298,38 @@ public class LaptopGUI {
     {
         fingerprintReader = "no";
     }
+       
+       
      if (rdoCreate.isSelected()) 
      {
-     insertItem();
+         try {
+             insertItem();
+         } catch (SQLException ex) {
+             Logger.getLogger(LaptopGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
      }
-     if (rdoUpdate.isSelected())
+     else if(rdoUpdate.isSelected())
      {
          updateItem();
      }
-     if (rdoDelete.isSelected())
+     else if (rdoDelete.isSelected())
      {
          deleteItem();
+     } else 
+     {
+    	 //Makes user select database action (create, update, delete)
+    	 Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
+	     rdoAlert.showAndWait();
      }
  });
     
     }
             
-     public void insertItem()
+     public void insertItem() throws SQLException
     {
         
-        
+        DatabaseStuff db = new DatabaseStuff();
+        counter = db.getRows("Desktop") + 1;
         String sqlQuery = "insert into javauser.Laptop (laptopId, brand, cost, sellPrice, processor, hardDriveSize, ram, screenSize, backlit, fingerprintReader, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -327,7 +343,7 @@ public class LaptopGUI {
         sqlQuery += "\'" + fingerprintReader + "\',";
         sqlQuery += "\'" + type + "\'";              
         sqlQuery += ")";
-        DatabaseStuff db = new DatabaseStuff();
+        
                 
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);

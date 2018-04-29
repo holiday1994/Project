@@ -5,6 +5,7 @@
  */
 package Project;
 
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,14 +33,21 @@ public class BetterBuyLogin extends Application {
     
     ImageView betterImage;
     ImageView usaImage;
+
     
     //DatabaseStuff db = new DatabaseStuff();
+
+    DatabaseStuff db = new DatabaseStuff();
+
     Desktop desktop = new Desktop();
     
     
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws SQLException {
+        
+        
+        System.out.println(db.getRows("Desktop"));
         
        //desktop.setCount(db.getRows("Desktop"));
         

@@ -11,6 +11,9 @@ package Project;
  */
 public class User {
 
+    private String firstName;
+    private String lastName;
+    
     private boolean view = true;
     private boolean edit = false;
     private boolean add = false;

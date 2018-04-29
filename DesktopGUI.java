@@ -4,7 +4,10 @@ This CDF will be the UI for Desktops in which users will insert, edit, and delet
 */
 package Project;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -241,7 +244,13 @@ public class DesktopGUI {
 		    
 			if (rdoCreate.isSelected())
 			{
-			     insertItem();
+                            
+                    try {
+                        insertItem();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                             
 			}
 			else if (rdoUpdate.isSelected())
 			{
@@ -262,10 +271,10 @@ public class DesktopGUI {
 	 });
     
   }
-     public void insertItem()
+     public void insertItem() throws SQLException
     {
-        
-        
+        DatabaseStuff db = new DatabaseStuff();
+        counter = db.getRows("Desktop") + 1;
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
         sqlQuery += "\'" + txtBrand.getText() + "\',";
@@ -276,8 +285,9 @@ public class DesktopGUI {
         sqlQuery += "" + ram + ",";
         sqlQuery += "\'" + type + "\'";              
         sqlQuery += ")";
-        DatabaseStuff db = new DatabaseStuff();
-                
+        
+                        //desktop.setCount(db.getRows("Desktop"));
+
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
@@ -310,6 +320,10 @@ public class DesktopGUI {
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
+    public void setID(int anInt)
+    {
+        this.counter = anInt;
+    }
 }
  
 

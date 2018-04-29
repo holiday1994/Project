@@ -71,7 +71,20 @@ public class DatabaseStuff {
 
     }
     
-    
+    public int getRows(String table) throws SQLException
+    {
+        String sql = "Select * from " + table;
+        sendDBCommand(sql);
+        
+        int count = 0;
+        
+        while(dbResults.next()){
+            count++;
+        }
+        
+              return count;
+        
+    }
 
     public void sendDBCommand(String sqlQuery) {
 
