@@ -7,6 +7,7 @@ package Project;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import oracle.jdbc.pool.OracleDataSource;
@@ -16,6 +17,7 @@ public class DatabaseStuff {
     Connection dbConn;
     Statement commStmt;
     ResultSet dbResults;
+    ResultSetMetaData rsmd;
 
     public static void main(String[] args) {
         DatabaseStuff stuff = new DatabaseStuff();

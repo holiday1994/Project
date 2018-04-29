@@ -4,6 +4,8 @@ This CDF will be the UI for Desktops in which users will insert, edit, and delet
 */
 package Project;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -13,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -73,7 +76,7 @@ public class DesktopGUI {
     String type = "Desktop";
     static int counter = 1;
     static int deleteTimes = 0;
- public DesktopGUI(Object sourceScreen){
+ public DesktopGUI(Object sourceScreen) throws SQLException{
      
      //Set Up pane 
      pane = new GridPane();
@@ -186,6 +189,8 @@ public class DesktopGUI {
      txtUpdate = new TextField();
      pane.add(txtADesk,0,16,3,1);
      pane.add(txtUpdate, 2,1);
+     
+     txtADesk.setText(printDesktops());
      
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
@@ -333,6 +338,22 @@ public class DesktopGUI {
        System.out.println(PK);
        counter = Integer.parseInt(PK);
        return counter;
+    }
+    
+    public String printDesktops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Desktop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE BITCH");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            for(int i = 1; i <= db.rsmd.getColumnCount(); i++)
+            command += (db.dbResults.getString(i) + "\t");
+            
+        }
+        
+        return command;
     }
 }
  
