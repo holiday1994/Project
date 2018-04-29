@@ -223,7 +223,7 @@ public class CellPhoneGUI {
     public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();
-        counter = db.getRows("Desktop") + 1;
+        counter = Integer.valueOf(db.getMaxPK("cellphoneid", "cellphone")) + 1;
     	String sqlQuery = "insert into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (";
     	sqlQuery += counter++ + ",";
     	sqlQuery += "\'" + txtBrand.getText() + "\',";
