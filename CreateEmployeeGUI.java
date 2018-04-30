@@ -205,8 +205,9 @@ public class CreateEmployeeGUI {
          String sqlQuery = "update javauser.Users set firstName = ";
                
         sqlQuery += "\'" + txtFirstName.getText() + "\'," + " lastName = ";
-        sqlQuery += "\'" + txtLastName.getText() + "\'," + "privillege = " + jobDescription +  "jobDescription = " + jobDesc +  "\'," + "where userId = " + txtUpdate.getText() + "";         
-        sqlQuery += "";
+        sqlQuery += "\'" + txtLastName.getText() + "\'," + "privillege = ";
+        sqlQuery += "\'" + jobDescription + "\'," +  "jobDescription = ";
+        sqlQuery += "\'" + jobDesc +  "\'," + "where userId = " + txtPrimary.getText() + "";         
         DatabaseStuff db = new DatabaseStuff();
                 
                 //System.out.println(sqlQuery);
@@ -217,7 +218,7 @@ public class CreateEmployeeGUI {
     public void deleteItem()
     {
         String sqlQuery = "delete from javauser.Users where userID = ";
-        //sqlQuery += "" + txtUpdate.getText() + "" ;
+        sqlQuery += "" + txtPrimary.getText() + "" ;
                 DatabaseStuff db = new DatabaseStuff();
                
                //System.out.println(sqlQuery);
@@ -236,8 +237,8 @@ public class CreateEmployeeGUI {
             
             command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s\n", 
                     "E_ID:",db.dbResults.getNString(1),"First Name: "
-                    ,db.dbResults.getNString(2) ,"Last name: ", db.dbResults.getNString(4) , "Privillege: " , db.dbResults.getNString(3)
-                    , "Job Desc: " , db.dbResults.getNString(5));
+                    ,db.dbResults.getNString(2) ,"Last name: ", db.dbResults.getNString(3) , "Privillege: " , db.dbResults.getNString(4)
+                    , "\tJob Desc: " , db.dbResults.getNString(5));
                   
         }
         
