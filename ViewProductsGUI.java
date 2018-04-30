@@ -60,17 +60,6 @@ public ViewProductsGUI(Object sourceScreen){
     btnDisplay = new Button("Display Products");
     textADis = new TextArea();
     
-    //Profit Report Section
-    lblViewProfits = new Label("View Profitability Report");
-    
-    chkProfDesk = new CheckBox("Desktop Profits");
-    chkProfLap = new CheckBox("Laptop Profits");
-    chkProfCell = new CheckBox("Cellphone Profits");
-    
-    
-    btnProfits = new Button("View Capital Gains");
-    textAProf = new TextArea();
-    
     //add to pane
     
     pane.add(lblViewReports,0,1);
