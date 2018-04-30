@@ -194,7 +194,7 @@ public class DesktopGUI {
      pane.add(txtUpdate, 2,1);
      pane.add(lblPK,2,0);
      
-    // txtADesk.setText(printDesktops());
+    txtADesk.setText(printDesktops());
      
     primaryScene = new Scene (pane,600,600);
     stage = new Stage();
@@ -254,6 +254,8 @@ public class DesktopGUI {
                             
                     try {
                         insertItem();
+                        txtADesk.clear();
+                        txtADesk.setText(printDesktops());
                     } catch (SQLException ex) {
                         Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -261,12 +263,24 @@ public class DesktopGUI {
 			}
 			else if (rdoUpdate.isSelected())
 			{
-			    updateItem();
+                    try {
+                        updateItem();
+                        txtADesk.clear();
+                        txtADesk.setText(printDesktops());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 			    
 			}
 			else if (rdoDelete.isSelected())
 			{
-			    deleteItem();
+                    try {
+                        deleteItem();
+                         txtADesk.clear();
+                         txtADesk.setText(printDesktops());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 			} 
 		    else {
 					//Makes user select database action (create, update, delete)
@@ -297,9 +311,9 @@ public class DesktopGUI {
 
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
-               
+                              
     }
-     public void updateItem()
+     public void updateItem() throws SQLException
      {
          //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
          String sqlQuery = "update javauser.Desktop set brand = ";
@@ -316,9 +330,9 @@ public class DesktopGUI {
                 
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
-               
+
      }
-     public void deleteItem()
+     public void deleteItem() throws SQLException
      {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
          sqlQuery += "" + txtUpdate.getText() + "" ;
@@ -326,6 +340,7 @@ public class DesktopGUI {
               
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
+
      }
 
     
@@ -342,23 +357,27 @@ public class DesktopGUI {
         System.out.println(pk);
         return pk;
     }
-    
+    */
     public String printDesktops() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from Desktop";
         db.sendDBCommand(printAll);
         String command = "";
-        System.out.println("IM HERE BITCH");
+        System.out.println("IM HERE");
         db.rsmd = db.dbResults.getMetaData();
         while(db.dbResults.next()){
-            for(int i = 1; i <= db.rsmd.getColumnCount(); i++)
-            command += (db.dbResults.getString(i) + "\t");
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
             
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7));
+                  
         }
         
         return command;
     }
- */
      
 }
 

@@ -62,7 +62,7 @@ public class CellPhoneGUI {
     String type = "Cell Phone";
     
     
-    public CellPhoneGUI(Object sourceScreen){
+    public CellPhoneGUI(Object sourceScreen) throws SQLException{
         
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
@@ -152,7 +152,7 @@ public class CellPhoneGUI {
         pane.add(rdoDelete,2,9);
         pane.add(createButton,3,9);
         pane.add(txtACell,0,10,3,1);
-        
+        txtACell.setText(printCellPhones());
         
         this.sourceScreen = sourceScreen;
         
@@ -199,6 +199,8 @@ public class CellPhoneGUI {
 	                {
                     try {
                         insertItem();
+                         txtACell.clear();
+                        txtACell.setText(printCellPhones());
                     } catch (SQLException ex) {
                         Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -206,10 +208,24 @@ public class CellPhoneGUI {
 		        else if (rdoUpdate.isSelected())
 	                {
 	                    updateItem();
+                            txtACell.clear();
+                            
+                    try {
+                        txtACell.setText(printCellPhones());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 	                }
 		        else if (rdoDelete.isSelected())
 	                {
 	                    deleteItem();
+                             txtACell.clear();
+                    try {
+                        txtACell.setText(printCellPhones());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                             
 	                } else {
 	                	Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
 		            	rdoAlert.showAndWait();
@@ -266,6 +282,25 @@ public class CellPhoneGUI {
                db.sendDBCommand(sqlQuery);
      }
     
-    
+              
+        public String printCellPhones() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from cellphone";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    ,"Screen Size: " , db.dbResults.getNString(5) , "Memory : ", db.dbResults.getNString(6));
+                  
+        }
+        
+        return command;
+    }
     
 }

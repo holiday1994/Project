@@ -5,7 +5,10 @@ This CDF will be the 2nd screen shown to users
 package Project;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,13 +82,25 @@ public class InventoryUI {
 
             //Opens the Desktop UI
             if (comboType.getSelectionModel().getSelectedIndex() == 0) {
-                new DesktopGUI(this);
+                try {
+                    new DesktopGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InventoryUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (comboType.getSelectionModel().getSelectedIndex() == 1) {
-                new LaptopGUI(this);
+                try {
+                    new LaptopGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InventoryUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (comboType.getSelectionModel().getSelectedIndex() == 2) {
-                new CellPhoneGUI(this);
+                try {
+                    new CellPhoneGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InventoryUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
          
 
