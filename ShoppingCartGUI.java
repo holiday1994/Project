@@ -30,6 +30,10 @@ Scene primaryScene;
     
 GridPane pane;
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
 TextArea txtADesk;
 TextArea txtALap;
 TextArea txtACell;
@@ -56,7 +60,11 @@ ImageView cartImage;
 
 Object sourceScreen;
 
+<<<<<<< HEAD
 public ShoppingCartGUI(Object sourceScreen){
+=======
+public ShoppingCartGUI(Object sourceScreen) throws SQLException{
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     pane = new GridPane();
     pane.setAlignment(Pos.CENTER);
     pane.setHgap(7);
@@ -70,7 +78,13 @@ public ShoppingCartGUI(Object sourceScreen){
     txtALap = new TextArea();
     txtACell = new TextArea();
     txtCart = new TextArea();
+<<<<<<< HEAD
     
+=======
+    txtADesk.setText(printDesktops());
+    txtALap.setText(printLaptops());
+    txtACell.setText(printCellPhones());
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     lblDesktxt= new Label("Desktops");
     lblLaptxt = new Label("Laptops");
     lblCelltxt = new Label("Cell Phones:");
@@ -109,15 +123,24 @@ public ShoppingCartGUI(Object sourceScreen){
      pane.add(rdoLap,2,5);
      pane.add(rdoCell,3,5);
      
+<<<<<<< HEAD
      pane.add(btnAddCart,1,7);
      pane.add(btnSendIt,2,7);
+=======
+     pane.add(btnAddCart,1,9);
+     pane.add(btnSendIt,2,9);
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
      
      pane.add(txtCart,1,6,3,3);
      
      this.sourceScreen = sourceScreen;
      
      
+<<<<<<< HEAD
     primaryScene = new Scene (pane,600,600);
+=======
+    primaryScene = new Scene (pane,1300,900);
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     stage = new Stage();
     stage.setTitle("Shopping Cart");
     stage.setScene(primaryScene);
@@ -141,9 +164,78 @@ public ShoppingCartGUI(Object sourceScreen){
         
         
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+    Button btnExecute;
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     
     
 
+       public String printDesktops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Desktop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7));
+                  
+        }
+        
+        return command;
+    }    
+    
+       
+         public String printLaptops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Laptop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7) , "Screen Size: " , db.dbResults.getNString(8) , "Backlit : ", db.dbResults.getNString(9) , 
+                    "Fingerprint Reader : " , db.dbResults.getNString(10));
+                  
+        }
+        
+        return command;
+    }
+         
+        public String printCellPhones() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from cellphone";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    ,"Screen Size: " , db.dbResults.getNString(5) , "Memory : ", db.dbResults.getNString(6));
+                  
+        }
+        
+        return command;
+    }
     
     
 }
