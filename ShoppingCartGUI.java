@@ -109,15 +109,15 @@ public ShoppingCartGUI(Object sourceScreen){
      pane.add(rdoLap,2,5);
      pane.add(rdoCell,3,5);
      
-     pane.add(btnAddCart,1,7);
-     pane.add(btnSendIt,2,7);
+     pane.add(btnAddCart,1,9);
+     pane.add(btnSendIt,2,9);
      
      pane.add(txtCart,1,6,3,3);
      
      this.sourceScreen = sourceScreen;
      
      
-    primaryScene = new Scene (pane,600,600);
+    primaryScene = new Scene (pane,1300,900);
     stage = new Stage();
     stage.setTitle("Shopping Cart");
     stage.setScene(primaryScene);
