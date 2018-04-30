@@ -98,7 +98,7 @@ public class CreateEmployeeGUI {
         
         employeeCombo = new ComboBox(olEmployeeType);
         
-        lblPrimary = new Label("Primary Key");
+        lblPrimary = new Label("E_ID");
         txtPrimary = new TextField();
         
         pane.add(employeeImage,1,0,3,1);
