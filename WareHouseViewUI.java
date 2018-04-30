@@ -1,7 +1,12 @@
-
+/*
+ author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+ */
 package Project;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,13 +85,25 @@ public WareHouseViewUI(Object sourceScreen){
         
         btnCreate.setOnAction( e -> {
             if (productCombo.getSelectionModel().getSelectedIndex() == 0) {
-                new DesktopGUI(this);
+                try {
+                    new DesktopGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(WareHouseViewUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (productCombo.getSelectionModel().getSelectedIndex() == 1) {
-                new LaptopGUI(this);
+                try {
+                    new LaptopGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(WareHouseViewUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (productCombo.getSelectionModel().getSelectedIndex() == 2) {
-                new CellPhoneGUI(this);
+                try {
+                    new CellPhoneGUI(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(WareHouseViewUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
           
         });

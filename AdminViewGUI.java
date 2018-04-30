@@ -1,3 +1,6 @@
+/*
+ author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+ */
 package Project;
 
 import javafx.application.Application;

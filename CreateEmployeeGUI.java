@@ -1,4 +1,6 @@
-
+/*
+ author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+ */
 package Project;
 
 import java.sql.SQLException;
@@ -48,14 +50,10 @@ public class CreateEmployeeGUI {
     ImageView employeeImage;
     
     TextArea txtAemp;
-    
-    
-    
-    
-    
-   
-    
     Object sourceScreen;
+    
+    int counter = 1;
+    String jobDesc;
     
     public CreateEmployeeGUI(Object sourceScreen){
         
@@ -132,11 +130,74 @@ public class CreateEmployeeGUI {
         primaryStage.show();
         
 
-        
-        
+        btnCreateEmp.setOnAction(e -> {
+        	
+        	//get employee job description
+        	if (employeeCombo.getSelectionModel().getSelectedIndex() == 0) {
+        		jobDesc = "Admin";
+        	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 1) {
+        		jobDesc = "Sales Floor";
+        	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 2) {
+        		jobDesc = "Warehouse";
+        	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 3) {
+        		jobDesc = "Sales";
+        	}
+        	
+        	if (rdoCreate.isSelected()) {
+        		try {
+        			insertItem();
+        		} catch (SQLException ex) {
+        			Logger.getLogger(CreateEmployeeGUI.class.getName()).log(Level.SEVERE, null, ex);
+        		}
+        	} else if (rdoEdit.isSelected()) {
+        		editItem();
+        	} else if (rdoDelete.isSelected()) {
+        		deleteItem();
+        	}
+        	
+        });
+  
     }
     
+    public void insertItem() throws SQLException
+    {
+    	DatabaseStuff db = new DatabaseStuff();
+    	//counter stuff
+    	String sqlQuery = "insert into javauser.User (userID, firstName, lastName, jobDescription) Values (";
+    	sqlQuery += counter++ + ",";
+    	sqlQuery += "\'" + txtFirstName.getText() + "\',";
+    	sqlQuery += "\'" + txtLastName.getText() + "\',";
+    	sqlQuery += "\'" + jobDesc + "\'";
+    	sqlQuery += ")";
+    	
+    	db.sendDBCommand(sqlQuery);
+    }
     
+  //update item in database based on its PK
+    public void editItem()
+     {
+         //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
+         String sqlQuery = "update javauser.User set firstName = ";
+               
+        sqlQuery += "\'" + txtFirstName.getText() + "\'," + " lastName = ";
+        sqlQuery += "\'" + txtLastName.getText() + "\'," + " jobDescription = " + jobDesc;// +  "\'," + where userId = " + txtUpdate.getText() + "";         
+        sqlQuery += "";
+        DatabaseStuff db = new DatabaseStuff();
+                
+                //System.out.println(sqlQuery);
+               db.sendDBCommand(sqlQuery);
+               
+     }
+    
+    public void deleteItem()
+    {
+        String sqlQuery = "delete from javauser.User where userID = ";
+        //sqlQuery += "" + txtUpdate.getText() + "" ;
+                DatabaseStuff db = new DatabaseStuff();
+               
+               //System.out.println(sqlQuery);
+              db.sendDBCommand(sqlQuery);
+    }
     
     
     

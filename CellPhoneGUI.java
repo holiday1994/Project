@@ -195,7 +195,7 @@ public class CellPhoneGUI {
 		        } else if (rdo256.isSelected()) {
 		        	memStorage = 256;
 		        }
-		        if (rdoCreate.isSelected())
+		        if (rdoCreate.isSelected())//Create new item and re print info
 	                {
                     try {
                         insertItem();
@@ -205,7 +205,7 @@ public class CellPhoneGUI {
                         Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
 	                }
-		        else if (rdoUpdate.isSelected())
+		        else if (rdoUpdate.isSelected())//if update is selcted, update item thru the use of its PK and clear and reprint info
 	                {
 	                    updateItem();
                             txtACell.clear();
@@ -216,7 +216,7 @@ public class CellPhoneGUI {
                         Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
 	                }
-		        else if (rdoDelete.isSelected())
+		        else if (rdoDelete.isSelected())//if delete is selcted, delete item thru the use of its PK and clear and reprint info
 	                {
 	                    deleteItem();
                              txtACell.clear();
@@ -272,6 +272,7 @@ public class CellPhoneGUI {
                db.sendDBCommand(sqlQuery);
                
      }
+        //delete item through the use of its PK
          public void deleteItem()
      {
          String sqlQuery = "delete from javauser.cellphone where cellphoneid = ";
@@ -282,7 +283,7 @@ public class CellPhoneGUI {
                db.sendDBCommand(sqlQuery);
      }
     
-              
+        //Print cell Phones to text area      
         public String printCellPhones() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from cellphone";
