@@ -30,15 +30,19 @@ public class CreateEmployeeGUI {
     Label lblFirstName;
     Label lblLastName;
     Label lblEmployeeSelect;
+    Label lblPrimary;
     
     TextField txtFirstName;
     TextField txtLastName;
+    TextField txtPrimary;
+    
     
     Button btnCreateEmp;
     
     RadioButton rdoCreate;
     RadioButton rdoEdit;
     RadioButton rdoDelete;
+    
     
     
     ComboBox employeeCombo;
@@ -81,6 +85,8 @@ public class CreateEmployeeGUI {
         txtAemp = new TextArea();
         
         
+        
+        
         employeeImage = new ImageView(new Image("file:src/Project/images/employees.png"));
         employeeImage.setFitHeight(150);
         employeeImage.setFitWidth(250);
@@ -91,6 +97,9 @@ public class CreateEmployeeGUI {
         ObservableList olEmployeeType = FXCollections.observableArrayList("Admin","Sales Floor","Warehouse","Sales");
         
         employeeCombo = new ComboBox(olEmployeeType);
+        
+        lblPrimary = new Label("Primary Key");
+        txtPrimary = new TextField();
         
         pane.add(employeeImage,1,0,3,1);
         pane.add(lblWelEmployee,0,0);
@@ -109,6 +118,10 @@ public class CreateEmployeeGUI {
         pane.add(rdoDelete,2,4);
         
         pane.add(txtAemp,0,5,4,1);
+        pane.add(lblPrimary,0,7);
+        pane.add(txtPrimary,0,8);
+        
+        
                 
         
         

@@ -9,6 +9,4 @@ public class Sales extends User {
         setDelete(true);
         setAdd(true);
     
-    
-    
 }
