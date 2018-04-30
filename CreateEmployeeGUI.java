@@ -164,6 +164,7 @@ public class CreateEmployeeGUI {
         	} else if (rdoEdit.isSelected()) {
         		editItem();
                         txtAemp.clear();
+                        
                     try {
                         txtAemp.setText(printUsers());
                     } catch (SQLException ex) {
@@ -207,10 +208,10 @@ public class CreateEmployeeGUI {
         sqlQuery += "\'" + txtFirstName.getText() + "\'," + " lastName = ";
         sqlQuery += "\'" + txtLastName.getText() + "\'," + "privillege = ";
         sqlQuery += "\'" + jobDescription + "\'," +  "jobDescription = ";
-        sqlQuery += "\'" + jobDesc +  "\'," + "where userId = " + txtPrimary.getText() + "";         
+        sqlQuery += "\'" + jobDesc +  "\'" + "where userId = " + txtPrimary.getText() + "";         
         DatabaseStuff db = new DatabaseStuff();
                 
-                //System.out.println(sqlQuery);
+                System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
      }
