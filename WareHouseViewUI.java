@@ -80,7 +80,7 @@ public WareHouseViewUI(Object sourceScreen){
               
         
         btnViewLimited.setOnAction(e -> {
-            new ViewProductsGUI(this);
+            new ViewProductsLimited(this);
         });
         
         btnCreate.setOnAction( e -> {
