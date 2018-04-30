@@ -31,6 +31,7 @@ public class ShoppingCartGUI {
     CheckBox chkLaptop;
     CheckBox chkCellPhone;
     
+<<<<<<< HEAD
 TextArea txtADesk;
 TextArea txtALap;
 TextArea txtACell;
@@ -144,6 +145,8 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
         
         
 
+=======
+>>>>>>> origin/master
     Button btnExecute;
     
     

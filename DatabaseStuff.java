@@ -67,6 +67,7 @@ public class DatabaseStuff {
                 + "canView varchar(100),"
                 + "canCreateShoppingCart varchar(100),"
                 + "canAdminUsers varchar(100))";
+<<<<<<< HEAD
         
         sendDBCommand(sqlUser);
         
@@ -79,6 +80,8 @@ public class DatabaseStuff {
                 + "SellPrice integer,"
                 + "jobdescription varchar(100))";
     
+=======
+>>>>>>> origin/master
         
         sendDBCommand(sqlShoppingCart);
         
