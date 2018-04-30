@@ -88,7 +88,7 @@ public class LaptopGUI {
     String backLit;
     String fingerprintReader;
     
-    public LaptopGUI(Object sourceScreen){
+    public LaptopGUI(Object sourceScreen) throws SQLException{
         
           //Set Up pane 
           
@@ -237,7 +237,7 @@ public class LaptopGUI {
      pane.add(btnCreateLaptop,3,19);
      
      pane.add(txtALap,0,20,3,1);
-     
+     txtALap.setText(printLaptops());
      
      
     primaryScene = new Scene (pane,600,600);
@@ -318,6 +318,8 @@ public class LaptopGUI {
      {
          try {
              insertItem();
+             txtALap.clear();
+             txtALap.setText(printLaptops());
          } catch (SQLException ex) {
              Logger.getLogger(LaptopGUI.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -325,10 +327,22 @@ public class LaptopGUI {
      else if(rdoUpdate.isSelected())
      {
          updateItem();
+          txtALap.clear();
+         try {
+             txtALap.setText(printLaptops());
+         } catch (SQLException ex) {
+             Logger.getLogger(LaptopGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
      }
      else if (rdoDelete.isSelected())
      {
          deleteItem();
+         txtALap.clear();
+         try {
+             txtALap.setText(printLaptops());
+         } catch (SQLException ex) {
+             Logger.getLogger(LaptopGUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
      } else 
      {
     	 //Makes user select database action (create, update, delete)
@@ -394,6 +408,28 @@ public class LaptopGUI {
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
+          
+        public String printLaptops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Laptop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7) , "Screen Size: " , db.dbResults.getNString(8) , "Backlit : ", db.dbResults.getNString(9) , 
+                    "Fingerprint Reader : " , db.dbResults.getNString(10));
+                  
+        }
+        
+        return command;
+    }
 }
  
         
