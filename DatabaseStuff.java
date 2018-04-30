@@ -68,6 +68,19 @@ public class DatabaseStuff {
         
         sendDBCommand(sqlUser);
         
+         String sqlShoppingCart = "Create Table ShoppingCart (cartid integer primary key,"
+                + "firstname varchar(100),"
+                + "lastname varchar(100),"
+                + "cellphone integer,"
+                + "pk integer,"
+                + "type varChar(100),"
+                + "SellPrice integer,"
+                + "jobdescription varchar(100))";
+    
+        
+        sendDBCommand(sqlShoppingCart);
+        
+        
      
              
     }
