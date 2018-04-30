@@ -60,7 +60,7 @@ public SalesGUI(Object sourceScreen){
         new ViewProductsGUI(this);
 
     });
-    /*
+    
      btnShopping.setOnAction (e -> {
         try {
             new ShoppingCartGUI(this);
@@ -69,7 +69,7 @@ public SalesGUI(Object sourceScreen){
         }
 
     });
-*/
+
         Scene scene = new Scene(pane,300,350);
         primaryStage = new Stage();
         primaryStage.setScene(scene);

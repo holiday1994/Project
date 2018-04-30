@@ -60,6 +60,13 @@ public class DatabaseStuff {
         sendDBCommand(sqlLaptop);
         
         String sqlUser = "Create Table Users (userID integer primary key,"
+<<<<<<< HEAD
+                + "firstname varchar(100),"
+                + "lastname varchar(100),"
+                + "privillege varChar(100),"
+                + "jobdescription varchar(100))";
+    
+=======
                 + "userName varchar(100),"
                 + "canEdit varchar(100),"
                 + "canDelete varchar(100),"
@@ -68,6 +75,7 @@ public class DatabaseStuff {
                 + "canCreateShoppingCart varchar(100),"
                 + "canAdminUsers varchar(100))";
 <<<<<<< HEAD
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
         
         sendDBCommand(sqlUser);
         

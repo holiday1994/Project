@@ -25,15 +25,25 @@ import javafx.stage.Stage;
 
 public class ShoppingCartGUI {
     
+<<<<<<< HEAD
     GridPane pane;
     
     TextArea txtAInventory;
+=======
+Stage stage;
+Scene primaryScene;
+>>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
     
-    CheckBox chkDesktop;
-    CheckBox chkLaptop;
-    CheckBox chkCellPhone;
+GridPane pane;
     
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
+>>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
 TextArea txtADesk;
 TextArea txtALap;
 TextArea txtACell;
@@ -63,7 +73,11 @@ Stage stage;
 
 Object sourceScreen;
 
+<<<<<<< HEAD
+public ShoppingCartGUI(Object sourceScreen){
+=======
 public ShoppingCartGUI(Object sourceScreen) throws SQLException{
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     pane = new GridPane();
     pane.setAlignment(Pos.CENTER);
     pane.setHgap(7);
@@ -77,9 +91,13 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     txtALap = new TextArea();
     txtACell = new TextArea();
     txtCart = new TextArea();
+<<<<<<< HEAD
+    
+=======
     txtADesk.setText(printDesktops());
     txtALap.setText(printLaptops());
     txtACell.setText(printCellPhones());
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     lblDesktxt= new Label("Desktops");
     lblLaptxt = new Label("Laptops");
     lblCelltxt = new Label("Cell Phones:");
@@ -118,15 +136,24 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
      pane.add(rdoLap,2,5);
      pane.add(rdoCell,3,5);
      
+<<<<<<< HEAD
+     pane.add(btnAddCart,1,7);
+     pane.add(btnSendIt,2,7);
+=======
      pane.add(btnAddCart,1,9);
      pane.add(btnSendIt,2,9);
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
      
      pane.add(txtCart,1,6,3,3);
      
      this.sourceScreen = sourceScreen;
      
      
+<<<<<<< HEAD
+    primaryScene = new Scene (pane,600,600);
+=======
     primaryScene = new Scene (pane,1300,900);
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     stage = new Stage();
     stage.setTitle("Shopping Cart");
     stage.setScene(primaryScene);
@@ -134,7 +161,32 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
      
      
      
+<<<<<<< HEAD
             
+=======
+                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+        
+        
+        
+
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+    Button btnExecute;
+>>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
+>>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
     
     
 

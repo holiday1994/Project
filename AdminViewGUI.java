@@ -3,6 +3,9 @@
  */
 package Project;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -75,7 +78,11 @@ public class AdminViewGUI {
         });
         
         btnEmployee.setOnAction(e -> {
-            new CreateEmployeeGUI(this);
+            try {
+                new CreateEmployeeGUI(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminViewGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
                 
     }
