@@ -60,13 +60,31 @@ public class DatabaseStuff {
         sendDBCommand(sqlLaptop);
         
         String sqlUser = "Create Table Users (userID integer primary key,"
-                + "firstname varchar(100),"
-                + "lastname varchar(100),"
-                + "privillege varChar(100),"
-                + "jobdescription varchar(100))";
-    
+                + "userName varchar(100),"
+                + "canEdit varchar(100),"
+                + "canDelete varchar(100),"
+                + "canCreate varchar(100),"
+                + "canView varchar(100),"
+                + "canCreateShoppingCart varchar(100),"
+                + "canAdminUsers varchar(100))";
+<<<<<<< HEAD
         
         sendDBCommand(sqlUser);
+        
+         String sqlShoppingCart = "Create Table ShoppingCart (cartid integer primary key,"
+                + "firstname varchar(100),"
+                + "lastname varchar(100),"
+                + "cellphone integer,"
+                + "pk integer,"
+                + "type varChar(100),"
+                + "SellPrice integer,"
+                + "jobdescription varchar(100))";
+    
+=======
+>>>>>>> origin/master
+        
+        sendDBCommand(sqlShoppingCart);
+        
         
      
              

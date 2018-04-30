@@ -3,6 +3,9 @@
  */
 package Project;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,12 +60,16 @@ public SalesGUI(Object sourceScreen){
         new ViewProductsGUI(this);
 
     });
-    
+    /*
      btnShopping.setOnAction (e -> {
-        new ShoppingCartGUI(this);
+        try {
+            new ShoppingCartGUI(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(SalesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     });
-
+*/
         Scene scene = new Scene(pane,300,350);
         primaryStage = new Stage();
         primaryStage.setScene(scene);

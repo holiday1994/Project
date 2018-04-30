@@ -3,7 +3,6 @@
  */
 package Project;
 
-import static Project.DesktopGUI.counter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,19 +29,15 @@ public class CreateEmployeeGUI {
     Label lblFirstName;
     Label lblLastName;
     Label lblEmployeeSelect;
-    Label lblPrimary;
     
     TextField txtFirstName;
     TextField txtLastName;
-    TextField txtPrimary;
-    
     
     Button btnCreateEmp;
     
     RadioButton rdoCreate;
     RadioButton rdoEdit;
     RadioButton rdoDelete;
-    
     
     
     ComboBox employeeCombo;
@@ -54,8 +49,8 @@ public class CreateEmployeeGUI {
     
     int counter = 1;
     String jobDesc;
-    String jobDescription = "";
-    public CreateEmployeeGUI(Object sourceScreen) throws SQLException{
+    
+    public CreateEmployeeGUI(Object sourceScreen){
         
         pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
@@ -85,8 +80,6 @@ public class CreateEmployeeGUI {
         txtAemp = new TextArea();
         
         
-        
-        
         employeeImage = new ImageView(new Image("file:src/Project/images/employees.png"));
         employeeImage.setFitHeight(150);
         employeeImage.setFitWidth(250);
@@ -97,9 +90,6 @@ public class CreateEmployeeGUI {
         ObservableList olEmployeeType = FXCollections.observableArrayList("Admin","Sales Floor","Warehouse","Sales");
         
         employeeCombo = new ComboBox(olEmployeeType);
-        
-        lblPrimary = new Label("E_ID");
-        txtPrimary = new TextField();
         
         pane.add(employeeImage,1,0,3,1);
         pane.add(lblWelEmployee,0,0);
@@ -118,10 +108,6 @@ public class CreateEmployeeGUI {
         pane.add(rdoDelete,2,4);
         
         pane.add(txtAemp,0,5,4,1);
-        pane.add(lblPrimary,0,7);
-        pane.add(txtPrimary,0,8);
-        
-        
                 
         
         
@@ -133,51 +119,31 @@ public class CreateEmployeeGUI {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Employee Creation");
         primaryStage.show();
-        txtAemp.setText(printUsers());
+        
 
         btnCreateEmp.setOnAction(e -> {
         	
         	//get employee job description
         	if (employeeCombo.getSelectionModel().getSelectedIndex() == 0) {
         		jobDesc = "Admin";
-                        jobDescription = "View, Add, Edit, Delete";
         	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 1) {
         		jobDesc = "Sales Floor";
-                        jobDescription = "View";
         	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 2) {
         		jobDesc = "Warehouse";
-                        jobDescription = "View, Add, Edit, Delete";
         	} else if (employeeCombo.getSelectionModel().getSelectedIndex() == 3) {
         		jobDesc = "Sales";
-                        jobDescription = "View, Shopping Cart";
         	}
         	
         	if (rdoCreate.isSelected()) {
         		try {
         			insertItem();
-                                txtAemp.clear();
-                                txtAemp.setText(printUsers());
-                                
         		} catch (SQLException ex) {
         			Logger.getLogger(CreateEmployeeGUI.class.getName()).log(Level.SEVERE, null, ex);
         		}
         	} else if (rdoEdit.isSelected()) {
         		editItem();
-                        txtAemp.clear();
-                        
-                    try {
-                        txtAemp.setText(printUsers());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CreateEmployeeGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
         	} else if (rdoDelete.isSelected()) {
         		deleteItem();
-                        txtAemp.clear();
-                    try {
-                        txtAemp.setText(printUsers());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CreateEmployeeGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
         	}
         	
         });
@@ -187,12 +153,11 @@ public class CreateEmployeeGUI {
     public void insertItem() throws SQLException
     {
     	DatabaseStuff db = new DatabaseStuff();
-    	counter = Integer.valueOf(db.getMaxPK("userid", "users")) + 1;
-    	String sqlQuery = "insert into javauser.Users (userID, firstName, lastName, privillege, jobDescription) Values (";
-    	sqlQuery += counter + ",";
+    	//counter stuff
+    	String sqlQuery = "insert into javauser.User (userID, firstName, lastName, jobDescription) Values (";
+    	sqlQuery += counter++ + ",";
     	sqlQuery += "\'" + txtFirstName.getText() + "\',";
     	sqlQuery += "\'" + txtLastName.getText() + "\',";
-        sqlQuery += "\'" + jobDescription + "\',";
     	sqlQuery += "\'" + jobDesc + "\'";
     	sqlQuery += ")";
     	
@@ -203,47 +168,26 @@ public class CreateEmployeeGUI {
     public void editItem()
      {
          //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
-         String sqlQuery = "update javauser.Users set firstName = ";
+         String sqlQuery = "update javauser.User set firstName = ";
                
         sqlQuery += "\'" + txtFirstName.getText() + "\'," + " lastName = ";
-        sqlQuery += "\'" + txtLastName.getText() + "\'," + "privillege = ";
-        sqlQuery += "\'" + jobDescription + "\'," +  "jobDescription = ";
-        sqlQuery += "\'" + jobDesc +  "\'" + "where userId = " + txtPrimary.getText() + "";         
+        sqlQuery += "\'" + txtLastName.getText() + "\'," + " jobDescription = " + jobDesc;// +  "\'," + where userId = " + txtUpdate.getText() + "";         
+        sqlQuery += "";
         DatabaseStuff db = new DatabaseStuff();
                 
-                System.out.println(sqlQuery);
+                //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
                
      }
     
     public void deleteItem()
     {
-        String sqlQuery = "delete from javauser.Users where userID = ";
-        sqlQuery += "" + txtPrimary.getText() + "" ;
+        String sqlQuery = "delete from javauser.User where userID = ";
+        //sqlQuery += "" + txtUpdate.getText() + "" ;
                 DatabaseStuff db = new DatabaseStuff();
                
                //System.out.println(sqlQuery);
               db.sendDBCommand(sqlQuery);
-    }
-    
-    public String printUsers() throws SQLException{
-        DatabaseStuff db = new DatabaseStuff();
-        String printAll = "Select * from users";
-        db.sendDBCommand(printAll);
-        String command = "";
-        System.out.println("IM HERE");
-        db.rsmd = db.dbResults.getMetaData();
-        while(db.dbResults.next()){
-            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
-            
-            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s\n", 
-                    "E_ID:",db.dbResults.getNString(1),"First Name: "
-                    ,db.dbResults.getNString(2) ,"Last name: ", db.dbResults.getNString(3) , "Privillege: " , db.dbResults.getNString(4)
-                    , "\tJob Desc: " , db.dbResults.getNString(5));
-                  
-        }
-        
-        return command;
     }
     
     
