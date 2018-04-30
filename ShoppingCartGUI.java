@@ -19,16 +19,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class ShoppingCartGUI {
     
-Stage stage;
-Scene primaryScene;
+    TextArea txtAInventory;
     
-GridPane pane;
+    CheckBox chkDesktop;
+    CheckBox chkLaptop;
+    CheckBox chkCellPhone;
     
 TextArea txtADesk;
 TextArea txtALap;
@@ -143,6 +144,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
         
         
 
+    Button btnExecute;
     
     
 
