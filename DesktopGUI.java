@@ -208,6 +208,7 @@ public class DesktopGUI {
  
     btnCreateDesktop.setOnAction(e -> {
         /*
+        //data validation
     	if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
         		txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
         				&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
@@ -249,7 +250,7 @@ public class DesktopGUI {
 		    else {
 		        proc = "idk";}  
 		    
-			if (rdoCreate.isSelected())
+			if (rdoCreate.isSelected())//insert item and reprint info
 			{
                             
                     try {
@@ -264,7 +265,7 @@ public class DesktopGUI {
 			else if (rdoUpdate.isSelected())
 			{
                     try {
-                        updateItem();
+                        updateItem();//update item and reprint info
                         txtADesk.clear();
                         txtADesk.setText(printDesktops());
                     } catch (SQLException ex) {
@@ -275,7 +276,7 @@ public class DesktopGUI {
 			else if (rdoDelete.isSelected())
 			{
                     try {
-                        deleteItem();
+                        deleteItem();// delet item and reprint info
                          txtADesk.clear();
                          txtADesk.setText(printDesktops());
                     } catch (SQLException ex) {
@@ -295,6 +296,7 @@ public class DesktopGUI {
      public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();
+        //counter is the PK of the desktop table and must be unique even after app is closed and re-opened
         counter = Integer.valueOf(db.getMaxPK("desktopid", "desktop")) + 1;
         String sqlQuery = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (";
         sqlQuery += counter++ + ",";
@@ -315,7 +317,6 @@ public class DesktopGUI {
     }
      public void updateItem() throws SQLException
      {
-         //update JavaUser.cellphone set brand = 'bob' where cellphoneid = 1;
          String sqlQuery = "update javauser.Desktop set brand = ";
                
         sqlQuery += "\'" + txtBrand.getText() + "\'," + " cost = ";
@@ -328,10 +329,11 @@ public class DesktopGUI {
         sqlQuery += "";
         DatabaseStuff db = new DatabaseStuff();
                 
-                //System.out.println(sqlQuery);
+                System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
 
      }
+     //delete desktop item
      public void deleteItem() throws SQLException
      {
          String sqlQuery = "delete from javauser.Desktop where desktopId = ";
@@ -343,21 +345,8 @@ public class DesktopGUI {
 
      }
 
-    
-    /*
-        public int PK() throws SQLException
-    {
-       //ResultSet rs = null;
-       DatabaseStuff db = new DatabaseStuff();
-        
-       String PK = "select max(desktopid) from javauser.desktop";
-       db.sendDBCommand(PK);
-       int pk;
-        pk = dbResults.getInt("desktopid");
-        System.out.println(pk);
-        return pk;
-    }
-    */
+   
+     //print desktops to txt area
     public String printDesktops() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from Desktop";
