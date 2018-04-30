@@ -55,12 +55,12 @@ public SalesGUI(Object sourceScreen){
         new ViewProductsGUI(this);
 
     });
-    /*
+    
      btnShopping.setOnAction (e -> {
         new ShoppingCartGUI(this);
 
     });
-*/
+
         Scene scene = new Scene(pane,300,350);
         primaryStage = new Stage();
         primaryStage.setScene(scene);

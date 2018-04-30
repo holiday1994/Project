@@ -27,15 +27,20 @@ public class CreateEmployeeGUI {
     Label lblFirstName;
     Label lblLastName;
     Label lblEmployeeSelect;
+    Label lblPrimary;
+    
     
     TextField txtFirstName;
     TextField txtLastName;
     
     Button btnCreateEmp;
     
+    TextField txtPrimary;
+    
     RadioButton rdoCreate;
     RadioButton rdoEdit;
     RadioButton rdoDelete;
+    
     
     
     ComboBox employeeCombo;
@@ -67,6 +72,8 @@ public class CreateEmployeeGUI {
         txtFirstName = new TextField();
         txtLastName = new TextField();
         
+        lblPrimary = new Label("Primary Key");
+        
         btnCreateEmp = new Button("Execute ->");
         
         ToggleGroup controlToggle = new ToggleGroup();
@@ -81,6 +88,7 @@ public class CreateEmployeeGUI {
         
         txtAemp = new TextArea();
         
+        txtPrimary = new TextField();
         
         employeeImage = new ImageView(new Image("file:src/Project/images/employees.png"));
         employeeImage.setFitHeight(150);
@@ -111,7 +119,8 @@ public class CreateEmployeeGUI {
         
         pane.add(txtAemp,0,5,4,1);
                 
-        
+        pane.add(lblPrimary,0,8);
+        pane.add(txtPrimary,0,9);
         
         this.sourceScreen = sourceScreen;
         

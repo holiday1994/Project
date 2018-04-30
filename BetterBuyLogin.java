@@ -76,7 +76,7 @@ public class BetterBuyLogin extends Application {
         
         
         pane.add(lblWelcome,0,2);
-        pane.add(usaImage,1,0,1,2);
+        pane.add(usaImage,1,0,2,2);
         pane.add(betterImage,0,0,2,1);
         pane.add(lblSelectUser,0,3);
         pane.add(userCombo,1,3);
