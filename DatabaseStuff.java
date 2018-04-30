@@ -31,7 +31,8 @@ public class DatabaseStuff {
                 + "sellPrice varchar(100),"
                 + "screensize integer,"
                 + "memory integer,"
-                + "type varchar(100))";
+                + "type varchar(100))"
+                + "shoppingCart integer";
 
         String sqlDesktop = "Create Table Desktop (desktopId integer primary key, "
                 + "brand varchar(100), "
@@ -40,7 +41,8 @@ public class DatabaseStuff {
                 + "processor varchar(100),"
                 + "hardDriveSize integer,"
                 + "ram integer,"
-                + "type varchar(100))";
+                + "type varchar(100)),"
+                + "shoppingCart integer";
 
         String sqlLaptop = "Create Table Laptop(laptopId integer primary key, "
                 + "brand varchar(100), "
@@ -52,7 +54,8 @@ public class DatabaseStuff {
                 + "screensize integer,"
                 + "backlit varchar(100),"
                 + "fingerprintReader varchar(100),"
-                + "type varchar(100))";
+                + "type varchar(100))"
+                 + "shoppingCart integer";
 
         sendDBCommand(sqlCellphone);
         sendDBCommand(sqlDesktop);
@@ -68,9 +71,9 @@ public class DatabaseStuff {
                 + "canAdminUsers varchar(100))";
         
         sendDBCommand(sqlUser);
-
-                
-
+        
+     
+             
     }
     
    

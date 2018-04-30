@@ -93,6 +93,17 @@ public ViewProductsGUI(Object sourceScreen){
     stage.show();
         
 
+    btnDisplay.setOnAction(e -> {
+    if (chkDisDesk.isSelected())
+    {
+        printDesktop();
+    }
+    });
+    
+}
+public static void printDesktop()
+{
+    
 }
        
     
