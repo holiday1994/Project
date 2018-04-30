@@ -29,15 +29,7 @@ public class ViewProductsGUI {
     
     TextArea textADis;
     
-    Label lblViewProfits;
-    
-    CheckBox chkProfDesk;
-    CheckBox chkProfLap;
-    CheckBox chkProfCell;
-    
-    Button btnProfits;
-    
-    TextArea textAProf;
+
     
     GridPane pane;
     Scene primaryScene;
@@ -70,13 +62,6 @@ public ViewProductsGUI(Object sourceScreen){
     
     pane.add(textADis,1,1,3,1);
     
-    pane.add(lblViewProfits,0,6);
-    pane.add(chkProfDesk,0,7);
-    pane.add(chkProfLap,0,8);
-    pane.add(chkProfCell,0,9);
-    pane.add(btnProfits,0,10);
-    
-    pane.add(textAProf,1,6,3,1);
     
     this.sourceScreen = sourceScreen;
     
