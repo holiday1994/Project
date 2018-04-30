@@ -1,6 +1,11 @@
-
+/*
+ author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+ */
 package Project;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -92,19 +97,105 @@ public ViewProductsGUI(Object sourceScreen){
     stage.setScene(primaryScene);
     stage.show();
         
-
+    //print either desktop, laptop, or cell phones or a combination to text area
     btnDisplay.setOnAction(e -> {
+        textADis.clear();
     if (chkDisDesk.isSelected())
     {
-        printDesktop();
+        try {
+            textADis.appendText("DESKTOPS:\n");
+            textADis.appendText(printDesktops());
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewProductsGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    if (chkDisLap.isSelected())
+    {
+        try {
+            textADis.appendText("LAPTOPS:\n");
+            textADis.appendText(printLaptops());
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewProductsGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    if (chkDisCell.isSelected())
+    {
+            try {
+                textADis.appendText("CELL PHONES:\n");
+                textADis.appendText(printCellPhones());
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewProductsGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
     }
     });
     
 }
-public static void printDesktop()
-{
+
+       public String printDesktops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Desktop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7));
+                  
+        }
+        
+        return command;
+    }    
     
-}
        
+         public String printLaptops() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from Laptop";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    , "Processor: " , db.dbResults.getNString(5) , "Hard Drive :" , db.dbResults.getNString(6) 
+                    , "Ram :" , db.dbResults.getNString(7) , "Screen Size: " , db.dbResults.getNString(8) , "Backlit : ", db.dbResults.getNString(9) , 
+                    "Fingerprint Reader : " , db.dbResults.getNString(10));
+                  
+        }
+        
+        return command;
+    }
+         
+        public String printCellPhones() throws SQLException{
+        DatabaseStuff db = new DatabaseStuff();
+        String printAll = "Select * from cellphone";
+        db.sendDBCommand(printAll);
+        String command = "";
+        System.out.println("IM HERE");
+        db.rsmd = db.dbResults.getMetaData();
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
+                    ,"Screen Size: " , db.dbResults.getNString(5) , "Memory : ", db.dbResults.getNString(6));
+                  
+        }
+        
+        return command;
+    }
     
 }
