@@ -19,11 +19,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class ShoppingCartGUI {
+    
+    GridPane pane;
     
     TextArea txtAInventory;
     
@@ -31,7 +33,7 @@ public class ShoppingCartGUI {
     CheckBox chkLaptop;
     CheckBox chkCellPhone;
     
-<<<<<<< HEAD
+
 TextArea txtADesk;
 TextArea txtALap;
 TextArea txtACell;
@@ -55,6 +57,9 @@ RadioButton rdoCell;
 
 ImageView betterImage;
 ImageView cartImage;
+
+Scene primaryScene;
+Stage stage;
 
 Object sourceScreen;
 
