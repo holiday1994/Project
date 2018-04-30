@@ -134,25 +134,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
      
      
      
-                
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
-        
-        
-        
-
-=======
->>>>>>> origin/master
-    Button btnExecute;
+            
     
     
 
