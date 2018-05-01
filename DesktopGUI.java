@@ -88,7 +88,7 @@ public class DesktopGUI {
      
      //welcome
      deskWelcome = new Label("Desktop Creation");
-     lblPK = new Label ("Desktop Primary Key");
+     lblPK = new Label ("Desktop Primary Key To Modify/Delete");
      
      //Brand
      lblBrand = new Label ("Please Enter the Brand");

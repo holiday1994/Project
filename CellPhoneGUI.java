@@ -46,6 +46,7 @@ public class CellPhoneGUI {
     RadioButton rdoCreate;
     RadioButton rdoUpdate;
     RadioButton rdoDelete;
+    Label lblCPPK;
     
     
     Object sourceScreen;
@@ -111,6 +112,7 @@ public class CellPhoneGUI {
         lblCost = new Label("Enter Cost");
         txtCost = new TextField();
         txtUpdate = new TextField();
+        lblCPPK = new Label("Cellphone Primary Key To Modify/Delete");
         
         //Sell Price
         lblSellPrice = new Label("Enter Price");
@@ -123,7 +125,8 @@ public class CellPhoneGUI {
         // Adding all Widets to the pane
         
         pane.add(cellWelcome,0,0);
-        pane.add(txtUpdate,1,0);
+        pane.add(lblCPPK, 1, 0);
+        pane.add(txtUpdate,2,0);
         //Brand
         pane.add(lblBrand, 0,1);
         pane.add(txtBrand,1,1);

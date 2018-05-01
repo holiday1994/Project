@@ -35,6 +35,7 @@ public class LaptopGUI {
     Label lblScreenSize;
     Label lblLit;
     Label lblFinger;
+    Label lblLapPK;
     
     TextField txtBrand;
     TextField txtSellPrice;
@@ -191,11 +192,13 @@ public class LaptopGUI {
      btnClear = new Button("Clear");
      
      txtALap = new TextArea();
+     lblLapPK = new Label("Laptop Primary Key To Modify/Delete");
      
      this.sourceScreen = sourceScreen;
      //Adding Widgets to pane
      pane.add(lblLapWelcome,0,0);
-     pane.add(txtUpdate, 2,0);
+     pane.add(lblLapPK, 2, 0);
+     pane.add(txtUpdate, 2,1);
      pane.add(lblBrand,0,1);
      pane.add(txtBrand,1,1);
      

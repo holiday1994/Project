@@ -81,10 +81,19 @@ public class DatabaseStuff {
 
         
         sendDBCommand(sqlShoppingCart);
-        
-        
-     
-             
+        String insertCP1 = "INSERT ALL \n";
+        insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (3,'Samsung','199','299',6,64,'Cell Phone')\n";
+        insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (4,'Apple','299','898',6,64,'Cell Phone')\n";
+        insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (5,'Nokia','99','199',6,64,'Cell Phone')\n";
+        insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (6,'Apple','399','999',6,64,'Cell Phone')\n";
+        insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (7,'Google','199','399',6,64,'Cell Phone')\n";
+        insertCP1 += "Select * from dual";
+        sendDBCommand(insertCP1);
+        String insertDT1 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (2,'Alienware','1199','2200','i7',256,8,'Desktop')";
+        String insertDT2 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (2,'MSI','600','1400','i5',1000,16,'Desktop')";
+        String insertDT3 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (2,'IBUYPOWER','2200','4000','i7',1000,16,'Desktop')";  
+        String insertDT5 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (3,'Dell','199','499','i3',128,4,'Desktop')";
+    
     }
     
    
