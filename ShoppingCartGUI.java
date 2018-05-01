@@ -3,6 +3,7 @@
  */
 package Project;
 
+import static Project.DesktopGUI.counter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -25,38 +26,37 @@ import javafx.stage.Stage;
 
 public class ShoppingCartGUI {
     
-<<<<<<< HEAD
     GridPane pane;
     
-    TextArea txtAInventory;
-=======
+TextArea txtAInventory;
 Stage stage;
 Scene primaryScene;
->>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
-    
-GridPane pane;
-    
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
->>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
+    
+
+    
 TextArea txtADesk;
 TextArea txtALap;
 TextArea txtACell;
 TextArea txtCart;
 
 
+
 Label lblDesktxt;
 Label lblLaptxt;
 Label lblCelltxt;
 
+Label lblFirstName;
+Label lblLastName;
+Label lblCell;
+
 Label lblUID;
 
 TextField txtUID;
+
+TextField txtFirstName;
+TextField txtLastName;
+TextField txtCell;
 
 Button btnAddCart;
 Button btnSendIt;
@@ -68,16 +68,9 @@ RadioButton rdoCell;
 ImageView betterImage;
 ImageView cartImage;
 
-Scene primaryScene;
-Stage stage;
-
 Object sourceScreen;
 
-<<<<<<< HEAD
-public ShoppingCartGUI(Object sourceScreen){
-=======
 public ShoppingCartGUI(Object sourceScreen) throws SQLException{
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     pane = new GridPane();
     pane.setAlignment(Pos.CENTER);
     pane.setHgap(7);
@@ -91,13 +84,10 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     txtALap = new TextArea();
     txtACell = new TextArea();
     txtCart = new TextArea();
-<<<<<<< HEAD
-    
-=======
+
     txtADesk.setText(printDesktops());
     txtALap.setText(printLaptops());
     txtACell.setText(printCellPhones());
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     lblDesktxt= new Label("Desktops");
     lblLaptxt = new Label("Laptops");
     lblCelltxt = new Label("Cell Phones:");
@@ -112,6 +102,14 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     rdoCell = new RadioButton("Cell Phone");
     
     txtUID = new TextField();
+    
+    lblCell = new Label("CellPhone");
+    lblFirstName = new Label("First Name");
+    lblLastName = new Label("Last Name");
+    
+    txtFirstName = new TextField();
+    txtLastName = new TextField();
+    txtCell = new TextField();
     
     ToggleGroup toggle = new ToggleGroup();
         rdoDesk.setToggleGroup(toggle);
@@ -132,62 +130,75 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
      
      pane.add(txtUID,1,4,2,1);
      
-     pane.add(rdoDesk,1,5);
-     pane.add(rdoLap,2,5);
-     pane.add(rdoCell,3,5);
      
-<<<<<<< HEAD
-     pane.add(btnAddCart,1,7);
-     pane.add(btnSendIt,2,7);
-=======
-     pane.add(btnAddCart,1,9);
-     pane.add(btnSendIt,2,9);
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
      
-     pane.add(txtCart,1,6,3,3);
+     pane.add(lblFirstName,1,5);
+     pane.add(lblLastName,2,5);
+     pane.add(lblCell,3,5);
+     
+     pane.add(txtFirstName,1,6);
+     pane.add(txtLastName,2,6);
+     pane.add(txtCell,3,6);
+     
+
+     
+     pane.add(rdoDesk,1,7);
+     pane.add(rdoLap,2,7);
+     pane.add(rdoCell,3,7);
+     
+
+     pane.add(btnAddCart,1,11);
+     pane.add(btnSendIt,2,11);
+     pane.add(txtCart,1,8,3,3);
      
      this.sourceScreen = sourceScreen;
      
-     
-<<<<<<< HEAD
-    primaryScene = new Scene (pane,600,600);
-=======
+
     primaryScene = new Scene (pane,1300,900);
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
     stage = new Stage();
     stage.setTitle("Shopping Cart");
     stage.setScene(primaryScene);
     stage.show();
-     
-     
-     
-<<<<<<< HEAD
+    
+    btnAddCart.setOnAction(e -> {
+        
+        
+    if (rdoDesk.isSelected())
+    {
+       try {
             
-=======
-                
+        
+            txtCart.appendText(getDesktop());
+        } catch (SQLException ex) {
+            Logger.getLogger(ShoppingCartGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+       
+    if (rdoLap.isSelected())
+    {
+        
+        try {
+            txtCart.appendText(getLaptop());
+        } catch (SQLException ex) {
+            Logger.getLogger(ShoppingCartGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    if (rdoCell.isSelected())
+    {
+        
+        try {
+            txtCart.appendText(getCellPhone());
+        } catch (SQLException ex) {
+            Logger.getLogger(ShoppingCartGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    });
 }
-        
-        
-        
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/master
-    Button btnExecute;
->>>>>>> f9af231aa0a4363205ca0a1194653d0b2f1252f6
->>>>>>> ae1e899697d270eeca78acb0d2d8f507d0725016
-    
+
     
 
        public String printDesktops() throws SQLException{
@@ -255,4 +266,133 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     }
     
     
+    public String getDesktop() throws SQLException
+    {
+        DatabaseStuff db = new DatabaseStuff();
+        String sqlQuery = "select desktopid, sellprice, brand from Desktop where desktopid = ";
+        sqlQuery += txtUID.getText() + "";
+        db.sendDBCommand(sqlQuery);
+        String command = "";
+         db.rsmd = db.dbResults.getMetaData();
+         String pk;
+         String brand ="";
+         String sellPrice = "";
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            pk = db.dbResults.getNString(1);
+            brand = db.dbResults.getNString(3);
+            sellPrice = db.dbResults.getNString(2);
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+    }
+        counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
+        String aQuery = "insert into cart (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
+        aQuery += "\'" + counter + "\',";
+        aQuery += "\'" + txtFirstName.getText() + "\',";
+        aQuery += "\'" + txtLastName.getText() + "\',";
+        aQuery += "" + txtCell.getText() + ",";
+        aQuery += "" + txtUID.getText() + ",";
+        aQuery += "\'" + brand + "\',";
+        aQuery += "\'" + "Desktop" + "\',";    
+        aQuery += "" + sellPrice + "";
+        aQuery += ")";
+        
+                        //desktop.setCount(db.getRows("Desktop"));
+
+                System.out.println(aQuery);
+               db.sendDBCommand(aQuery);
+                              
+        
+        return command;
+        
+        
+}
+    
+    
+    
+        public String getLaptop() throws SQLException
+    {
+        DatabaseStuff db = new DatabaseStuff();
+        String sqlQuery = "select laptopid, sellprice, brand from laptop where laptopid = ";
+        sqlQuery += txtUID.getText() + "";
+        db.sendDBCommand(sqlQuery);
+        String command = "";
+         db.rsmd = db.dbResults.getMetaData();
+         String pk;
+         String brand ="";
+         String sellPrice = "";
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            pk = db.dbResults.getNString(1);
+            brand = db.dbResults.getNString(3);
+            sellPrice = db.dbResults.getNString(2);
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+    }
+        counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
+        String aQuery = "insert into cart (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
+        aQuery += "\'" + counter + "\',";
+        aQuery += "\'" + txtFirstName.getText() + "\',";
+        aQuery += "\'" + txtLastName.getText() + "\',";
+        aQuery += "" + txtCell.getText() + ",";
+        aQuery += "" + txtUID.getText() + ",";
+        aQuery += "\'" + brand + "\',";
+        aQuery += "\'" + "Laptop" + "\',";    
+        aQuery += "" + sellPrice + "";
+        aQuery += ")";
+        
+                        //desktop.setCount(db.getRows("Desktop"));
+
+                System.out.println(aQuery);
+               db.sendDBCommand(aQuery);
+                              
+        
+        return command;
+        
+        
+}
+    public String getCellPhone() throws SQLException
+    {
+        DatabaseStuff db = new DatabaseStuff();
+        String sqlQuery = "select cellphoneid, sellprice, brand from cellphone where cellphoneid = ";
+        sqlQuery += txtUID.getText() + "";
+        db.sendDBCommand(sqlQuery);
+        String command = "";
+         db.rsmd = db.dbResults.getMetaData();
+         String pk;
+         String brand ="";
+         String sellPrice = "";
+        while(db.dbResults.next()){
+            //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
+            pk = db.dbResults.getNString(1);
+            brand = db.dbResults.getNString(3);
+            sellPrice = db.dbResults.getNString(2);
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+                    "Unique ID:",db.dbResults.getNString(1),"Brand: "
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+    }
+        counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
+        String aQuery = "insert into cellphones (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
+        aQuery += "\'" + counter + "\',";
+        aQuery += "\'" + txtFirstName.getText() + "\',";
+        aQuery += "\'" + txtLastName.getText() + "\',";
+        aQuery += "" + txtCell.getText() + ",";
+        aQuery += "" + txtUID.getText() + ",";
+        aQuery += "\'" + brand + "\',";
+        aQuery += "\'" + "CellPhone" + "\',";    
+        aQuery += "" + sellPrice + "";
+        aQuery += ")";
+        
+                        //desktop.setCount(db.getRows("Desktop"));
+
+                System.out.println(aQuery);
+               db.sendDBCommand(aQuery);
+                              
+        
+        return command;
+        
+        
+}
 }

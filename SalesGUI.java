@@ -67,6 +67,7 @@ public SalesGUI(Object sourceScreen){
         } catch (SQLException ex) {
             Logger.getLogger(SalesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+     
 
     });
 
