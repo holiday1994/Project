@@ -49,7 +49,7 @@ Label lblCelltxt;
 Label lblFirstName;
 Label lblLastName;
 Label lblCell;
-
+Label lblQty;
 Label lblUID;
 
 TextField txtUID;
@@ -57,6 +57,7 @@ TextField txtUID;
 TextField txtFirstName;
 TextField txtLastName;
 TextField txtCell;
+TextField txtQty;
 
 Button btnAddCart;
 Button btnSendIt;
@@ -93,6 +94,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     lblCelltxt = new Label("Cell Phones:");
     
     lblUID = new Label("Unique ID");
+    lblQty = new Label("Quantity");
     
     btnAddCart = new Button("Add to Cart");
     btnSendIt = new Button("Finished Cart");
@@ -110,6 +112,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
     txtFirstName = new TextField();
     txtLastName = new TextField();
     txtCell = new TextField();
+    txtQty = new TextField();
     
     ToggleGroup toggle = new ToggleGroup();
         rdoDesk.setToggleGroup(toggle);
@@ -129,6 +132,8 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
      pane.add(lblUID,1,3);
      
      pane.add(txtUID,1,4,2,1);
+     pane.add(lblQty, 2, 3);
+     pane.add(txtQty, 2, 4);
      
      
      
@@ -282,9 +287,9 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
             pk = db.dbResults.getNString(1);
             brand = db.dbResults.getNString(3);
             sellPrice = db.dbResults.getNString(2);
-            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n%-15s%-15s\n", 
                     "Unique ID:",db.dbResults.getNString(1),"Brand: "
-                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2), "Total Price:", Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText()));
     }
         counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
         String aQuery = "insert into cart (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
@@ -295,7 +300,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
         aQuery += "" + txtUID.getText() + ",";
         aQuery += "\'" + brand + "\',";
         aQuery += "\'" + "Desktop" + "\',";    
-        aQuery += "" + sellPrice + "";
+        aQuery += "" + Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText()) + "";
         aQuery += ")";
         
                         //desktop.setCount(db.getRows("Desktop"));
@@ -327,9 +332,9 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
             pk = db.dbResults.getNString(1);
             brand = db.dbResults.getNString(3);
             sellPrice = db.dbResults.getNString(2);
-            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n%-15s%-15s\n", 
                     "Unique ID:",db.dbResults.getNString(1),"Brand: "
-                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2), "Total Price:", Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText()));
     }
         counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
         String aQuery = "insert into cart (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
@@ -340,7 +345,7 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
         aQuery += "" + txtUID.getText() + ",";
         aQuery += "\'" + brand + "\',";
         aQuery += "\'" + "Laptop" + "\',";    
-        aQuery += "" + sellPrice + "";
+        aQuery += "" + Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText()) + "";
         aQuery += ")";
         
                         //desktop.setCount(db.getRows("Desktop"));
@@ -369,12 +374,12 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
             pk = db.dbResults.getNString(1);
             brand = db.dbResults.getNString(3);
             sellPrice = db.dbResults.getNString(2);
-            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n", 
+            command += String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s\n%-15s%-15s\n", 
                     "Unique ID:",db.dbResults.getNString(1),"Brand: "
-                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2));
+                    ,db.dbResults.getNString(3) ,"Sell Price: ", db.dbResults.getNString(2), "Total Price:", Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText()));
     }
         counter = Integer.valueOf(db.getMaxPK("cartid", "cart")) + 1;
-        String aQuery = "insert into cellphones (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
+        String aQuery = "insert into CART (cartid, firstname, lastname, cellphone, pk, brand, type, sellprice) Values (";
         aQuery += "\'" + counter + "\',";
         aQuery += "\'" + txtFirstName.getText() + "\',";
         aQuery += "\'" + txtLastName.getText() + "\',";
@@ -382,13 +387,15 @@ public ShoppingCartGUI(Object sourceScreen) throws SQLException{
         aQuery += "" + txtUID.getText() + ",";
         aQuery += "\'" + brand + "\',";
         aQuery += "\'" + "CellPhone" + "\',";    
-        aQuery += "" + sellPrice + "";
+        aQuery += "" + Integer.parseInt(sellPrice)*Integer.parseInt(txtQty.getText())+ "";
         aQuery += ")";
         
                         //desktop.setCount(db.getRows("Desktop"));
 
                 System.out.println(aQuery);
                db.sendDBCommand(aQuery);
+               
+               System.out.println("HErE");
                               
         
         return command;
