@@ -1,2 +1,6 @@
-This is a git repo
-testing
+Hello,
+
+Please run DatabaseStuff file first to set up the SQL databases,
+then you may run BetterBuyLogin to run the application. 
+
+In order to 

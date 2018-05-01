@@ -2,6 +2,8 @@
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
 date: 4/3/2018
 purpose: Better Buy Prototype Inventory Mangement System Prototype.
+
+This file allows users to interact and manage cellphones. Add, update, delete cellphones
  */
 package Project;
 

@@ -21,6 +21,7 @@ public class DatabaseStuff {
         DatabaseStuff stuff = new DatabaseStuff();
         stuff.createTable();
     }
+    //Creates tables depending on type 
 
     public void createTable() {
         String sqlCellphone = "Create Table Cellphone (cellphoneId integer primary key, "
@@ -79,7 +80,8 @@ public class DatabaseStuff {
                 + "SellPrice integer)";
                 
 
-        
+         /*
+        //Insert Statements for 
         sendDBCommand(sqlShoppingCart);
         String insertCP1 = "INSERT ALL \n";
         insertCP1 += "into javauser.CellPhone (cellPhoneId, brand, cost, sellPrice, screensize, memory, type) Values (3,'Samsung','199','299',6,64,'Cell Phone')\n";
@@ -94,9 +96,12 @@ public class DatabaseStuff {
         String insertDT3 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (2,'IBUYPOWER','2200','4000','i7',1000,16,'Desktop')";  
         String insertDT5 = "insert into javauser.Desktop (desktopId, brand, cost, sellPrice, processor, hardDriveSize, ram, type) Values (3,'Dell','199','499','i3',128,4,'Desktop')";
     
+    
+    */
+   
     }
     
-   
+    //Primary key retrival even after app is closed and re-oppened
     public String getMaxPK(String pkColumn, String tableName) throws SQLException
     {
        //ResultSet rs = null;

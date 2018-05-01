@@ -125,8 +125,8 @@ public class CellPhoneGUI {
         // Adding all Widets to the pane
         
         pane.add(cellWelcome,0,0);
-        pane.add(lblCPPK, 1, 0);
-        pane.add(txtUpdate,2,0);
+        pane.add(lblCPPK, 2, 0);
+        pane.add(txtUpdate,2,1);
         //Brand
         pane.add(lblBrand, 0,1);
         pane.add(txtBrand,1,1);
@@ -168,76 +168,102 @@ public class CellPhoneGUI {
         //the "textfield".getText().trim().isEmpty() comes from StackOverflow:
         //https://stackoverflow.com/questions/32866937/how-to-check-if-textfield-is-empty
         
+        //Allows users to create 
 	        createButton.setOnAction(e -> {
-	        	if(txtBrand.getText().trim().isEmpty() || (!rdo36.isSelected() && !rdo64.isSelected() && !rdo256.isSelected())
-	            		|| screenCombo.getSelectionModel().isEmpty() || txtCost.getText().trim().isEmpty() || 
-	            		txtSellPrice.getText().trim().isEmpty()) {
-	            	//alert
-	            	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
-	            	alert.showAndWait();
-	            } else {
+if (rdoDelete.isSelected()) {
+				//clear fields
+				txtBrand.clear();
+				screenCombo.valueProperty().set(null);
+				rdoMemory.selectToggle(null);
+				txtCost.clear();
+				txtSellPrice.clear();
+				
+				if (txtUpdate.getText().trim().isEmpty()) 
+				{
+					//validate if item to delete numeric primary key is specified
+					Alert pKeyAlert = new Alert(AlertType.ERROR, "Please enter Primary Key");
+					pKeyAlert.showAndWait();
+				} else {
+					try {
+						deleteItem();
+						txtACell.clear();
+						txtACell.setText(printCellPhones());
+					} catch (SQLException ex) {
+						Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+					}
+				}                 
+			} else if (rdoUpdate.isSelected() || rdoCreate.isSelected())
+			{
 
-	        //get screen size from combo box
-	        if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
-	        	screenSize = 4;
-	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
-	        	screenSize = 5;
-	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
-	        	screenSize = 6;
-	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
-	        	screenSize = 7;
-	        } else if (screenCombo.getSelectionModel().getSelectedIndex() == 4) {
-	        	screenSize = 8;
-	        }
-	        
-		        //get memory from radio buttons
-		        if (rdo36.isSelected()) {
-                                memStorage = 36;
-		        } else if (rdo64.isSelected()) {
-		        	memStorage = 64;
-		        } else if (rdo256.isSelected()) {
-		        	memStorage = 256;
-		        }
-		        if (rdoCreate.isSelected())//Create new item and re print info
-	                {
-                    try {
-                        insertItem();
-                         txtACell.clear();
-                        txtACell.setText(printCellPhones());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-	                }
-		        else if (rdoUpdate.isSelected())//if update is selcted, update item thru the use of its PK and clear and reprint info
-	                {
-	                    updateItem();
-                            txtACell.clear();
-                            
-                    try {
-                        txtACell.setText(printCellPhones());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-	                }
-		        else if (rdoDelete.isSelected())//if delete is selcted, delete item thru the use of its PK and clear and reprint info
-	                {
-	                    deleteItem();
-                             txtACell.clear();
-                    try {
-                        txtACell.setText(printCellPhones());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                             
-	                } else {
-	                	Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
-		            	rdoAlert.showAndWait();
-	                }
-	            }
-	        });
-        
+				//validate
+				if(txtBrand.getText().trim().isEmpty() || (!rdo36.isSelected() && !rdo64.isSelected() && !rdo256.isSelected())
+						|| screenCombo.getSelectionModel().isEmpty() || txtCost.getText().trim().isEmpty() || 
+						txtSellPrice.getText().trim().isEmpty()) {
+					//display alert if form is unfilled
+					Alert formAlert = new Alert(AlertType.ERROR, "Please fill out the form");
+					formAlert.showAndWait();
+				} else {
 
-    }
+
+					//get screen size from combo box
+					if (screenCombo.getSelectionModel().getSelectedIndex() == 0) {
+						screenSize = 4;
+					} else if (screenCombo.getSelectionModel().getSelectedIndex() == 1) {
+						screenSize = 5;
+					} else if (screenCombo.getSelectionModel().getSelectedIndex() == 2) {
+						screenSize = 6;
+					} else if (screenCombo.getSelectionModel().getSelectedIndex() == 3) {
+						screenSize = 7;
+					} else if (screenCombo.getSelectionModel().getSelectedIndex() == 4) {
+						screenSize = 8;
+					}
+
+					//get memory from radio buttons
+					if (rdo36.isSelected()) {
+						memStorage = 36;
+					} else if (rdo64.isSelected()) {
+						memStorage = 64;
+					} else if (rdo256.isSelected()) {
+						memStorage = 256;
+					}
+
+						//check if create or update is selected
+						if (rdoCreate.isSelected()) {
+							try {
+								insertItem();
+								txtACell.clear();
+								txtACell.setText(printCellPhones());
+							} catch(SQLException ex) {
+								Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+							}
+						} else {
+							if (txtUpdate.getText().trim().isEmpty()) {
+								//if numerical primary key is not specified, Alert
+								Alert pKeyAlert = new Alert(AlertType.ERROR, "Please enter Primary Key");
+								pKeyAlert.showAndWait(); 
+						}else {								try {
+									updateItem();
+									txtACell.clear();
+									txtACell.setText(printCellPhones());
+								} catch (SQLException ex) {
+									Logger.getLogger(CellPhoneGUI.class.getName()).log(Level.SEVERE, null, ex);
+								}
+
+							}
+						} 
+					} 
+				
+			}
+			else {
+				//Makes user select database action (create, update, delete)
+				Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
+				rdoAlert.showAndWait();
+			}
+
+		});
+
+
+	}
     //create item and read into database
     public void insertItem() throws SQLException
     {
@@ -297,7 +323,7 @@ public class CellPhoneGUI {
         while(db.dbResults.next()){
             //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
             
-            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%n", 
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-5s\n", 
                     "Unique ID:",db.dbResults.getNString(1),"Brand: "
                     ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
                     ,"Screen Size: " , db.dbResults.getNString(5) , "Memory : ", db.dbResults.getNString(6));

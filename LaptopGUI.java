@@ -316,7 +316,7 @@ public class LaptopGUI {
         fingerprintReader = "no";
     }
        
-       
+       //RadioButtons to determine if you want to create, delete, or edit
      if (rdoCreate.isSelected()) 
      {
          try {
@@ -355,7 +355,7 @@ public class LaptopGUI {
  });
     
     }
-            
+      
      public void insertItem() throws SQLException
     {
         
@@ -402,6 +402,7 @@ public class LaptopGUI {
                db.sendDBCommand(sqlQuery);
                
      }
+     //Command to delete where primary key is equal to...
           public void deleteItem()
      {
          String sqlQuery = "delete from javauser.laptop where laptopid = ";
@@ -411,7 +412,7 @@ public class LaptopGUI {
                 //System.out.println(sqlQuery);
                db.sendDBCommand(sqlQuery);
      }
-          
+          //This gets the laptops onto the text field
         public String printLaptops() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from Laptop";

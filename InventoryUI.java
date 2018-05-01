@@ -1,6 +1,6 @@
 /*
 author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
-This CDF will be the 2nd screen shown to users
+Page to choose, which product you want to manage
 */
 package Project;
 
@@ -51,7 +51,7 @@ public class InventoryUI {
 
         //Adding new widgets 
         objType = new Label("Select Product Type ");
-        btnCreate = new Button("Create Product");
+        btnCreate = new Button("Manage Products");
         btnDisplay = new Button("Display Products");
 
 

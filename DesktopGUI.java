@@ -207,92 +207,111 @@ public class DesktopGUI {
    
  
     btnCreateDesktop.setOnAction(e -> {
-        /*
-        //data validation
-    	if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
-        		txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
-        				&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
-        						&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty() && !txtUpdate.getText().isEmpty()) {
-        	Alert alert = new Alert(AlertType.ERROR, "Please fill out all of the forms");
-        	alert.showAndWait();
-                */
+       if (rdoDelete.isSelected())
+			{
+				//clear fields
+				ramCombo.valueProperty().set(null);
+				hardToggle.selectToggle(null);
+				procToggle.selectToggle(null);
+				txtBrand.clear();
+				txtCost.clear();
+				txtSellPrice.clear();
+				if (txtUpdate.getText().trim().isEmpty()) 
+				{
+					//validate if item to delete numeric primary key is specified
+					Alert pKeyAlert = new Alert(AlertType.ERROR, "Please enter Primary Key");
+					pKeyAlert.showAndWait();
+				} else {
+					try {
+						deleteItem();
+						txtADesk.clear();
+						txtADesk.setText(printDesktops());
+					} catch (SQLException ex) {
+						Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+					}
+				}                 
+			}else if (rdoUpdate.isSelected() || rdoCreate.isSelected())
+			{
+				//validate if form is filled
+				if (txtBrand.getText().trim().isEmpty() || txtCost.getText().trim().isEmpty() || 
+						txtSellPrice.getText().trim().isEmpty() || (!rdoi3.isSelected() && !rdoi5.isSelected()
+								&& !rdoi7.isSelected()) ||(!rdo128.isSelected() && !rdo256.isSelected() && !rdo500.isSelected()
+										&& !rdo1000.isSelected()) ||ramCombo.getSelectionModel().isEmpty()) 
+				{
+					//display alert if form is unfilled
+					Alert formAlert = new Alert(AlertType.ERROR, "Please fill out the form");
+					formAlert.showAndWait();
+				} else {
 
-        	
-        	//get ram from combo box
-        	if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
-                this.ram = 4;
-            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
-                ram = 6;
-            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
-                ram = 8;
-            } else if (ramCombo.getSelectionModel().getSelectedIndex() == 3) {
-                ram = 16;
-            }
-	  
-		    //get info from 
-		    if (rdo128.isSelected())
-		        hardDriveSize = 128;
-		    else if (rdo256.isSelected())
-		        hardDriveSize = 256;
-		    else if (rdo500.isSelected())
-		        hardDriveSize = 500;
-		    else if (rdo1000.isSelected())
-		        hardDriveSize = 1000;
-		    else {
-		        hardDriveSize = 1;}
-		     //get info from processor toggle radio buttons
-		    if (rdoi3.isSelected())
-		        proc = "i3";
-		    else if (rdoi5.isSelected())
-		        proc = "i5";
-		    else if (rdoi7.isSelected())
-		        proc = "i7";
-		    else {
-		        proc = "idk";}  
-		    
-			if (rdoCreate.isSelected())//insert item and reprint info
-			{
-                            
-                    try {
-                        insertItem();
-                        txtADesk.clear();
-                        txtADesk.setText(printDesktops());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                             
+					//get ram from combo box
+					if (ramCombo.getSelectionModel().getSelectedIndex() == 0) {
+						this.ram = 4;
+					} else if (ramCombo.getSelectionModel().getSelectedIndex() == 1) {
+						ram = 6;
+					} else if (ramCombo.getSelectionModel().getSelectedIndex() == 2) {
+						ram = 8;
+					} else if (ramCombo.getSelectionModel().getSelectedIndex() == 3) {
+						ram = 16;
+					}
+
+					//get info from 
+					if (rdo128.isSelected())
+						hardDriveSize = 128;
+					else if (rdo256.isSelected())
+						hardDriveSize = 256;
+					else if (rdo500.isSelected())
+						hardDriveSize = 500;
+					else if (rdo1000.isSelected())
+						hardDriveSize = 1000;
+					else {
+						hardDriveSize = 1;}
+					//get info from processor toggle radio buttons
+					if (rdoi3.isSelected())
+						proc = "i3";
+					else if (rdoi5.isSelected())
+						proc = "i5";
+					else if (rdoi7.isSelected())
+						proc = "i7";
+					else {
+						proc = "idk";}
+					//check if create or update is selected
+					if (rdoCreate.isSelected()) {
+						try {
+							insertItem();
+							txtADesk.clear();
+							txtADesk.setText(printDesktops());
+						} catch(SQLException ex) {
+							Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+						}
+					} else {
+						if (txtUpdate.getText().trim().isEmpty()) {
+							//if numerical primary key is not specified, Alert
+							Alert pKeyAlert = new Alert(AlertType.ERROR, "Please enter Primary Key");
+							pKeyAlert.showAndWait(); 
+						}else {
+							try {
+								updateItem();
+								txtADesk.clear();
+								txtADesk.setText(printDesktops());
+							} catch (SQLException ex) {
+								Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
+							}
+
+						}
+					} 
+				} 
 			}
-			else if (rdoUpdate.isSelected())
-			{
-                    try {
-                        updateItem();//update item and reprint info
-                        txtADesk.clear();
-                        txtADesk.setText(printDesktops());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-			    
+			else {
+				//Makes user select database action (create, update, delete)
+				Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or Delete.");
+				rdoAlert.showAndWait();
 			}
-			else if (rdoDelete.isSelected())
-			{
-                    try {
-                        deleteItem();// delet item and reprint info
-                         txtADesk.clear();
-                         txtADesk.setText(printDesktops());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DesktopGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-			} 
-		    else {
-					//Makes user select database action (create, update, delete)
-					Alert rdoAlert = new Alert(AlertType.ERROR, "Please select Create, Update, or delete.");
-					rdoAlert.showAndWait();
-			}
-		
-        
-	 });
-    }
-  
+
+
+
+
+		});
+	}
      public void insertItem() throws SQLException
     {
         DatabaseStuff db = new DatabaseStuff();

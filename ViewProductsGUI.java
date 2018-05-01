@@ -84,7 +84,7 @@ public ViewProductsGUI(Object sourceScreen){
         }
        
     }
-    if (chkDisLap.isSelected())
+    if (chkDisLap.isSelected())//is cell phone check box is selected
     {
         try {
             textADis.appendText("LAPTOPS:\n");
@@ -92,8 +92,9 @@ public ViewProductsGUI(Object sourceScreen){
         } catch (SQLException ex) {
             Logger.getLogger(ViewProductsGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
            
-    if (chkDisCell.isSelected())
+    if (chkDisCell.isSelected())//if cell phone check box is selected
     {
             try {
                 textADis.appendText("CELL PHONES:\n");
@@ -103,11 +104,11 @@ public ViewProductsGUI(Object sourceScreen){
             }
     }
 
-    }
+    
     });
     
 }
-
+//print desktops to text area
        public String printDesktops() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from Desktop";
@@ -129,7 +130,7 @@ public ViewProductsGUI(Object sourceScreen){
         return command;
     }    
     
-       
+       //print laptops to text area
          public String printLaptops() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from Laptop";
@@ -151,7 +152,7 @@ public ViewProductsGUI(Object sourceScreen){
         
         return command;
     }
-         
+         //print cell phones to text area
         public String printCellPhones() throws SQLException{
         DatabaseStuff db = new DatabaseStuff();
         String printAll = "Select * from cellphone";
@@ -162,7 +163,7 @@ public ViewProductsGUI(Object sourceScreen){
         while(db.dbResults.next()){
             //for(int i = 1; i <= db.rsmd.getRowCount(); i++)
             
-            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%n", 
+            command+= String.format("%-15s%-15s\n%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-20s%-5s%-5s\n", 
                     "Unique ID:",db.dbResults.getNString(1),"Brand: "
                     ,db.dbResults.getNString(2) ,"Sell Price: ", db.dbResults.getNString(4) , "Cost: " , db.dbResults.getNString(3)
                     ,"Screen Size: " , db.dbResults.getNString(5) , "Memory : ", db.dbResults.getNString(6));

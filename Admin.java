@@ -1,5 +1,6 @@
 /*
  author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This file is the admin class hierarcy
  */
 package Project;
 

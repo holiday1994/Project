@@ -1,5 +1,6 @@
 /*
  author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This allows the admin to create, edit, or delete employees
  */
 package Project;
 
@@ -98,7 +99,7 @@ public class CreateEmployeeGUI {
         
         employeeCombo = new ComboBox(olEmployeeType);
         
-        lblPrimary = new Label("E_ID");
+        lblPrimary = new Label("Enter E_ID to Delete or Edit");
         txtPrimary = new TextField();
         
         pane.add(employeeImage,1,0,3,1);
@@ -135,6 +136,8 @@ public class CreateEmployeeGUI {
         primaryStage.show();
         txtAemp.setText(printUsers());
 
+        
+        //Creates employees depending on type through the combo box
         btnCreateEmp.setOnAction(e -> {
         	
         	//get employee job description
@@ -152,6 +155,8 @@ public class CreateEmployeeGUI {
                         jobDescription = "View, Shopping Cart";
         	}
         	
+                
+                //Determines if admin wants to Add, edit, delete
         	if (rdoCreate.isSelected()) {
         		try {
         			insertItem();

@@ -1,5 +1,6 @@
 /*
  author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This file serves as the UI for the admin view
  */
 package Project;
 

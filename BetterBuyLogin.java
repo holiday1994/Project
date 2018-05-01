@@ -1,5 +1,6 @@
 /*
  author: Stavros Kontzias, Kyle Kim, Matt Bosek, Hunter Whitelock
+This is the main class. This allows user to login as a certain type of employee.
  */
 
 package Project;
